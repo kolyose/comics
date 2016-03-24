@@ -1,4 +1,11 @@
-.resources
+resources/
+.actionscriptproperties
+.project
+.settings/
+bin-debug/
+*.tdl
+*.csv
+UML/
 
 # Windows image file caches
 Thumbs.db
