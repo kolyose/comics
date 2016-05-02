@@ -11,9 +11,9 @@ package states
 		
 		override public function execute():void
 		{			
-			_app.hideLock();
-			_app.hidePauseMenu();
-			_app.startPlayback();
+			//_app.hideLock();
+			//_app.hidePauseMenu();
+			//_app.startPlayback();
 		}		
 		
 		//Page playback completeness causes switching pages after which we need to start playback again on a new page
@@ -24,14 +24,32 @@ package states
 			_app.startPlayback();
 		}
 		
+		override public function resume():void
+		{
+			_app.resumePlayback();
+		}
+		
 		override public function pause(showMenu:Boolean=false):void
 		{			
+			_app.pausePlayback();
 			_app.applyState(applicationStatesFactory.getStatePaused());
 			
 			if (showMenu)
 			{
 				_app.showPauseMenu();
 			}
+		}
+		
+		override public function lock():void
+		{
+			_app.disable();
+			_app.showLock();
+		}
+		
+		override public function unlock():void
+		{
+			_app.enable();
+			_app.hideLock();
 		}
 	}
 }

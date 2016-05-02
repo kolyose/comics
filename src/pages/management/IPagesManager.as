@@ -13,6 +13,7 @@ package pages.management
 		function enable():void;
 		function disable():void;
 		function play():void;
+		function resume():void;
 		function pause():void;
 		function stop():void;
 		

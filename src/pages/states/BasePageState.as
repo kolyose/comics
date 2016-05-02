@@ -21,6 +21,7 @@ package pages.states
 		
 		public function setData(data:PageDO):void{}
 		public function play():void{}		
+		public function resume():void{}		
 		public function pause():void{}
 		public function stop():void{}
 	}

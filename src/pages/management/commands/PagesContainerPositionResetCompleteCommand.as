@@ -12,6 +12,9 @@ package pages.management.commands
 		[Inject]
 		public var pagesManager:IPagesManager;
 		
+		[Inject]
+		public var playbackSettings:IPlaybackSettings;
+		
 		public function PagesContainerPositionResetCompleteCommand()
 		{
 			super();
@@ -20,7 +23,7 @@ package pages.management.commands
 		override public function execute():void
 		{
 			dispatchWith(ApplicationEvent.UNLOCK);
-			dispatchWith(ApplicationEvent.PLAY);
+			dispatchWith(ApplicationEvent.RESUME);
 		}
 	}
 }

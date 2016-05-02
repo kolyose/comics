@@ -30,6 +30,11 @@ package states
 			
 		}
 		
+		public function resume():void
+		{
+			
+		}
+		
 		public function pause(showMenu:Boolean=false):void
 		{
 			

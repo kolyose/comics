@@ -47,6 +47,7 @@ package
 		override public function onRegister():void
 		{			
 			addContextListener(ApplicationEvent.PLAY, play);
+			addContextListener(ApplicationEvent.RESUME, resume);
 			addContextListener(ApplicationEvent.PAUSE, pause);
 			addContextListener(ApplicationEvent.LOCK, lock);
 			addContextListener(ApplicationEvent.UNLOCK, unlock);
@@ -67,6 +68,11 @@ package
 		public function play(event:Event):void
 		{
 			_state.play();				
+		}
+		
+		public function resume(event:Event):void
+		{
+			_state.resume();				
 		}
 		
 		public function pause(event:Event):void
@@ -111,7 +117,7 @@ package
 			view.init();
 			view.initPagesView(new PagesView());
 			view.initLockContainer(assetsModel.getTexture("touchContainer"));	
-			view.initPauseMenu(assetsModel.getTexture("pauseMenuBg"), assetsModel.getTexture("replayButton"), assetsModel.getTexture("playButton"));
+			view.initPauseMenu();
 			view.hideLock();
 			view.hidePauseMenu();
 		}
@@ -151,6 +157,11 @@ package
 		public function startPlayback():void
 		{
 			dispatchWith(ModelEvent.START_PLAYBACK);
+		}
+		
+		public function resumePlayback():void
+		{
+			dispatchWith(ModelEvent.RESUME_PLAYBACK);
 		}
 		
 		public function stopPlayback():void

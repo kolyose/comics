@@ -12,6 +12,9 @@ package pages.management.commands
 		[Inject]
 		public var pagesManager:IPagesManager;
 		
+		[Inject]
+		public var playbackSettings:IPlaybackSettings;
+		
 		public function PagePlaybackCompleteCommand()
 		{
 			super();
@@ -21,8 +24,12 @@ package pages.management.commands
 		{				
 		//	dispatchWith(ApplicationEvent.PAUSE);
 			pagesManager.stop();
-			dispatchWith(ApplicationEvent.LOCK);
-			pagesManager.switchPages(pagesManager.currentPageNumber+1);
+			
+			if (playbackSettings.autoplayMode)
+			{				
+				dispatchWith(ApplicationEvent.LOCK);
+				pagesManager.switchPages(pagesManager.currentPageNumber+1);
+			}
 		}
 	}
 }

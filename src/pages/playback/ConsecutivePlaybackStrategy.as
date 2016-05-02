@@ -20,6 +20,7 @@ package pages.playback
 		protected var _grayscaleFilterStepsCounter:uint;
 		protected var _bPaused:Boolean;
 		
+		//TODO: fix the BUG - numbers counter resets after page playback complete
 		public function ConsecutivePlaybackStrategy(page:IPage)
 		{
 			super(page);
@@ -87,6 +88,7 @@ package pages.playback
 			}	
 			
 			_grayscaleFilterStepsCounter = 0;
+			_bPaused = false;
 		}
 		
 		protected function initiateItemPlayback(itemIndex:uint):void

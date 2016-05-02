@@ -60,6 +60,11 @@ package pages.management
 			getCurrentPage().play();
 		}
 		
+		public function resume():void
+		{
+			getCurrentPage().resume();
+		}
+		
 		public function pause():void
 		{
 			getCurrentPage().pause();

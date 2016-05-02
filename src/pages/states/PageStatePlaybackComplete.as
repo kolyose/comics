@@ -9,7 +9,7 @@ package pages.states
 			super(page, statesFactory);
 		}
 		
-		override public function play():void
+		override public function play():void	
 		{
 			_page.startPlayback();
 			_page.applyState(pageStatesFactory.getStatePlaybackStarted(_page));

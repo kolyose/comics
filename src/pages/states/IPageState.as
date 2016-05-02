@@ -6,6 +6,7 @@ package pages.states
 	{		
 		function setData(data:PageDO):void;
 		function play():void;
+		function resume():void;
 		function pause():void;
 		function stop():void;
 	}

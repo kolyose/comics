@@ -12,5 +12,6 @@ package events
 		public static const MOVE_PAGES_CONTAINER:String = "ViewEvent.MOVE_PAGES_CONTAINER";
 		public static const SHOW_PAUSE:String = "ViewEvent.SHOW_PAUSE";		
 		public static const HIDE_PAUSE:String = "ViewEvent.HIDE_PAUSE";		
+		public static const BTN_TRIGGERED:String = "ViewEvent.BTN_TRIGGERED";		
 	}
 }

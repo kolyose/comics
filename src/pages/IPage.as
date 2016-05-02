@@ -23,6 +23,7 @@ package pages
 		function init(data:PageDO):void
 		
 		function play():void;
+		function resume():void;
 		function pause():void;
 		function stop():void;
 		function startPlayback():void;

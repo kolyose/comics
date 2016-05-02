@@ -87,11 +87,14 @@ package pages
 			_state.setData(data);
 		}
 		
-		//TODO: fix the
-		//BUG: after page's playback completion and switching to next page - the next page's playback isn't started 
 		public function play():void
 		{
 			_state.play();
+		}
+		
+		public function resume():void
+		{
+			_state.resume();
 		}
 		
 		public function pause():void

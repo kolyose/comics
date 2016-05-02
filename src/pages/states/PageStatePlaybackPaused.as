@@ -11,6 +11,12 @@ package pages.states
 		
 		override public function play():void
 		{
+			_page.startPlayback();
+			_page.applyState(pageStatesFactory.getStatePlaybackStarted(_page));
+		}
+		
+		override public function resume():void
+		{
 			_page.resumePlayback();
 			_page.applyState(pageStatesFactory.getStatePlaybackStarted(_page));
 		}

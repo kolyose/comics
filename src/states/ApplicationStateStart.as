@@ -11,6 +11,7 @@ package states
 		{
 			_app.start();
 			_app.applyState(applicationStatesFactory.getStatePlaying());
+			_app.startPlayback();
 		}
 		
 		override public function lock():void

@@ -10,7 +10,6 @@ package
 	import flash.utils.Dictionary;
 	import flash.xml.XMLNode;
 	
-	//import model.assets.AssetsManager;
 	import model.assets.AssetsModel;
 	
 	import org.robotlegs.starling.mvcs.Actor;
@@ -22,27 +21,13 @@ package
 		[Inject]
 		public var assetsModel:AssetsModel;
 		
-		//TODO: integrate with robotlegs infrastructure & AssetsModel instead of AssetsManager
-		
 		namespace ns = "http://ns.adobe.com/xfl/2008/"				
 		use namespace ns;
-		
-		//private static var _instance:XMLParser;
 		
 		public function XMLParser(/*enforcer:XMLParserSingletonInforcer*/)
 		{
 			
 		}
-		
-		/*public static function getInstance():XMLParser
-		{
-			if (_instance == null)
-			{
-				_instance = new XMLParser(new XMLParserSingletonInforcer());
-			}
-			
-			return _instance;
-		}*/
 		
 		private function parseMatrix(xml:XML):Matrix
 		{

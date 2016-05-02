@@ -14,5 +14,10 @@ package pages.states
 			_page.startPlayback();
 			_page.applyState(pageStatesFactory.getStatePlaybackStarted(_page));
 		}
+		
+		override public function resume():void
+		{
+			play();
+		}
 	}
 }

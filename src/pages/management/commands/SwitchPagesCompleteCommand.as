@@ -6,16 +6,14 @@ package pages.management.commands
 	import org.robotlegs.starling.mvcs.Command;
 	
 	import pages.management.IPagesManager;
-	
-	import states.IApplicationStatesFactory;
-	
+		
 	public class SwitchPagesCompleteCommand extends Command
 	{
 		[Inject]
 		public var pagesManager:IPagesManager;
 		
 		[Inject]
-		public var applicationStatesFactory:IApplicationStatesFactory;
+		public var playbackSettings:IPlaybackSettings;
 		
 		public function SwitchPagesCompleteCommand()
 		{
@@ -25,9 +23,14 @@ package pages.management.commands
 		override public function execute():void
 		{
 			dispatchWith(ModelEvent.ADD_PAGE, false, pagesManager.currentPageNumber);
-			dispatchWith(ApplicationEvent.UNLOCK);
-			dispatchWith(ApplicationEvent.PLAY);
 			dispatchWith(ModelEvent.ADD_NEIGHBOUR_PAGES, false, pagesManager.currentPageNumber);
+			dispatchWith(ApplicationEvent.UNLOCK);
+			
+			if (playbackSettings.autoplayMode)
+			{
+				dispatchWith(ApplicationEvent.RESUME);
+				dispatchWith(ApplicationEvent.PLAY);				
+			}
 		}
 	}
 }

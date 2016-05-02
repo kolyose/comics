@@ -11,6 +11,9 @@ package controller
 	import events.ApplicationEvent;
 	import events.ModelEvent;
 	
+	import menu.PauseMenuMediator;
+	import menu.PauseMenuView;
+	
 	import model.assets.AssetsModel;
 	
 	import org.robotlegs.starling.mvcs.Command;
@@ -39,6 +42,7 @@ package controller
 	import pages.management.commands.PausePlaybackCommand;
 	import pages.management.commands.ReplayPageCommand;
 	import pages.management.commands.ResetPagesContainerPositionCommand;
+	import pages.management.commands.ResumePlaybackCommand;
 	import pages.management.commands.SetPageDataCommand;
 	import pages.management.commands.SetPageEnabledCommand;
 	import pages.management.commands.ShowPageCommand;
@@ -94,6 +98,7 @@ package controller
 			injector.mapSingletonOf(IControlsFactory, TouchControlsFactory);
 			injector.mapSingletonOf(IApplicationStatesFactory, ApplicationStatesFactory);			
 			injector.mapSingletonOf(IPlaybackStrategiesFactory, PlaybackStrategiesFactory);			
+			injector.mapSingletonOf(IPlaybackSettings, PlaybackSettigns);			
 			
 			injector.mapSingleton(BasePageFactory);
 			injector.mapSingleton(ConsecutivePageFactory);
@@ -106,6 +111,7 @@ package controller
 			
 			mediatorMap.mapView(ApplicationView, ApplicationMediator);
 			mediatorMap.mapView(PagesView, PagesMediator);
+			mediatorMap.mapView(PauseMenuView, PauseMenuMediator);
 			
 			commandMap.mapEvent(ModelEvent.PAGE_RESOURCES_LOADED, SetPageDataCommand);
 			commandMap.mapEvent(ModelEvent.SHOW_PAGE, ShowPageCommand);
@@ -120,6 +126,7 @@ package controller
 			commandMap.mapEvent(ModelEvent.PAGES_CONTAINER_POSITION_RESET_COMPLETE, PagesContainerPositionResetCompleteCommand);
 			commandMap.mapEvent(ModelEvent.SET_PAGE_ENABLED, SetPageEnabledCommand);
 			commandMap.mapEvent(ModelEvent.START_PLAYBACK, StartPlaybackCommand);
+			commandMap.mapEvent(ModelEvent.RESUME_PLAYBACK, ResumePlaybackCommand);
 			commandMap.mapEvent(ModelEvent.STOP_PLAYBACK, StopPlaybackCommand);			
 			commandMap.mapEvent(ModelEvent.PAUSE_PLAYBACK, PausePlaybackCommand);			
 			commandMap.mapEvent(ModelEvent.ENABLE_PAGES_MANAGER, EnablePagesManagerCommand);

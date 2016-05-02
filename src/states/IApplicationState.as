@@ -4,6 +4,7 @@ package states
 	{		
 		function execute():void;
 		function play():void;
+		function resume():void;
 		function pause(showMenu:Boolean=false):void;
 		function lock():void;
 		function unlock():void;

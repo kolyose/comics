@@ -2,6 +2,8 @@ package
 {
 	import flash.utils.setTimeout;
 	
+	import menu.PauseMenuView;
+	
 	import starling.display.Button;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -14,9 +16,7 @@ package
 	{
 		private var _context		:MainContext;
 		private var _lockContainer	:Sprite;
-		private var _pauseMenu		:Sprite;
-		private var _btnReplay		:Button;
-		private var _btnContinue	:Button;
+		private var _pauseMenu		:PauseMenuView;
 		
 		public function ApplicationView()
 		{
@@ -41,30 +41,13 @@ package
 			_lockContainer.addChild(image);
 			addChild(_lockContainer);	
 		}
-		
-		//TODO REFACTORING: implement view & mediator classes for PauseMenu entity  
-		public function initPauseMenu(bg:Texture, btnReplay:Texture, btnContinue:Texture):void
-		{
-			_pauseMenu = new Sprite();
-			var bgImage:Image = new Image(bg);			
-			bgImage.name = InstanceNames.PAUSE_MENU_BG;
-			_pauseMenu.addChild(bgImage);
-			
+				  
+		public function initPauseMenu():void
+		{		
+			_pauseMenu = new PauseMenuView();
+			addChild(_pauseMenu);
 			_pauseMenu.x = (Settings.getInstance().WIDTH - _pauseMenu.width)/2;
 			_pauseMenu.y = (Settings.getInstance().HEIGHT - _pauseMenu.height)/2;			
-			addChild(_pauseMenu);
-			
-			_btnReplay = new Button(btnReplay);
-			_btnReplay.x = 10;
-			_btnReplay.y = 10;
-			_btnReplay.name = InstanceNames.BTN_REPLAY;
-			_pauseMenu.addChild(_btnReplay);
-			
-			_btnContinue = new Button(btnContinue);
-			_btnContinue.x = _btnReplay.x + _btnReplay.width + 10;
-			_btnContinue.y = 10;
-			_btnContinue.name = InstanceNames.BTN_CONTINUE;
-			_pauseMenu.addChild(_btnContinue);
 		}
 		
 		public function showLock():void
@@ -81,12 +64,12 @@ package
 				
 		public function showPauseMenu():void
 		{
-			_pauseMenu.visible = _pauseMenu.touchable = true;
+			_pauseMenu.show();
 		}
 		
 		public function hidePauseMenu():void
 		{
-			_pauseMenu.visible = _pauseMenu.touchable = false;
+			_pauseMenu.hide();
 		}
 		
 		public function getStage():DisplayObject

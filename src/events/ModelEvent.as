@@ -15,6 +15,7 @@ package events
 		public static const PAGES_CONTAINER_POSITION_RESET_COMPLETE:String = "ModelEvent.PAGES_CONTAINER_POSITION_RESET_COMPLETE";
 		public static const SET_PAGE_ENABLED:String = "ModelEvent.SET_PAGE_ENABLED";
 		public static const START_PLAYBACK:String = "ModelEvent.START_PLAYBACK";
+		public static const RESUME_PLAYBACK:String = "ModelEvent.RESUME_PLAYBACK";
 		public static const STOP_PLAYBACK:String = "ModelEvent.STOP_PLAYBACK";
 		public static const PAUSE_PLAYBACK:String = "ModelEvent.PAUSE_PLAYBACK";
 		public static const ENABLE_PAGES_MANAGER:String = "ModelEvent.ENABLE_PAGES_MANAGER";

@@ -1,5 +1,6 @@
 package
 {
+	//TODO: refactor from Singleton to Model and make the class implementing an interface
 	public class Settings
 	{
 		private static var _settings:Settings;

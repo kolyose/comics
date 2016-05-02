@@ -24,7 +24,7 @@ package controller
 		override public function execute():void
 		{
 			dispatchWith(ApplicationEvent.PAUSE);
-			
+						
 			var xOffset:Number = Number(event.data);
 			pagesManager.movePage(xOffset);
 		}

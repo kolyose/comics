@@ -25,21 +25,8 @@ package controller
 			{
 				case InstanceNames.LOCK_CONTAINER:
 				{					
+					dispatchWith(ApplicationEvent.LOCK);
 					dispatchWith(ApplicationEvent.PAUSE, false, true);//show pause menu
-					break;
-				}
-				
-				//TODO: move the following functionality to PauseMenuMediator class
-				case InstanceNames.BTN_REPLAY:
-				{
-					dispatchWith(ApplicationEvent.PLAY);	
-					dispatchWith(ModelEvent.REPLAY_PAGE);
-					break;
-				}
-					
-				case InstanceNames.BTN_CONTINUE:
-				{
-					dispatchWith(ApplicationEvent.PLAY);	
 					break;
 				}
 					
