@@ -18,6 +18,9 @@ package menu
 		[Inject]
 		public var assetsModel:AssetsModel;
 		
+		//[Inject]
+		//public var 
+		
 		public function PauseMenuMediator()
 		{
 			super();
@@ -32,6 +35,11 @@ package menu
 			texturesData.btnReplay = assetsModel.getTexture("replayButton");
 			texturesData.btnContinue = assetsModel.getTexture("playButton");
 			view.init(texturesData);
+			
+			var pageIndicatorTextures:Object = {};
+			pageIndicatorTextures.sliderThumbSkin = assetsModel.getTexture("pagesSliderThumbSkin");
+			pageIndicatorTextures.minTrackDefaultSkin = assetsModel.getTexture("pagesSliderTrackSkin");
+			view.initPageIndicator(pageIndicatorTextures, Settings.getInstance().intPagesCount);
 		}
 		
 		private function btnTriggeredHandler(event:Event, name:String):void

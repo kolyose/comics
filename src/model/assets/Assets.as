@@ -18,5 +18,11 @@ package model.assets
 		
 		[Embed(source="../resources/common/playButton.png")]
 		public static const playButton:Class;
+
+		[Embed(source="../resources/common/pagesSliderTrackSkin.png")]
+		public static const pagesSliderTrackSkin:Class;
+		
+		[Embed(source="../resources/common/pagesSliderThumbSkin.png")]
+		public static const pagesSliderThumbSkin:Class;		
 	}
 }
