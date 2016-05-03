@@ -25,10 +25,10 @@ package pages.management.commands
 			dispatchWith(ModelEvent.ADD_PAGE, false, pagesManager.currentPageNumber);
 			dispatchWith(ModelEvent.ADD_NEIGHBOUR_PAGES, false, pagesManager.currentPageNumber);
 			dispatchWith(ApplicationEvent.UNLOCK);
+			dispatchWith(ApplicationEvent.RESUME);
 			
 			if (playbackSettings.autoplayMode)
-			{
-				dispatchWith(ApplicationEvent.RESUME);
+			{				
 				dispatchWith(ApplicationEvent.PLAY);				
 			}
 		}

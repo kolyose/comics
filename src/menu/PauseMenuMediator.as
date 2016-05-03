@@ -49,7 +49,6 @@ package menu
 				{
 					dispatchWith(ApplicationEvent.UNLOCK);
 					dispatchWith(ApplicationEvent.PLAY);	
-					//dispatchWith(ModelEvent.REPLAY_PAGE);
 					break;
 				}
 				

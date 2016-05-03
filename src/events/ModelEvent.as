@@ -25,7 +25,6 @@ package events
 		public static const MOVE_PAGE:String = "ModelEvent.MOVE_PAGE";
 		public static const MOVE_PAGE_COMPLETE:String = "ModelEvent.MOVE_PAGE_COMPLETE";
 		public static const HANDLE_TAP:String = "ModelEvent.HANDLE_TAP";
-		public static const REPLAY_PAGE:String = "ModelEvent.REPLAY_PAGE";
 		public static const SHOW_PAUSE_MENU:String = "ModelEvent.SHOW_PAUSE_MENU";
 		public static const HIDE_PAUSE_MENU:String = "ModelEvent.HIDE_PAUSE_MENU";
 	}

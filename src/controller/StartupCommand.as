@@ -40,7 +40,6 @@ package controller
 	import pages.management.commands.PagePlaybackCompleteCommand;
 	import pages.management.commands.PagesContainerPositionResetCompleteCommand;
 	import pages.management.commands.PausePlaybackCommand;
-	import pages.management.commands.ReplayPageCommand;
 	import pages.management.commands.ResetPagesContainerPositionCommand;
 	import pages.management.commands.ResumePlaybackCommand;
 	import pages.management.commands.SetPageDataCommand;
@@ -135,8 +134,7 @@ package controller
 			commandMap.mapEvent(ModelEvent.DISABLE_CONTROLS, DisableControlsCommand);
 			commandMap.mapEvent(ModelEvent.MOVE_PAGE, MovePageCommand);
 			commandMap.mapEvent(ModelEvent.MOVE_PAGE_COMPLETE, MovePageCompleteCommand);
-			commandMap.mapEvent(ModelEvent.HANDLE_TAP, HandleTapCommand);
-			commandMap.mapEvent(ModelEvent.REPLAY_PAGE, ReplayPageCommand);						
+			commandMap.mapEvent(ModelEvent.HANDLE_TAP, HandleTapCommand);				
 		}
 	}
 }

@@ -63,7 +63,7 @@ package pages.items
 		{
 			if (_subitemDO.type == Subitem.TYPE_MOVIECLIP && _bPlaybackStarted)
 			{
-				(_container as MovieClip).stop();
+				(_container as MovieClip).pause();
 			}
 		}
 		
