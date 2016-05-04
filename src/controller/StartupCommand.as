@@ -135,6 +135,9 @@ package controller
 			commandMap.mapEvent(ModelEvent.MOVE_PAGE, MovePageCommand);
 			commandMap.mapEvent(ModelEvent.MOVE_PAGE_COMPLETE, MovePageCompleteCommand);
 			commandMap.mapEvent(ModelEvent.HANDLE_TAP, HandleTapCommand);				
+			commandMap.mapEvent(ModelEvent.HANDLE_DOUBLE_TAP, HandleDoubleTapCommand);				
+			commandMap.mapEvent(ModelEvent.SAVE_LOCAL_DATA, SaveLocalDataCommand);				
+			commandMap.mapEvent(ModelEvent.GET_LOCAL_DATA, GetLocalDataCommand);				
 		}
 	}
 }

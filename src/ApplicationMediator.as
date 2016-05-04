@@ -7,6 +7,9 @@ package
 	import events.ApplicationEvent;
 	import events.ModelEvent;
 	
+	import flash.desktop.NativeApplication;
+	import flash.events.Event;
+	
 	import model.assets.Assets;
 	import model.assets.AssetsModel;
 	
@@ -46,17 +49,25 @@ package
 		
 		override public function onRegister():void
 		{			
+			NativeApplication.nativeApplication.addEventListener(flash.events.Event.EXITING, applicationExitingHandler);
+			
 			addContextListener(ApplicationEvent.PLAY, play);
 			addContextListener(ApplicationEvent.RESUME, resume);
 			addContextListener(ApplicationEvent.PAUSE, pause);
 			addContextListener(ApplicationEvent.LOCK, lock);
 			addContextListener(ApplicationEvent.UNLOCK, unlock);
 			addContextListener(ApplicationEvent.SLIDE, slide);
+			addContextListener(ApplicationEvent.ZOOM, zoom);
 			
 			statesFactory.setApplication(this);
 			applyState(statesFactory.getStateLoading());		
 		}		
 				
+		private function applicationExitingHandler(event:flash.events.Event):void
+		{
+			dispatchWith(ModelEvent.SAVE_LOCAL_DATA);
+		}
+		
 		public function applyState(state:IApplicationState):void
 		{
 			_state = null;
@@ -65,33 +76,38 @@ package
 		}
 			
 		//METHODS delegated to State /////////////////////////////////////////////		
-		public function play(event:Event):void
+		public function play(event:starling.events.Event):void
 		{
 			_state.play();				
 		}
 		
-		public function resume(event:Event):void
+		public function resume(event:starling.events.Event):void
 		{
 			_state.resume();				
 		}
 		
-		public function pause(event:Event):void
+		public function pause(event:starling.events.Event):void
 		{
 			_state.pause(event.data);
 		}
 		
-		public function unlock(event:Event):void
+		public function unlock(event:starling.events.Event):void
 		{			
 			_state.unlock();
 		}
 		
-		public function lock(event:Event):void
+		public function lock(event:starling.events.Event):void
 		{			
 			_state.lock();
 		}
 		
+		public function zoom(event:starling.events.Event):void
+		{
+			_state.zoom();
+		}
+		
 		//TODO: if the method is not required - refactor 
-		public function slide(event:Event):void
+		public function slide(event:starling.events.Event):void
 		{
 			_state.slide();
 		}
@@ -131,7 +147,15 @@ package
 		
 		public function start():void
 		{
-			dispatchWith(ModelEvent.SHOW_PAGE, false, 1);
+			addContextListener(ModelEvent.LOCAL_DATA_READY, localDataReadyHandler);
+			dispatchWith(ModelEvent.GET_LOCAL_DATA);
+		}
+		
+		private function localDataReadyHandler(event:starling.events.Event):void
+		{
+			removeContextListener(ModelEvent.LOCAL_DATA_READY, localDataReadyHandler);
+			var pageNumber:uint = (event.data) ? event.data["currentPageNumber"] : 1;
+			dispatchWith(ModelEvent.SHOW_PAGE, false, pageNumber);
 		}
 				
 		public function showLock():void
@@ -172,6 +196,11 @@ package
 		public function pausePlayback():void
 		{
 			dispatchWith(ModelEvent.PAUSE_PLAYBACK);
+		}
+		
+		public function zoomPlayback():void
+		{
+			dispatchWith(ModelEvent.ZOOM_PLAYBACK);
 		}
 		
 		public function enable():void

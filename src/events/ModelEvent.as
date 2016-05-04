@@ -18,6 +18,7 @@ package events
 		public static const RESUME_PLAYBACK:String = "ModelEvent.RESUME_PLAYBACK";
 		public static const STOP_PLAYBACK:String = "ModelEvent.STOP_PLAYBACK";
 		public static const PAUSE_PLAYBACK:String = "ModelEvent.PAUSE_PLAYBACK";
+		public static const ZOOM_PLAYBACK:String = "ModelEvent.ZOOM_PLAYBACK";
 		public static const ENABLE_PAGES_MANAGER:String = "ModelEvent.ENABLE_PAGES_MANAGER";
 		public static const DISABLE_PAGES_MANAGER:String = "ModelEvent.DISABLE_PAGES_MANAGER";
 		public static const ENABLE_CONTROLS:String = "ModelEvent.ENABLE_CONTROLS";
@@ -25,7 +26,13 @@ package events
 		public static const MOVE_PAGE:String = "ModelEvent.MOVE_PAGE";
 		public static const MOVE_PAGE_COMPLETE:String = "ModelEvent.MOVE_PAGE_COMPLETE";
 		public static const HANDLE_TAP:String = "ModelEvent.HANDLE_TAP";
+		public static const HANDLE_DOUBLE_TAP:String = "ModelEvent.HANDLE_DOUBLE_TAP";
 		public static const SHOW_PAUSE_MENU:String = "ModelEvent.SHOW_PAUSE_MENU";
 		public static const HIDE_PAUSE_MENU:String = "ModelEvent.HIDE_PAUSE_MENU";
+		public static const PAGE_NUMBER_CHANGED:String = "ModelEvent.PAGE_NUMBER_CHANGED";
+		public static const SAVE_LOCAL_DATA:String = "ModelEvent.SAVE_LOCAL_DATA";
+		public static const GET_LOCAL_DATA:String = "ModelEvent.GET_LOCAL_DATA";		
+		public static const LOCAL_DATA_READY:String = "ModelEvent.LOCAL_DATA_READY";
+		
 	}
 }

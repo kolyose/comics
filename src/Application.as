@@ -19,7 +19,6 @@ package
 			
 //			Starling.multitouchEnabled = true;
 			
-			//SWITCH TO MainView CLASS INSTEAD OF Main CLASS WHEN Robotlegs INTEGRATION BE FINISHED
 			_starling = new Starling(ApplicationView, stage);
 			
 	//		_starling.simulateMultitouch = true;

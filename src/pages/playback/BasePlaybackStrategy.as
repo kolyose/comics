@@ -10,14 +10,14 @@ package pages.playback
 	import starling.events.Event;
 	import starling.events.EventDispatcher;
 	
-	public class PlaybackStrategy extends EventDispatcher implements IPlaybackStrategy
+	public class BasePlaybackStrategy extends EventDispatcher implements IPlaybackStrategy
 	{
 		protected var _page:IPage;
 		protected var _sprContainer:Sprite;
 		protected var _vItems:Vector.<IItem>;
 		protected var _uintCurrentItemIndex:uint;
 				
-		public function PlaybackStrategy(page:IPage)
+		public function BasePlaybackStrategy(page:IPage)
 		{
 			_page = page;
 			_sprContainer = page.container;
@@ -43,6 +43,11 @@ package pages.playback
 		}
 		
 		public function resume():void
+		{
+			
+		}
+		
+		public function zoom():void
 		{
 			
 		}

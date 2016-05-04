@@ -5,7 +5,7 @@ package pages.management.strategies
 	import org.robotlegs.starling.mvcs.Actor;
 	
 	import pages.management.IPagesManager;
-	import pages.management.vo.PagesContainerPositionTweenVO;
+	import pages.management.vo.PagesContainerPositionTweenPropertiesVO;
 
 	public class SwitchPagesByContainerPositionTweening extends Actor implements ISwitchPagesStrategy
 	{
@@ -13,7 +13,7 @@ package pages.management.strategies
 		public var pagesManager:IPagesManager;		
 		
 		private var _pageNumber:uint;
-		private var _tweenVO:PagesContainerPositionTweenVO;
+		private var _tweenVO:PagesContainerPositionTweenPropertiesVO;
 		
 		public function SwitchPagesByContainerPositionTweening()
 		{
@@ -22,7 +22,7 @@ package pages.management.strategies
 		public function switchToPageByNumber(pageNumber:uint):void
 		{
 			_pageNumber = pageNumber;
-			_tweenVO = new PagesContainerPositionTweenVO();
+			_tweenVO = new PagesContainerPositionTweenPropertiesVO();
 			
 			var intDirectionFactor:int = (pageNumber > pagesManager.currentPageNumber) ? -1 : 1;			
 			var targetX:Number = pagesManager.containerPositionX + ((Settings.getInstance().WIDTH + Settings.getInstance().distanceBetweenPages) * intDirectionFactor);

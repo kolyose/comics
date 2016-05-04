@@ -11,5 +11,6 @@ package events
 		public static const LOCK:String = "ApplicationEvent.LOCK";
 		public static const UNLOCK:String = "ApplicationEvent.UNLOCK";
 		public static const SLIDE:String = "ApplicationEvent.SLIDE";		
+		public static const ZOOM:String = "ApplicationEvent.ZOOM";		
 	}
 }

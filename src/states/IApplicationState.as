@@ -9,5 +9,6 @@ package states
 		function lock():void;
 		function unlock():void;
 		function slide():void;
+		function zoom():void;
 	}
 }

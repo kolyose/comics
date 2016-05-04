@@ -20,5 +20,10 @@ package pages.states
 			_page.stopPlayback();
 			_page.applyState(pageStatesFactory.getStatePlaybackComplete(_page));
 		}
+		
+		override public function zoom():void
+		{
+			_page.zoomPlayback();
+		}
 	}
 }

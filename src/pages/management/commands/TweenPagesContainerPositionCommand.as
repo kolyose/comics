@@ -6,7 +6,7 @@ package pages.management.commands
 	import org.robotlegs.starling.mvcs.Command;
 	
 	import pages.management.IPagesManager;
-	import pages.management.vo.PagesContainerPositionTweenVO;
+	import pages.management.vo.PagesContainerPositionTweenPropertiesVO;
 	
 	import starling.events.Event;
 	
@@ -27,7 +27,7 @@ package pages.management.commands
 		override public function execute():void
 		{
 			dispatchWith(ViewEvent.CLEAR_PAGES_CONTAINER_POSITION_TWEEN);						
-			dispatchWith(ViewEvent.TWEEN_PAGES_CONTAINER_POSITION, false, event.data as PagesContainerPositionTweenVO);	
+			dispatchWith(ViewEvent.TWEEN_PAGES_CONTAINER_POSITION, false, event.data as PagesContainerPositionTweenPropertiesVO);	
 		}		
 	}
 }

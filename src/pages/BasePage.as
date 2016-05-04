@@ -11,7 +11,7 @@ package pages
 	import pages.items.IItem;
 	import pages.items.factory.IItemFactory;
 	import pages.playback.IPlaybackStrategy;
-	import pages.playback.PlaybackStrategy;
+	import pages.playback.BasePlaybackStrategy;
 	import pages.states.IPageState;
 	import pages.states.IPageStatesFactory;
 	
@@ -107,6 +107,11 @@ package pages
 			_state.stop();
 		}
 		
+		public function zoom():void
+		{
+			_state.zoom();
+		}
+		
 		public function startPlayback():void
 		{
 			_playbackStrategy.start();	
@@ -125,6 +130,11 @@ package pages
 		public function stopPlayback():void
 		{
 			_playbackStrategy.stop();
+		}
+		
+		public function zoomPlayback():void
+		{
+			_playbackStrategy.zoom();
 		}
 				
 		protected function playbackCompleteHandler(event:Event):void

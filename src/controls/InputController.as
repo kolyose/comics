@@ -48,6 +48,7 @@ package controls
 		private function addListeners():void
 		{
 			(_controls as EventDispatcher).addEventListener(ControlsEvent.TAP, tapHandler);
+			(_controls as EventDispatcher).addEventListener(ControlsEvent.DOUBLE_TAP, doubleTapHandler);
 			(_controls as EventDispatcher).addEventListener(ControlsEvent.SLIDE, slideHandler);
 			(_controls as EventDispatcher).addEventListener(ControlsEvent.SLIDE_COMPLETE, slideCompleteHandler);
 		}
@@ -57,6 +58,7 @@ package controls
 			if (!_controls) return;
 			
 			(_controls as EventDispatcher).removeEventListener(ControlsEvent.TAP, tapHandler);
+			(_controls as EventDispatcher).removeEventListener(ControlsEvent.DOUBLE_TAP, doubleTapHandler);
 			(_controls as EventDispatcher).removeEventListener(ControlsEvent.SLIDE, slideHandler);
 			(_controls as EventDispatcher).removeEventListener(ControlsEvent.SLIDE_COMPLETE, slideCompleteHandler);
 		}
@@ -74,6 +76,11 @@ package controls
 		private function tapHandler(event:Event):void
 		{
 			dispatchWith(ModelEvent.HANDLE_TAP, false, event.data);	
+		}
+		
+		private function doubleTapHandler(event:Event):void
+		{
+			dispatchWith(ModelEvent.HANDLE_DOUBLE_TAP, false, event.data);	
 		}
 	}
 }

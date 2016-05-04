@@ -26,10 +26,12 @@ package pages
 		function resume():void;
 		function pause():void;
 		function stop():void;
+		function zoom():void;
 		function startPlayback():void;
 		function pausePlayback():void;
 		function stopPlayback():void;
 		function resumePlayback():void;
+		function zoomPlayback():void;
 		function enable():void;
 		function disable():void;
 	}

@@ -12,5 +12,6 @@ package pages.playback
 		function pause():void;
 		function resume():void;
 		function reset():void;
+		function zoom():void;
 	}
 }

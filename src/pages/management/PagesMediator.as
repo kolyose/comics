@@ -5,7 +5,7 @@ package pages.management
 	
 	import org.robotlegs.starling.mvcs.Mediator;
 	
-	import pages.management.vo.PagesContainerPositionTweenVO;
+	import pages.management.vo.PagesContainerPositionTweenPropertiesVO;
 	
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -53,7 +53,7 @@ package pages.management
 		
 		private function tweenPagesContainerPositionHandler(event:Event):void
 		{
-			view.tweenPagesContainerPosition(event.data as PagesContainerPositionTweenVO);
+			view.tweenPagesContainerPosition(event.data as PagesContainerPositionTweenPropertiesVO);
 		}
 		
 		private function clearPagesContainerPositionTweenHandler(event:Event):void

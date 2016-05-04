@@ -16,6 +16,7 @@ package pages.management
 		function resume():void;
 		function pause():void;
 		function stop():void;
+		function zoom():void;
 		
 		
 		function getPageByNumber(pageNumber:uint):IPage;

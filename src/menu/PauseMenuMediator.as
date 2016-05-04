@@ -29,6 +29,9 @@ package menu
 		override public function onRegister():void
 		{
 			addViewListener(ViewEvent.BTN_TRIGGERED, btnTriggeredHandler);
+			addViewListener(ViewEvent.SHOW_PAGE, viewShowPageHandler);
+			
+			addContextListener(ModelEvent.PAGE_NUMBER_CHANGED, pageNumberChangedHandler);
 			
 			var texturesData:PauseMenuTexturesData = new PauseMenuTexturesData();
 			texturesData.bg = assetsModel.getTexture("pauseMenuBg"); 
@@ -36,10 +39,10 @@ package menu
 			texturesData.btnContinue = assetsModel.getTexture("playButton");
 			view.init(texturesData);
 			
-			var pageIndicatorTextures:Object = {};
-			pageIndicatorTextures.sliderThumbSkin = assetsModel.getTexture("pagesSliderThumbSkin");
-			pageIndicatorTextures.minTrackDefaultSkin = assetsModel.getTexture("pagesSliderTrackSkin");
-			view.initPageIndicator(pageIndicatorTextures, Settings.getInstance().intPagesCount);
+			var pageNavigatorTextures:Object = {};
+			pageNavigatorTextures.sliderThumbSkin = assetsModel.getTexture("pagesSliderThumbSkin");
+			pageNavigatorTextures.minTrackDefaultSkin = assetsModel.getTexture("pagesSliderTrackSkin");
+			view.initPageNavigator(pageNavigatorTextures, Settings.getInstance().intPagesCount);
 		}
 		
 		private function btnTriggeredHandler(event:Event, name:String):void
@@ -63,6 +66,21 @@ package menu
 				default:
 					break;
 			}
+		}
+		
+		private function viewShowPageHandler(event:Event):void
+		{
+			dispatchWith(ModelEvent.SHOW_PAGE, false, event.data);
+		}
+		
+		private function pageNumberChangedHandler(event:Event):void
+		{
+			updatePageNavigator(uint(event.data));
+		}
+		
+		private function updatePageNavigator(currentPageNumber:uint):void
+		{
+			view.updatePageNavigator(currentPageNumber);
 		}
 	}
 }

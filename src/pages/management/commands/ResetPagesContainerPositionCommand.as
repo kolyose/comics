@@ -6,7 +6,7 @@ package pages.management.commands
 	import org.robotlegs.starling.mvcs.Command;
 	
 	import pages.management.IPagesManager;
-	import pages.management.vo.PagesContainerPositionTweenVO;
+	import pages.management.vo.PagesContainerPositionTweenPropertiesVO;
 	
 	public class ResetPagesContainerPositionCommand extends Command
 	{
@@ -20,7 +20,7 @@ package pages.management.commands
 		
 		override public function execute():void
 		{
-			var tweenVO:PagesContainerPositionTweenVO = new PagesContainerPositionTweenVO();
+			var tweenVO:PagesContainerPositionTweenPropertiesVO = new PagesContainerPositionTweenPropertiesVO();
 			
 			tweenVO.targetX = this.pagesManager.containerPositionX;
 			tweenVO.speed = Settings.getInstance().switchPagesSpeed;

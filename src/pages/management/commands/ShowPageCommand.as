@@ -44,9 +44,9 @@ package pages.management.commands
 			dispatchWith(ViewEvent.SET_PAGES_POSITION, false, newPagesPositionX);
 			pagesManager.containerPositionX = newPagesPositionX;	
 			
-			dispatchWith(ModelEvent.ADD_PAGE, false, pagesManager.currentPageNumber);
+			//dispatchWith(ModelEvent.ADD_PAGE, false, pagesManager.currentPageNumber);
 			dispatchWith(ModelEvent.SWITCH_PAGES_COMPLETE);			
-			dispatchWith(ModelEvent.ADD_NEIGHBOUR_PAGES, false, pagesManager.currentPageNumber);
+			//dispatchWith(ModelEvent.ADD_NEIGHBOUR_PAGES, false, pagesManager.currentPageNumber);
 		}
 	}
 }

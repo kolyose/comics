@@ -9,5 +9,6 @@ package pages.states
 		function resume():void;
 		function pause():void;
 		function stop():void;
+		function zoom():void;
 	}
 }

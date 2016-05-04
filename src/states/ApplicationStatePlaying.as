@@ -51,5 +51,10 @@ package states
 			_app.enable();
 			_app.hideLock();
 		}
+		
+		override public function zoom():void
+		{
+			_app.zoomPlayback();
+		}
 	}
 }

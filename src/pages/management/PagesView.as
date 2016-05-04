@@ -1,6 +1,6 @@
 package pages.management
 {	
-	import pages.management.vo.PagesContainerPositionTweenVO;
+	import pages.management.vo.PagesContainerPositionTweenPropertiesVO;
 	
 	import starling.animation.Transitions;
 	import starling.animation.Tween;
@@ -26,7 +26,7 @@ package pages.management
 		
 		public function reset():void
 		{
-			_pagesContainer.removeChildren();
+		//	_pagesContainer.removeChildren(); //why do we need remove children?
 			_pagesContainer.x = 0;
 		}
 		
@@ -40,7 +40,7 @@ package pages.management
 			_pagesContainer.addChild(pageContainer);
 		}
 		
-		public function tweenPagesContainerPosition(vo:PagesContainerPositionTweenVO):void
+		public function tweenPagesContainerPosition(vo:PagesContainerPositionTweenPropertiesVO):void
 		{
 			_movePageTween = new Tween(_pagesContainer, vo.speed, Transitions.EASE_OUT);
 			_movePageTween.moveTo(vo.targetX, _pagesContainer.y);

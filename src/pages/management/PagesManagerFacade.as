@@ -75,6 +75,11 @@ package pages.management
 			getCurrentPage().stop();
 		}
 		
+		public function zoom():void
+		{
+			getCurrentPage().zoom();
+		}
+		
 		public function get currentPageNumber():uint
 		{
 			return this.model.currentPageNumber;
@@ -83,6 +88,7 @@ package pages.management
 		public function set currentPageNumber(number:uint):void
 		{
 			this.model.currentPageNumber = number;
+			dispatchWith(ModelEvent.PAGE_NUMBER_CHANGED, false, currentPageNumber);
 		}
 		
 		public function set loadingPageNumber(number:uint):void

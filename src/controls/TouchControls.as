@@ -2,6 +2,9 @@ package controls
 {
 	import events.ControlsEvent;
 	
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	
 	import starling.display.Button;
 	import starling.display.DisplayObject;
 	import starling.display.Sprite;
@@ -13,9 +16,10 @@ package controls
 	public class TouchControls extends EventDispatcher implements IControls
 	{
 		protected var _stage:DisplayObject;
-		
+		protected var _lastTouchedDisplayObject:DisplayObject;
 		protected var _bTouchMoved:Boolean;
 		protected var _initialTouchLocationX:Number;
+		protected var _doubleTapTimer:Timer;
 		
 		public function TouchControls(stage:DisplayObject)
 		{
@@ -76,10 +80,38 @@ package controls
 					_initialTouchLocationX=0;
 				}
 				else if ((touchEnded.getLocation(displayObject).x == touchEnded.getPreviousLocation(displayObject).x) && (touchEnded.getLocation(displayObject).y == touchEnded.getPreviousLocation(displayObject).y))
-				{								
-					dispatchEventWith(ControlsEvent.TAP, false, displayObject);
+				{
+					if (touchEnded.tapCount == 1 && !_doubleTapTimer)
+					{
+					//	dispatchEventWith(ControlsEvent.TAP, false, _touchedDisplayObject);
+					//	return;
+						_lastTouchedDisplayObject = displayObject;
+						_doubleTapTimer = new Timer(200,1);
+						_doubleTapTimer.addEventListener(TimerEvent.TIMER_COMPLETE, timerCompleteHandler);
+						_doubleTapTimer.start();
+					}
+					else
+					{
+						if (_doubleTapTimer)
+						{
+							_doubleTapTimer.stop();
+							_doubleTapTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, timerCompleteHandler);
+							_doubleTapTimer = null;
+						}
+						
+						dispatchEventWith(ControlsEvent.DOUBLE_TAP, false, displayObject);
+					}
 				}
 			}			
+		}
+		
+		protected function timerCompleteHandler(event:TimerEvent):void
+		{
+			_doubleTapTimer.stop();
+			_doubleTapTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, timerCompleteHandler);
+			_doubleTapTimer = null;
+			
+			dispatchEventWith(ControlsEvent.TAP, false, _lastTouchedDisplayObject);
 		}
 		
 		protected function getTouchOffsetX(touch:Touch, target:DisplayObject):Number

@@ -54,5 +54,10 @@ package states
 		{
 			
 		}
+		
+		public function zoom():void
+		{
+			
+		}
 	}
 }

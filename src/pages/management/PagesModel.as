@@ -2,6 +2,8 @@ package pages.management
 {
 	import data.PageDO;
 	
+	import flash.net.SharedObject;
+	
 	import org.robotlegs.starling.mvcs.Actor;
 	
 	import pages.IPage;

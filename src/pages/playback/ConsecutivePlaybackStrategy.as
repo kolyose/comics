@@ -13,14 +13,13 @@ package pages.playback
 	import starling.events.Event;
 	import starling.filters.ColorMatrixFilter;
 	
-	public class ConsecutivePlaybackStrategy extends PlaybackStrategy
+	public class ConsecutivePlaybackStrategy extends BasePlaybackStrategy
 	{
 		protected var _timer:Timer;
 		protected var _colorMatrixFilter:ColorMatrixFilter;
 		protected var _grayscaleFilterStepsCounter:uint;
 		protected var _bPaused:Boolean;
 		
-		//TODO: fix the BUG - numbers counter resets after page playback complete
 		public function ConsecutivePlaybackStrategy(page:IPage)
 		{
 			super(page);
