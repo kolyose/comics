@@ -42,7 +42,7 @@ package pages.management.commands
 			
 			var newPagesPositionX:Number = - pageNumber * (Settings.getInstance().WIDTH + Settings.getInstance().distanceBetweenPages);
 			dispatchWith(ViewEvent.SET_PAGES_POSITION, false, newPagesPositionX);
-			pagesManager.containerPositionX = newPagesPositionX;	
+			pagesManager.containerPosition.x = newPagesPositionX;	
 			
 			//dispatchWith(ModelEvent.ADD_PAGE, false, pagesManager.currentPageNumber);
 			dispatchWith(ModelEvent.SWITCH_PAGES_COMPLETE);			

@@ -1,6 +1,8 @@
 package states
 {
 	import events.ApplicationEvent;
+	
+	import flash.geom.Point;
 
 	public class ApplicationStatePaused extends BaseApplicationState
 	{
@@ -39,6 +41,16 @@ package states
 		{
 			_app.enable();
 			_app.hideLock();
+		}
+		
+		override public function move(offset:Point):void
+		{
+			_app.movePage(offset);
+		}
+		
+		override public function moveComplete(offset:Point):void
+		{
+			_app.movePageComplete(offset);
 		}
 	}
 }

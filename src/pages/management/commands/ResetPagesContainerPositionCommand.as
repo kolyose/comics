@@ -22,7 +22,7 @@ package pages.management.commands
 		{
 			var tweenVO:PagesContainerPositionTweenPropertiesVO = new PagesContainerPositionTweenPropertiesVO();
 			
-			tweenVO.targetX = this.pagesManager.containerPositionX;
+			tweenVO.targetX = this.pagesManager.containerPosition.x;
 			tweenVO.speed = Settings.getInstance().switchPagesSpeed;
 			tweenVO.onCompleteHandler = resetPagePositionTweenCompleteHandler;
 			

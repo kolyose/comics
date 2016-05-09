@@ -9,6 +9,7 @@ package
 	
 	import flash.desktop.NativeApplication;
 	import flash.events.Event;
+	import flash.geom.Point;
 	
 	import model.assets.Assets;
 	import model.assets.AssetsModel;
@@ -19,6 +20,7 @@ package
 	
 	import starling.events.Event;
 	
+	import states.ApplicationStatePaused;
 	import states.ApplicationStatesFactory;
 	import states.IApplicationState;
 	import states.IApplicationStatesFactory;
@@ -58,6 +60,9 @@ package
 			addContextListener(ApplicationEvent.UNLOCK, unlock);
 			addContextListener(ApplicationEvent.SLIDE, slide);
 			addContextListener(ApplicationEvent.ZOOM, zoom);
+			addContextListener(ApplicationEvent.MOVE, move);
+			addContextListener(ApplicationEvent.MOVE_COMPLETE, moveComplete);
+			addContextListener(ApplicationEvent.PLAY_COMPLETE, playComplete);
 			
 			statesFactory.setApplication(this);
 			applyState(statesFactory.getStateLoading());		
@@ -69,7 +74,7 @@ package
 		}
 		
 		public function applyState(state:IApplicationState):void
-		{
+		{			
 			_state = null;
 			_state = state;
 			_state.execute();
@@ -104,6 +109,21 @@ package
 		public function zoom(event:starling.events.Event):void
 		{
 			_state.zoom();
+		}
+		
+		public function move(event:starling.events.Event):void
+		{			
+			_state.move(event.data as Point);
+		}
+		
+		public function moveComplete(event:starling.events.Event):void
+		{
+			_state.moveComplete(event.data as Point);
+		}
+		
+		public function playComplete(event:starling.events.Event):void
+		{
+			_state.playComplete();
 		}
 		
 		//TODO: if the method is not required - refactor 
@@ -213,6 +233,26 @@ package
 		{
 			dispatchWith(ModelEvent.DISABLE_PAGES_MANAGER);
 			dispatchWith(ModelEvent.DISABLE_CONTROLS);
+		}
+		
+		public function movePage(offset:Point):void
+		{
+			dispatchWith(ModelEvent.MOVE_PAGE, false, offset);	
+		}
+		
+		public function movePageComplete(offset:Point):void
+		{
+			dispatchWith(ModelEvent.MOVE_PAGE_COMPLETE, false, offset);
+		}
+		
+		public function scrollPage(offset:Point):void
+		{
+			dispatchWith(ModelEvent.SCROLL_PAGE, false, offset);
+		}
+		
+		public function scrollPageComplete(offset:Point):void
+		{
+			dispatchWith(ModelEvent.SCROLL_PAGE_COMPLETE, false, offset);
 		}
 		//////////////////////////////////////////////////////////////////////////		
 	}

@@ -50,6 +50,7 @@ package controller
 	import pages.management.commands.SwitchPagesCommand;
 	import pages.management.commands.SwitchPagesCompleteCommand;
 	import pages.management.commands.TweenPagesContainerPositionCommand;
+	import pages.management.commands.ZoomPlaybackCommand;
 	import pages.management.strategies.ISwitchPagesStrategy;
 	import pages.management.strategies.SwitchPagesByContainerPositionTweening;
 	import pages.playback.IPlaybackStrategiesFactory;
@@ -128,12 +129,17 @@ package controller
 			commandMap.mapEvent(ModelEvent.RESUME_PLAYBACK, ResumePlaybackCommand);
 			commandMap.mapEvent(ModelEvent.STOP_PLAYBACK, StopPlaybackCommand);			
 			commandMap.mapEvent(ModelEvent.PAUSE_PLAYBACK, PausePlaybackCommand);			
+			commandMap.mapEvent(ModelEvent.ZOOM_PLAYBACK, ZoomPlaybackCommand);			
 			commandMap.mapEvent(ModelEvent.ENABLE_PAGES_MANAGER, EnablePagesManagerCommand);
 			commandMap.mapEvent(ModelEvent.DISABLE_PAGES_MANAGER, DisablePagesManagerCommand);
 			commandMap.mapEvent(ModelEvent.ENABLE_CONTROLS, EnableControlsCommand);
 			commandMap.mapEvent(ModelEvent.DISABLE_CONTROLS, DisableControlsCommand);
 			commandMap.mapEvent(ModelEvent.MOVE_PAGE, MovePageCommand);
 			commandMap.mapEvent(ModelEvent.MOVE_PAGE_COMPLETE, MovePageCompleteCommand);
+			commandMap.mapEvent(ModelEvent.SCROLL_PAGE, ScrollPageCommand);
+			commandMap.mapEvent(ModelEvent.SCROLL_PAGE_COMPLETE, ScrollPageCompleteCommand);
+			commandMap.mapEvent(ModelEvent.HANDLE_MOVE, HandleMoveCommand);				
+			commandMap.mapEvent(ModelEvent.HANDLE_MOVE_COMPLETE, HandleMoveCompleteCommand);				
 			commandMap.mapEvent(ModelEvent.HANDLE_TAP, HandleTapCommand);				
 			commandMap.mapEvent(ModelEvent.HANDLE_DOUBLE_TAP, HandleDoubleTapCommand);				
 			commandMap.mapEvent(ModelEvent.SAVE_LOCAL_DATA, SaveLocalDataCommand);				

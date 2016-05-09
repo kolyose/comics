@@ -5,6 +5,7 @@ package controls
 	import events.ModelEvent;
 	
 	import flash.events.IEventDispatcher;
+	import flash.geom.Point;
 	
 	import org.robotlegs.starling.mvcs.Actor;
 	
@@ -49,8 +50,8 @@ package controls
 		{
 			(_controls as EventDispatcher).addEventListener(ControlsEvent.TAP, tapHandler);
 			(_controls as EventDispatcher).addEventListener(ControlsEvent.DOUBLE_TAP, doubleTapHandler);
-			(_controls as EventDispatcher).addEventListener(ControlsEvent.SLIDE, slideHandler);
-			(_controls as EventDispatcher).addEventListener(ControlsEvent.SLIDE_COMPLETE, slideCompleteHandler);
+			(_controls as EventDispatcher).addEventListener(ControlsEvent.MOVE, moveHandler);
+			(_controls as EventDispatcher).addEventListener(ControlsEvent.MOVE_COMPLETE, moveCompleteHandler);
 		}
 		
 		private function removeListeners():void
@@ -59,18 +60,18 @@ package controls
 			
 			(_controls as EventDispatcher).removeEventListener(ControlsEvent.TAP, tapHandler);
 			(_controls as EventDispatcher).removeEventListener(ControlsEvent.DOUBLE_TAP, doubleTapHandler);
-			(_controls as EventDispatcher).removeEventListener(ControlsEvent.SLIDE, slideHandler);
-			(_controls as EventDispatcher).removeEventListener(ControlsEvent.SLIDE_COMPLETE, slideCompleteHandler);
+			(_controls as EventDispatcher).removeEventListener(ControlsEvent.MOVE, moveHandler);
+			(_controls as EventDispatcher).removeEventListener(ControlsEvent.MOVE_COMPLETE, moveCompleteHandler);
 		}
 		
-		private function slideCompleteHandler(event:Event, xOffset:Number):void
-		{
-			dispatchWith(ModelEvent.MOVE_PAGE_COMPLETE, false, xOffset);
+		private function moveCompleteHandler(event:Event, offset:Point):void
+		{			
+			dispatchWith(ModelEvent.HANDLE_MOVE_COMPLETE, false, offset);
 		}
 		
-		private function slideHandler(event:Event, xOffset:Number):void
-		{
-			dispatchWith(ModelEvent.MOVE_PAGE, false, xOffset);			
+		private function moveHandler(event:Event, offset:Point):void
+		{			
+			dispatchWith(ModelEvent.HANDLE_MOVE, false, offset);			
 		}
 		
 		private function tapHandler(event:Event):void

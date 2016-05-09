@@ -21,9 +21,9 @@ package pages.management.commands
 		}
 		
 		override public function execute():void
-		{				
-		//	dispatchWith(ApplicationEvent.PAUSE);
-			pagesManager.stop();
+		{			
+			pagesManager.stop();	
+			dispatchWith(ApplicationEvent.PLAY_COMPLETE);
 			
 			if (playbackSettings.autoplayMode)
 			{				

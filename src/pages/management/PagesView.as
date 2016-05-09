@@ -1,5 +1,7 @@
 package pages.management
 {	
+	import flash.geom.Point;
+	
 	import pages.management.vo.PagesContainerPositionTweenPropertiesVO;
 	
 	import starling.animation.Transitions;
@@ -55,9 +57,10 @@ package pages.management
 			_movePageTween = null;
 		}
 		
-		public function movePagesContainer(xOffset:Number):void
+		public function movePagesContainer(offset:Point):void
 		{
-			_pagesContainer.x += xOffset;
+			_pagesContainer.x += offset.x;
+			_pagesContainer.y += offset.y;
 		}		
 	}
 }

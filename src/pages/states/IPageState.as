@@ -1,6 +1,8 @@
 package pages.states
 {
 	import data.PageDO;
+	
+	import pages.management.vo.TweenPropertiesVO;
 
 	public interface IPageState
 	{		
@@ -9,6 +11,6 @@ package pages.states
 		function resume():void;
 		function pause():void;
 		function stop():void;
-		function zoom():void;
+		function zoom(tweenVO:TweenPropertiesVO):void;
 	}
 }

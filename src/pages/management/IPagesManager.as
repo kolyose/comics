@@ -2,7 +2,10 @@ package pages.management
 {
 	import data.PageDO;
 	
+	import flash.geom.Point;
+	
 	import pages.IPage;
+	import pages.management.vo.TweenPropertiesVO;
 
 	public interface IPagesManager
 	{
@@ -16,7 +19,7 @@ package pages.management
 		function resume():void;
 		function pause():void;
 		function stop():void;
-		function zoom():void;
+		function zoom(tweenVO:TweenPropertiesVO):void;
 		
 		
 		function getPageByNumber(pageNumber:uint):IPage;
@@ -28,12 +31,12 @@ package pages.management
 		function get currentPageNumber():uint;
 		function get intPagesCount():uint;
 		function get loadingPageNumber():uint;
-		function get containerPositionX():Number;
+		function get containerPosition():Point;
 		function get temporaryContainerPositionX():Number;
 		
 		function set loadingPageNumber(number:uint):void;
 		function set currentPageNumber(number:uint):void;
-		function set containerPositionX(value:Number):void;
+		function set containerPosition(value:Point):void;
 		function set temporaryContainerPositionX(value:Number):void;
 	}
 }

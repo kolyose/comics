@@ -1,5 +1,7 @@
 package states
 {
+	import flash.geom.Point;
+	
 	import org.robotlegs.starling.mvcs.Actor;
 
 	public class BaseApplicationState /*extends Actor*/ implements IApplicationState
@@ -56,6 +58,21 @@ package states
 		}
 		
 		public function zoom():void
+		{
+			
+		}
+		
+		public function move(offset:Point):void
+		{
+			
+		}
+		
+		public function moveComplete(offset:Point):void
+		{
+			
+		}
+		
+		public function playComplete():void
 		{
 			
 		}

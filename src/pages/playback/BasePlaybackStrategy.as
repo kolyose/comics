@@ -5,6 +5,7 @@ package pages.playback
 	import pages.IPage;
 	import pages.items.BaseItem;
 	import pages.items.IItem;
+	import pages.management.vo.TweenPropertiesVO;
 	
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -16,11 +17,20 @@ package pages.playback
 		protected var _sprContainer:Sprite;
 		protected var _vItems:Vector.<IItem>;
 		protected var _uintCurrentItemIndex:uint;
-				
+	//	protected var _state:IPlaybackStrategyState;
+			
+		
+		//TODO: remove states functionality if needless
 		public function BasePlaybackStrategy(page:IPage)
 		{
 			_page = page;
 			_sprContainer = page.container;
+		}
+		
+		public function applyState(newState:IPlaybackStrategyState):void
+		{
+//			_state = null;			
+	//		_state = newState;
 		}
 		
 		public function initItems(items:Vector.<IItem>):void
@@ -47,7 +57,7 @@ package pages.playback
 			
 		}
 		
-		public function zoom():void
+		public function zoom(tweenVO:TweenPropertiesVO):void
 		{
 			
 		}

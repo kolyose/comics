@@ -10,8 +10,9 @@ package pages
 	import pages.items.BaseItem;
 	import pages.items.IItem;
 	import pages.items.factory.IItemFactory;
-	import pages.playback.IPlaybackStrategy;
+	import pages.management.vo.TweenPropertiesVO;
 	import pages.playback.BasePlaybackStrategy;
+	import pages.playback.IPlaybackStrategy;
 	import pages.states.IPageState;
 	import pages.states.IPageStatesFactory;
 	
@@ -107,9 +108,9 @@ package pages
 			_state.stop();
 		}
 		
-		public function zoom():void
+		public function zoom(tweenVO:TweenPropertiesVO):void
 		{
-			_state.zoom();
+			_state.zoom(tweenVO);
 		}
 		
 		public function startPlayback():void
@@ -132,9 +133,9 @@ package pages
 			_playbackStrategy.stop();
 		}
 		
-		public function zoomPlayback():void
+		public function zoomPlayback(tweenVO:TweenPropertiesVO):void
 		{
-			_playbackStrategy.zoom();
+			_playbackStrategy.zoom(tweenVO);
 		}
 				
 		protected function playbackCompleteHandler(event:Event):void

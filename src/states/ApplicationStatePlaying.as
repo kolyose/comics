@@ -1,6 +1,8 @@
 package states
 {
 	import events.ApplicationEvent;
+	
+	import flash.geom.Point;
 
 	public class ApplicationStatePlaying extends BaseApplicationState
 	{
@@ -52,9 +54,25 @@ package states
 			_app.hideLock();
 		}
 		
+		override public function move(offset:Point):void
+		{
+			_app.movePage(offset);
+		}
+		
+		override public function moveComplete(offset:Point):void
+		{
+			_app.movePageComplete(offset);
+		}
+		
 		override public function zoom():void
 		{
 			_app.zoomPlayback();
+			_app.applyState(applicationStatesFactory.getStatePlayingWithZoom());
+		}
+		
+		override public function playComplete():void
+		{			
+			_app.applyState(applicationStatesFactory.getStatePlayingComplete());
 		}
 	}
 }

@@ -2,6 +2,7 @@ package pages.management
 {
 	import data.PageDO;
 	
+	import flash.geom.Point;
 	import flash.net.SharedObject;
 	
 	import org.robotlegs.starling.mvcs.Actor;
@@ -14,7 +15,7 @@ package pages.management
 		protected var _intPagesCount:uint;
 		protected var _loadingPageNumber:uint;
 		protected var _currentPageNumber:uint=0;
-		protected var _containerPositionX:Number;
+		protected var _containerPosition:Point;
 		protected var _temporatyContainerPositionX:Number;
 		
 		public function PagesModel()
@@ -32,7 +33,7 @@ package pages.management
 			_intPagesCount = Settings.getInstance().intPagesCount;
 			_vPages = new Vector.<IPage>(_intPagesCount, true);
 			
-			containerPositionX = 0;
+			containerPosition = new Point(0,0);
 		}
 		
 		public function get vPages():Vector.<IPage>
@@ -65,15 +66,15 @@ package pages.management
 			_currentPageNumber = value;
 		}
 
-		public function get containerPositionX():Number
+		public function get containerPosition():Point
 		{
-			return _containerPositionX;
+			return _containerPosition;
 		}
 
-		public function set containerPositionX(value:Number):void
+		public function set containerPosition(value:Point):void
 		{
-			_containerPositionX = value;
-			temporatyContainerPositionX = value;
+			_containerPosition = value;
+			temporatyContainerPositionX = value.x;
 		}
 
 		public function get temporatyContainerPositionX():Number

@@ -3,6 +3,8 @@ package pages.management
 	import events.ModelEvent;
 	import events.ViewEvent;
 	
+	import flash.geom.Point;
+	
 	import org.robotlegs.starling.mvcs.Mediator;
 	
 	import pages.management.vo.PagesContainerPositionTweenPropertiesVO;
@@ -33,7 +35,7 @@ package pages.management
 		
 		private function movePagesContainerHandler(event:Event):void
 		{
-			view.movePagesContainer(Number(event.data));	
+			view.movePagesContainer(event.data as Point);	
 		}
 		
 		private function resetViewHandler(event:Event):void

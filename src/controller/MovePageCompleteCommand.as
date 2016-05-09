@@ -2,6 +2,8 @@ package controller
 {
 	import events.ApplicationEvent;
 	
+	import flash.geom.Point;
+	
 	import org.robotlegs.starling.mvcs.Command;
 	
 	import pages.management.IPagesManager;
@@ -25,7 +27,7 @@ package controller
 		{
 			dispatchWith(ApplicationEvent.LOCK);
 			
-			var xOffset:Number = Number(event.data);
+			var xOffset:Number = Point(event.data).x;
 			var intDirection:int = (xOffset < 0) ? 1 : -1;
 			var pageNumber:uint = pagesManager.currentPageNumber + intDirection;
 			

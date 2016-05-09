@@ -1,6 +1,7 @@
 package pages.states
 {
 	import pages.IPage;
+	import pages.management.vo.TweenPropertiesVO;
 	
 	public class PageStatePlaybackStarted extends BasePageState implements IPageState
 	{
@@ -21,9 +22,9 @@ package pages.states
 			_page.applyState(pageStatesFactory.getStatePlaybackComplete(_page));
 		}
 		
-		override public function zoom():void
+		override public function zoom(tweenVO:TweenPropertiesVO):void
 		{
-			_page.zoomPlayback();
+			_page.zoomPlayback(tweenVO);
 		}
 	}
 }

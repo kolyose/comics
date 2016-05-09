@@ -5,6 +5,7 @@ package pages.states
 	import org.robotlegs.starling.mvcs.Actor;
 	
 	import pages.IPage;
+	import pages.management.vo.TweenPropertiesVO;
 
 	public class BasePageState /*extends Actor*/ implements IPageState
 	{
@@ -24,6 +25,6 @@ package pages.states
 		public function resume():void{}		
 		public function pause():void{}
 		public function stop():void{}
-		public function zoom():void{}
+		public function zoom(tweenVO:TweenPropertiesVO):void{}
 	}
 }

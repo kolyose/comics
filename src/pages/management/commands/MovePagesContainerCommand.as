@@ -2,6 +2,8 @@ package pages.management.commands
 {
 	import events.ViewEvent;
 	
+	import flash.geom.Point;
+	
 	import org.robotlegs.starling.mvcs.Command;
 	
 	import pages.management.IPagesManager;
@@ -32,7 +34,7 @@ package pages.management.commands
 			}
 			
 			this.pagesManager.temporaryContainerPositionX += xOffset;
-			dispatchWith(ViewEvent.MOVE_PAGES_CONTAINER, false, xOffset);
+			dispatchWith(ViewEvent.MOVE_PAGES_CONTAINER, false, new Point(xOffset,0));
 		}
 	}
 }

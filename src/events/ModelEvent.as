@@ -25,6 +25,10 @@ package events
 		public static const DISABLE_CONTROLS:String = "ModelEvent.DISABLE_CONTROLS";
 		public static const MOVE_PAGE:String = "ModelEvent.MOVE_PAGE";
 		public static const MOVE_PAGE_COMPLETE:String = "ModelEvent.MOVE_PAGE_COMPLETE";
+		public static const SCROLL_PAGE:String = "ModelEvent.SCROLL_PAGE";
+		public static const SCROLL_PAGE_COMPLETE:String = "ModelEvent.SCROLL_PAGE_COMPLETE";		
+		public static const HANDLE_MOVE:String = "ModelEvent.HANDLE_MOVE";
+		public static const HANDLE_MOVE_COMPLETE:String = "ModelEvent.HANDLE_MOVE_COMPLETE";
 		public static const HANDLE_TAP:String = "ModelEvent.HANDLE_TAP";
 		public static const HANDLE_DOUBLE_TAP:String = "ModelEvent.HANDLE_DOUBLE_TAP";
 		public static const SHOW_PAUSE_MENU:String = "ModelEvent.SHOW_PAUSE_MENU";

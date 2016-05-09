@@ -66,7 +66,7 @@ package
 		
 		public function get distanceBetweenPages():Number
 		{
-			return WIDTH/10;
+			return Math.round(WIDTH/10);
 		}
 	}
 }

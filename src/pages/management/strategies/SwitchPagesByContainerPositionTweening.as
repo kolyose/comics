@@ -25,7 +25,7 @@ package pages.management.strategies
 			_tweenVO = new PagesContainerPositionTweenPropertiesVO();
 			
 			var intDirectionFactor:int = (pageNumber > pagesManager.currentPageNumber) ? -1 : 1;			
-			var targetX:Number = pagesManager.containerPositionX + ((Settings.getInstance().WIDTH + Settings.getInstance().distanceBetweenPages) * intDirectionFactor);
+			var targetX:Number = pagesManager.containerPosition.x + ((Settings.getInstance().WIDTH + Settings.getInstance().distanceBetweenPages) * intDirectionFactor);
 						
 			_tweenVO.targetX = targetX;
 			_tweenVO.speed = Settings.getInstance().switchPagesSpeed;
@@ -36,7 +36,7 @@ package pages.management.strategies
 		
 		protected function switchPagesCompleteHandler():void
 		{
-			pagesManager.containerPositionX = _tweenVO.targetX;	
+			pagesManager.containerPosition.x = _tweenVO.targetX;	
 			pagesManager.currentPageNumber = _pageNumber;			
 			
 			dispatchWith(ModelEvent.SWITCH_PAGES_COMPLETE);			

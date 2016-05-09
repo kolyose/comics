@@ -4,27 +4,6 @@ package states
 	
 	public class ApplicationStatesFactory extends Actor implements IApplicationStatesFactory
 	{
-		/*[Inject]
-		public var applicationStateInit:ApplicationStateInit;
-		
-		[Inject]
-		public var applicationStateLoading:ApplicationStateLoading;
-		
-		[Inject]
-		public var applicationStateStart:ApplicationStateStart;
-		
-		[Inject]
-		public var applicationStateUnlocked:ApplicationStateUnlocked;
-		
-		[Inject]
-		public var applicationStateLocked:ApplicationStateLocked;
-		
-		[Inject]
-		public var applicationStatePlaying:ApplicationStatePlaying;
-		
-		[Inject]
-		public var applicationStatePaused:ApplicationStatePaused;*/
-		
 		private var _application:ApplicationMediator;
 		
 		public function ApplicationStatesFactory()
@@ -39,33 +18,57 @@ package states
 		
 		public function getStateLoading():IApplicationState
 		{
-			//applicationStateLoading.setApplication(_application);
-			return new ApplicationStateLoading(_application, this);//applicationStateLoading//
+			return new ApplicationStateLoading(_application, this);
 		}
 		
 		public function getStateInit():IApplicationState
 		{
-			//applicationStateInit.setApplication(_application);
-			return new ApplicationStateInit(_application, this);//applicationStateInit;//
+			return new ApplicationStateInit(_application, this);
 		}
 		
 		public function getStateStart():IApplicationState
 		{
-			//applicationStateStart.setApplication(_application);
-			return new ApplicationStateStart(_application, this);//applicationStateStart//
+			return new ApplicationStateStart(_application, this);
 		}		
 		
 		public function getStatePlaying():IApplicationState
+		{			
+			return new ApplicationStatePlaying(_application, this);
+		}
+		
+		public function getStatePlayingComplete():IApplicationState
+		{			
+			return new ApplicationStatePlayingComplete(_application, this);
+		}
+		
+		public function getStatePlayingWithZoom():IApplicationState
 		{
-			//applicationStatePlaying.setApplication(_application);
-			return new ApplicationStatePlaying(_application, this);//applicationStatePlaying//
+			return new ApplicationStatePlayingWithZoom(_application, this);
+		}
+		
+		public function getStatePlayingWithZoomComplete():IApplicationState
+		{
+			return new ApplicationStatePlayingWithZoomComplete(_application, this);
 		}
 		
 		public function getStatePaused():IApplicationState
 		{
-			//applicationStatePaused.setApplication(_application);
-			return new ApplicationStatePaused(_application, this);//applicationStatePaused//
-		}
+			return new ApplicationStatePaused(_application, this);
+		}		
 		
+		public function getStatePausedComplete():IApplicationState
+		{
+			return new ApplicationStatePausedComplete(_application, this);
+		}		
+		
+		public function getStatePausedWithZoom():IApplicationState
+		{
+			return new ApplicationStatePausedWithZoom(_application, this);
+		}	
+		
+		public function getStatePausedWithZoomComplete():IApplicationState
+		{
+			return new ApplicationStatePausedWithZoomComplete(_application, this);
+		}		
 	}
 }

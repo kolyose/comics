@@ -3,6 +3,7 @@ package controls
 	import events.ControlsEvent;
 	
 	import flash.events.TimerEvent;
+	import flash.geom.Point;
 	import flash.utils.Timer;
 	
 	import starling.display.Button;
@@ -18,7 +19,7 @@ package controls
 		protected var _stage:DisplayObject;
 		protected var _lastTouchedDisplayObject:DisplayObject;
 		protected var _bTouchMoved:Boolean;
-		protected var _initialTouchLocationX:Number;
+		protected var _initialTouchLocation:Point;
 		protected var _doubleTapTimer:Timer;
 		
 		public function TouchControls(stage:DisplayObject)
@@ -58,7 +59,7 @@ package controls
 						
 			if (touchBegan)
 			{
-				_initialTouchLocationX = touchBegan.getLocation(displayObject).x;
+				_initialTouchLocation = new Point(touchBegan.getLocation(displayObject).x, touchBegan.getLocation(displayObject).y);
 			}
 			else if (touchStationary)
 			{
@@ -68,16 +69,17 @@ package controls
 			{
 				_bTouchMoved = true;
 				
-				var xOffset:Number = getTouchOffsetX(touchMoved, displayObject);//touchMoved.getLocation(displayObject).x - touchMoved.getPreviousLocation(displayObject).x;				
-				dispatchEventWith(ControlsEvent.SLIDE, false, xOffset);
+				var slideOffset:Point = getTouchOffset(touchMoved, displayObject);
+				dispatchEventWith(ControlsEvent.MOVE, false, slideOffset);
 			}
 			else if (touchEnded)
 			{
 				if (_bTouchMoved)
 				{
 					_bTouchMoved = false;
-					dispatchEventWith(ControlsEvent.SLIDE_COMPLETE, false, touchEnded.getLocation(displayObject).x - _initialTouchLocationX);
-					_initialTouchLocationX=0;
+					var slideCompleteOffset:Point = new Point(touchEnded.getLocation(displayObject).x - _initialTouchLocation.x, touchEnded.getLocation(displayObject).y - _initialTouchLocation.y);
+					dispatchEventWith(ControlsEvent.MOVE_COMPLETE, false, slideCompleteOffset);
+					_initialTouchLocation = new Point(0,0);
 				}
 				else if ((touchEnded.getLocation(displayObject).x == touchEnded.getPreviousLocation(displayObject).x) && (touchEnded.getLocation(displayObject).y == touchEnded.getPreviousLocation(displayObject).y))
 				{
@@ -114,9 +116,9 @@ package controls
 			dispatchEventWith(ControlsEvent.TAP, false, _lastTouchedDisplayObject);
 		}
 		
-		protected function getTouchOffsetX(touch:Touch, target:DisplayObject):Number
+		protected function getTouchOffset(touch:Touch, target:DisplayObject):Point
 		{
-			return touch.getLocation(target).x - touch.getPreviousLocation(target).x;			
+			return new Point(touch.getLocation(target).x - touch.getPreviousLocation(target).x, touch.getLocation(target).y - touch.getPreviousLocation(target).y);			
 		}
 	}
 }

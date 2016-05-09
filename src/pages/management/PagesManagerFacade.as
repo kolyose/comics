@@ -5,9 +5,12 @@ package pages.management
 	import events.ModelEvent;
 	import events.ViewEvent;
 	
+	import flash.geom.Point;
+	
 	import org.robotlegs.starling.mvcs.Actor;
 	
 	import pages.IPage;
+	import pages.management.vo.TweenPropertiesVO;
 	
 	
 	/**
@@ -75,9 +78,9 @@ package pages.management
 			getCurrentPage().stop();
 		}
 		
-		public function zoom():void
+		public function zoom(tweenVO:TweenPropertiesVO):void
 		{
-			getCurrentPage().zoom();
+			getCurrentPage().zoom(tweenVO);
 		}
 		
 		public function get currentPageNumber():uint
@@ -106,14 +109,14 @@ package pages.management
 			return this.model.loadingPageNumber;
 		}
 		
-		public function get containerPositionX():Number
+		public function get containerPosition():Point
 		{
-			return this.model.containerPositionX;	
+			return this.model.containerPosition;	
 		}
 		
-		public function set containerPositionX(value:Number):void
+		public function set containerPosition(value:Point):void
 		{
-			this.model.containerPositionX = value;
+			this.model.containerPosition = value;
 		}
 		
 		public function getPageByNumber(pageNumber:uint):IPage

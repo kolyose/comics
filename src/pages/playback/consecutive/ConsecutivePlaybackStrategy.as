@@ -1,4 +1,4 @@
-package pages.playback
+package pages.playback.consecutive
 {
 	import events.PlaybackEvent;
 	
@@ -12,6 +12,7 @@ package pages.playback
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.filters.ColorMatrixFilter;
+	import pages.playback.BasePlaybackStrategy;
 	
 	public class ConsecutivePlaybackStrategy extends BasePlaybackStrategy
 	{
@@ -19,6 +20,7 @@ package pages.playback
 		protected var _colorMatrixFilter:ColorMatrixFilter;
 		protected var _grayscaleFilterStepsCounter:uint;
 		protected var _bPaused:Boolean;
+		protected var _bPlaybackComplete:Boolean;
 		
 		public function ConsecutivePlaybackStrategy(page:IPage)
 		{
@@ -88,6 +90,7 @@ package pages.playback
 			
 			_grayscaleFilterStepsCounter = 0;
 			_bPaused = false;
+			_bPlaybackComplete = false;
 		}
 		
 		protected function initiateItemPlayback(itemIndex:uint):void
@@ -141,6 +144,7 @@ package pages.playback
 			}
 			else
 			{
+				_bPlaybackComplete = true;
 				dispatchEventWith(PlaybackEvent.PLAYBACK_COMPLETE, true);
 			}
 		}

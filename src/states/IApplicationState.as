@@ -1,5 +1,7 @@
 package states
 {
+	import flash.geom.Point;
+
 	public interface IApplicationState
 	{		
 		function execute():void;
@@ -10,5 +12,8 @@ package states
 		function unlock():void;
 		function slide():void;
 		function zoom():void;
+		function move(offset:Point):void;
+		function moveComplete(offset:Point):void;
+		function playComplete():void;
 	}
 }
