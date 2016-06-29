@@ -1,7 +1,7 @@
 package menu
 {
 	import events.ApplicationEvent;
-	import events.ModelEvent;
+	import events.CommandEvent;
 	import events.ViewEvent;
 	
 	import model.assets.AssetsModel;
@@ -31,7 +31,7 @@ package menu
 			addViewListener(ViewEvent.BTN_TRIGGERED, btnTriggeredHandler);
 			addViewListener(ViewEvent.SHOW_PAGE, viewShowPageHandler);
 			
-			addContextListener(ModelEvent.PAGE_NUMBER_CHANGED, pageNumberChangedHandler);
+			addContextListener(CommandEvent.PAGE_NUMBER_CHANGED, pageNumberChangedHandler);
 			
 			var texturesData:PauseMenuTexturesData = new PauseMenuTexturesData();
 			texturesData.bg = assetsModel.getTexture("pauseMenuBg"); 
@@ -50,16 +50,14 @@ package menu
 			switch (name)
 			{
 				case InstanceNames.BTN_CONTINUE:
-				{
-					dispatchWith(ApplicationEvent.UNLOCK);
-					dispatchWith(ApplicationEvent.RESUME);	
+				{					
+					dispatchWith(ApplicationEvent.PLAY);	
 					break;
 				}
 				
 				case InstanceNames.BTN_REPLAY:
-				{
-					dispatchWith(ApplicationEvent.UNLOCK);
-					dispatchWith(ApplicationEvent.PLAY);	
+				{						
+					dispatchWith(ApplicationEvent.REPLAY);	
 					break;
 				}
 				
@@ -70,7 +68,7 @@ package menu
 		
 		private function viewShowPageHandler(event:Event):void
 		{
-			dispatchWith(ModelEvent.SHOW_PAGE, false, event.data);
+			dispatchWith(ApplicationEvent.SHOW_PAGE, false, event.data);
 		}
 		
 		private function pageNumberChangedHandler(event:Event):void

@@ -9,15 +9,16 @@ package pages.states
 			super(page, statesFactory);
 		}
 		
+		override public function replay():void
+		{
+			_page.restartPlayback();
+			_page.applyState(pageStatesFactory.getStatePlaybackStarted(_page));
+		}
+		
 		override public function play():void
 		{
 			_page.startPlayback();
 			_page.applyState(pageStatesFactory.getStatePlaybackStarted(_page));
-		}
-		
-		override public function resume():void
-		{
-			play();
 		}
 	}
 }

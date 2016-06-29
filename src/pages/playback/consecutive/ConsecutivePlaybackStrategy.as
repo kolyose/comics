@@ -19,19 +19,37 @@ package pages.playback.consecutive
 		protected var _timer:Timer;
 		protected var _colorMatrixFilter:ColorMatrixFilter;
 		protected var _grayscaleFilterStepsCounter:uint;
-		protected var _bPaused:Boolean;
+		protected var _bPlaybackStarted:Boolean;
 		protected var _bPlaybackComplete:Boolean;
 		
 		public function ConsecutivePlaybackStrategy(page:IPage)
 		{
 			super(page);
 		}
-				
+			
 		override public function start():void
 		{
-			super.start();
-			initiateItemPlayback(_uintCurrentItemIndex);
-		}
+			if (!_bPlaybackStarted)
+			{
+				_bPlaybackStarted = true;
+				initiateItemPlayback(_uintCurrentItemIndex);
+				return;
+			}
+			
+			if (_timer)
+			{
+				_timer.start();
+			}
+			else
+			{
+				for each (var item:IItem in _vItems)
+				{
+					item.play();
+				}
+				
+				startItemPlayback(_uintCurrentItemIndex);
+			}
+		}	
 		
 		override public function stop():void
 		{
@@ -50,31 +68,6 @@ package pages.playback.consecutive
 			}
 		}
 		
-		override public function pause():void
-		{
-			_bPaused = true;			
-			stop();
-		}
-		
-		override public function resume():void
-		{
-			_bPaused = false;
-			
-			if (_timer)
-			{
-				_timer.start();
-			}
-			else
-			{
-				for each (var item:IItem in _vItems)
-				{
-					item.play();
-				}
-				
-				startItemPlayback(_uintCurrentItemIndex);
-			}
-		}
-		
 		override public function reset():void
 		{					
 			super.reset();
@@ -89,7 +82,7 @@ package pages.playback.consecutive
 			}	
 			
 			_grayscaleFilterStepsCounter = 0;
-			_bPaused = false;
+			_bPlaybackStarted = false;
 			_bPlaybackComplete = false;
 		}
 		
@@ -112,7 +105,7 @@ package pages.playback.consecutive
 			if (_grayscaleFilterStepsCounter == Settings.getInstance().grayscaleFilterStepsNumber)
 			{
 				_grayscaleFilterStepsCounter = 0;
-				deactivateTimer(/*grayscaleTimerHandler*/);
+				deactivateTimer();
 				
 				startItemPlayback(_uintCurrentItemIndex);
 			}
@@ -120,11 +113,8 @@ package pages.playback.consecutive
 		
 		protected function startItemPlayback(itemIndex:uint):void
 		{
-			if (!_bPaused)
-			{			
-				(_vItems[itemIndex] as BaseItem).addEventListener(PlaybackEvent.PLAYBACK_COMPLETE, itemPlaybackCompleteHandler);
-				_sprContainer.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
-			}
+			(_vItems[itemIndex] as BaseItem).addEventListener(PlaybackEvent.PLAYBACK_COMPLETE, itemPlaybackCompleteHandler);
+			_sprContainer.addEventListener(Event.ENTER_FRAME, enterFrameHandler);			
 		}
 		
 		protected function stopItemPlayback(itemIndex:uint):void
@@ -145,7 +135,7 @@ package pages.playback.consecutive
 			else
 			{
 				_bPlaybackComplete = true;
-				dispatchEventWith(PlaybackEvent.PLAYBACK_COMPLETE, true);
+				dispatchEventWith(PlaybackEvent.PLAYBACK_COMPLETE);
 			}
 		}
 		
@@ -156,7 +146,7 @@ package pages.playback.consecutive
 		
 		protected function playbackIntervalTimerHandler(event:TimerEvent):void
 		{
-			deactivateTimer(/*playbackIntervalTimerHandler*/);			
+			deactivateTimer();			
 			initiateItemPlayback(_uintCurrentItemIndex);
 		}
 		
@@ -167,12 +157,11 @@ package pages.playback.consecutive
 			_timer.start();
 		}
 		
-		protected function deactivateTimer(/*timerHandler:Function*/):void
+		protected function deactivateTimer():void
 		{
 			if (_timer)
 			{
 				_timer.stop();
-				//_timer.removeEventListener(TimerEvent.TIMER, timerHandler);
 				_timer = null;
 			}
 		}

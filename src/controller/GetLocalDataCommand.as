@@ -1,6 +1,6 @@
 package controller
 {
-	import events.ModelEvent;
+	import events.CommandEvent;
 	
 	import flash.net.SharedObject;
 	
@@ -22,7 +22,7 @@ package controller
 				localData = SharedObject.getLocal("local");				
 			}
 			
-			dispatchWith(ModelEvent.LOCAL_DATA_READY, false, localData.data);
+			dispatchWith(CommandEvent.LOCAL_DATA_READY, false, localData.data);
 		}
 	}
 }

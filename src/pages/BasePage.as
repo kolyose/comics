@@ -72,15 +72,13 @@ package pages
 			for (var i:uint=0; i < itemsCount; i++)
 			{
 				itemData = _data.vItemsData[i];
-				//item = new BaseItem(itemData);
 				item = _itemsFactory.getItem(itemData);
 				_vItems[i] = item;
-				//item.container.x = itemData.matrix.tx;
-				//item.container.y = itemData.matrix.ty;
 				_sprContainer.addChild(item.container);
 			}		
 			
 			_playbackStrategy.initItems(_vItems);
+			_playbackStrategy.reset();
 		}
 		
 		public function setData(data:PageDO):void
@@ -93,44 +91,39 @@ package pages
 			_state.play();
 		}
 		
-		public function resume():void
+		public function playComplete():void
 		{
-			_state.resume();
+			_state.playComplete();
+		}
+		
+		public function replay():void
+		{
+			_state.replay();
 		}
 		
 		public function pause():void
 		{
 			_state.pause();
 		}
-		
-		public function stop():void
-		{
-			_state.stop();
-		}
-		
+				
 		public function zoom(tweenVO:TweenPropertiesVO):void
 		{
 			_state.zoom(tweenVO);
 		}
 		
-		public function startPlayback():void
+		public function restartPlayback():void
 		{
-			_playbackStrategy.start();	
+			_playbackStrategy.restart();	
 		}
 		
-		public function pausePlayback():void
-		{
-			_playbackStrategy.pause();
-		}
-		
-		public function resumePlayback():void
-		{
-			_playbackStrategy.resume();
-		}
-				
 		public function stopPlayback():void
 		{
 			_playbackStrategy.stop();
+		}
+		
+		public function startPlayback():void
+		{
+			_playbackStrategy.start();
 		}
 		
 		public function zoomPlayback(tweenVO:TweenPropertiesVO):void
@@ -138,9 +131,14 @@ package pages
 			_playbackStrategy.zoom(tweenVO);
 		}
 				
+		public function dispatchPlaybackComplete():void
+		{
+			dispatchEventWith(PlaybackEvent.PLAYBACK_COMPLETE);	
+		}
+		
 		protected function playbackCompleteHandler(event:Event):void
 		{
-			dispatchEvent(event);
+			playComplete();			 
 		}
 
 		public function enable():void

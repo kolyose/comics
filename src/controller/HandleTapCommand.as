@@ -1,7 +1,7 @@
 package controller
 {
 	import events.ApplicationEvent;
-	import events.ModelEvent;
+	import events.CommandEvent;
 	
 	import org.robotlegs.starling.mvcs.Command;
 	
@@ -25,8 +25,8 @@ package controller
 			{
 				case InstanceNames.LOCK_CONTAINER:
 				{					
-					dispatchWith(ApplicationEvent.LOCK);
-					dispatchWith(ApplicationEvent.PAUSE, false, true);//show pause menu
+					//dispatchWith(ApplicationEvent.LOCK);
+					//dispatchWith(ApplicationEvent.PAUSE, false, true);//show pause menu
 					break;
 				}
 					

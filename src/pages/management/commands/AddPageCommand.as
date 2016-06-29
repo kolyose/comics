@@ -1,7 +1,8 @@
 package pages.management.commands
 {
-	import events.ModelEvent;
-	import events.PageEvent;
+	import events.ApplicationEvent;
+	import events.CommandEvent;
+	import events.PagesEvent;
 	import events.PlaybackEvent;
 	import events.ViewEvent;
 	
@@ -64,7 +65,7 @@ package pages.management.commands
 		
 		protected function pagePlaybackCompleteHandler(event:Event):void
 		{
-			dispatchWith(ModelEvent.PAGE_PLAYBACK_COMPLETE);
+			dispatchWith(ApplicationEvent.PLAY_COMPLETE);
 		}
 	}
 }

@@ -5,5 +5,6 @@ package controls
 		function init():void;
 		function enable():void;
 		function disable():void;
+		function reset():void;
 	}
 }

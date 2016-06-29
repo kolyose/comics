@@ -1,6 +1,6 @@
 package pages.management.commands
 {
-	import events.ModelEvent;
+	import events.PagesEvent;
 	
 	import org.robotlegs.starling.mvcs.Command;
 	
@@ -22,8 +22,8 @@ package pages.management.commands
 			
 			for (var i:int=1; i <= Settings.getInstance().neighbourPagesNumber; i++)
 			{
-				dispatchWith(ModelEvent.ADD_PAGE, false, pageNumber+i);
-				dispatchWith(ModelEvent.ADD_PAGE, false, pageNumber-i);
+				dispatchWith(PagesEvent.ADD_PAGE, false, pageNumber+i);
+				dispatchWith(PagesEvent.ADD_PAGE, false, pageNumber-i);
 			}			
 		}
 	}

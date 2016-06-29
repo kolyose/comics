@@ -9,16 +9,15 @@ package pages.management
 
 	public interface IPagesManager
 	{
-		function showPageByNumber(pageNumber:uint):void;
-		function switchPages(pageNumber:uint):void;
+	//	function showPageByNumber(pageNumber:uint):void;
+		//function switchPages(pageNumber:uint):void;
 		function movePage(xOffset:Number):void;
-		function resetPagePosition():void;
-		function enable():void;
-		function disable():void;
+		//function resetPagePosition():void;
+	//	function enable():void;
+	//	function disable():void;
 		function play():void;
-		function resume():void;
+		function replay():void;
 		function pause():void;
-		function stop():void;
 		function zoom(tweenVO:TweenPropertiesVO):void;
 		
 		

@@ -1,6 +1,8 @@
 package pages.management.commands
 {
-	import events.ModelEvent;
+	import events.ApplicationEvent;
+	import events.CommandEvent;
+	import events.PagesEvent;
 	import events.ViewEvent;
 	
 	import org.robotlegs.starling.mvcs.Command;
@@ -26,12 +28,13 @@ package pages.management.commands
 			tweenVO.speed = Settings.getInstance().switchPagesSpeed;
 			tweenVO.onCompleteHandler = resetPagePositionTweenCompleteHandler;
 			
-			dispatchWith(ModelEvent.TWEEN_PAGES_CONTAINER_POSITION, false, tweenVO);
+			dispatchWith(ViewEvent.CLEAR_PAGES_CONTAINER_POSITION_TWEEN);		
+			dispatchWith(ViewEvent.TWEEN_PAGES_CONTAINER_POSITION, false, tweenVO);
 		}
 		
 		private function resetPagePositionTweenCompleteHandler():void
 		{			
-			dispatchWith(ModelEvent.PAGES_CONTAINER_POSITION_RESET_COMPLETE);
+			dispatchWith(ApplicationEvent.RESET_POSITION_COMPLETE);
 		}
 	}
 }

@@ -38,21 +38,18 @@ package pages.playback
 			_vItems = items;
 		}
 		
-		public function start():void
+		public function restart():void
 		{
 			reset();
+			start();
 		}
 		
 		public function stop():void
 		{
 			
 		}
-		
-		public function pause():void
-		{
-		}
-		
-		public function resume():void
+				
+		public function start():void
 		{
 			
 		}

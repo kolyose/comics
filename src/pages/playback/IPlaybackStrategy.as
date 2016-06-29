@@ -9,10 +9,9 @@ package pages.playback
 	{
 		function applyState(newState:IPlaybackStrategyState):void;
 		function initItems(items:Vector.<IItem>):void;
+		function restart():void;		
 		function start():void;
-		function stop()	:void;
-		function pause():void;
-		function resume():void;
+		function stop():void;
 		function reset():void;
 		function zoom(tweenVO:TweenPropertiesVO):void;
 	}

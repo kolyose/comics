@@ -10,9 +10,9 @@ package pages.states
 			super(page, statesFactory);
 		}
 		
-		override public function play():void	
+		override public function replay():void	
 		{
-			_page.startPlayback();
+			_page.restartPlayback();
 			_page.applyState(pageStatesFactory.getStatePlaybackStarted(_page));
 		}
 		

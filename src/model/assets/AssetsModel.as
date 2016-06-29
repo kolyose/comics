@@ -1,6 +1,6 @@
 package model.assets
 {
-	import events.ModelEvent;
+	import events.CommandEvent;
 	
 	import flash.filesystem.File;
 	
@@ -82,7 +82,7 @@ package model.assets
 			if (percentLoaded == 1)
 			{
 				_vLoadedPageNumbers.push(_loadingPageNumber);
-				dispatchWith(ModelEvent.PAGE_RESOURCES_LOADED, false, _loadingPageNumber);
+				dispatchWith(CommandEvent.PAGE_RESOURCES_LOADED, false, _loadingPageNumber);
 				_bPageAtlasLoading = false;
 				
 				if (_vPageToLoadNumbers.length > 0)

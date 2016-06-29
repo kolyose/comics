@@ -1,15 +1,27 @@
 package controller
 {
+	import application.ApplicationMediator;
+	import application.ApplicationView;
+	import application.commands.MovePageCompleteCommand;
+	import application.commands.PlayCompleteCommand;
+	import application.commands.ResetPagesPositionCommand;
+	import application.commands.SwitchPagesCommand;
+	import application.commands.SwitchPagesCompleteCommand;
+	import application.states.BaseAppStatesFactory;
+	import application.states.IAppStatesFactory;
+	
 	import controls.IInputController;
 	import controls.InputController;
 	import controls.commands.DisableControlsCommand;
 	import controls.commands.EnableControlsCommand;
 	import controls.factory.BaseControlsFactory;
+	import controls.factory.GestouchControlsFactory;
 	import controls.factory.IControlsFactory;
 	import controls.factory.TouchControlsFactory;
 	
 	import events.ApplicationEvent;
-	import events.ModelEvent;
+	import events.CommandEvent;
+	import events.PagesEvent;
 	
 	import menu.PauseMenuMediator;
 	import menu.PauseMenuView;
@@ -34,22 +46,14 @@ package controller
 	import pages.management.PagesView;
 	import pages.management.commands.AddNeighbourPagesCommand;
 	import pages.management.commands.AddPageCommand;
-	import pages.management.commands.DisablePagesManagerCommand;
-	import pages.management.commands.EnablePagesManagerCommand;
 	import pages.management.commands.MovePagesContainerCommand;
-	import pages.management.commands.PagePlaybackCompleteCommand;
-	import pages.management.commands.PagesContainerPositionResetCompleteCommand;
-	import pages.management.commands.PausePlaybackCommand;
+	import pages.management.commands.PauseCommand;
+	import pages.management.commands.PlayCommand;
+	import pages.management.commands.ReplayCommand;
 	import pages.management.commands.ResetPagesContainerPositionCommand;
-	import pages.management.commands.ResumePlaybackCommand;
 	import pages.management.commands.SetPageDataCommand;
 	import pages.management.commands.SetPageEnabledCommand;
 	import pages.management.commands.ShowPageCommand;
-	import pages.management.commands.StartPlaybackCommand;
-	import pages.management.commands.StopPlaybackCommand;
-	import pages.management.commands.SwitchPagesCommand;
-	import pages.management.commands.SwitchPagesCompleteCommand;
-	import pages.management.commands.TweenPagesContainerPositionCommand;
 	import pages.management.commands.ZoomPlaybackCommand;
 	import pages.management.strategies.ISwitchPagesStrategy;
 	import pages.management.strategies.SwitchPagesByContainerPositionTweening;
@@ -57,16 +61,9 @@ package controller
 	import pages.playback.PlaybackStrategiesFactory;
 	import pages.states.IPageStatesFactory;
 	import pages.states.PageStatesFactory;
-	
-	import states.ApplicationStateInit;
-	import states.ApplicationStateLoading;
-	import states.ApplicationStatePaused;
-	import states.ApplicationStatePlaying;
-	import states.ApplicationStateStart;
-	import states.ApplicationStatesFactory;
-	import states.BaseApplicationState;
-	import states.IApplicationStatesFactory;
-	
+	import application.commands.ScrollPageCommand;
+	import application.commands.ScrollPageCompleteCommand;
+		
 	public class StartupCommand extends Command
 	{
 		public function StartupCommand()
@@ -82,21 +79,13 @@ package controller
 			injector.mapSingleton(PageFactories);
 			injector.mapSingleton(BaseControlsFactory);
 			
-			//injector.mapSingleton(BaseApplicationState);
-			/*injector.mapSingleton(ApplicationStateInit);
-			injector.mapSingleton(ApplicationStateLoading);
-			injector.mapSingleton(ApplicationStateLocked);
-			injector.mapSingleton(ApplicationStatePaused);
-			injector.mapSingleton(ApplicationStatePlaying);
-			injector.mapSingleton(ApplicationStateStart);
-			injector.mapSingleton(ApplicationStateUnlocked);
-			*/
+			injector.mapSingletonOf(IAppStatesFactory, BaseAppStatesFactory);
 			injector.mapSingletonOf(IPagesManager, PagesManagerFacade); 
 			injector.mapSingletonOf(ISwitchPagesStrategy, SwitchPagesByContainerPositionTweening); 
 			injector.mapSingletonOf(IPageStatesFactory, PageStatesFactory);			
 			injector.mapSingletonOf(IInputController, InputController);
-			injector.mapSingletonOf(IControlsFactory, TouchControlsFactory);
-			injector.mapSingletonOf(IApplicationStatesFactory, ApplicationStatesFactory);			
+		//	injector.mapSingletonOf(IControlsFactory, TouchControlsFactory);
+			injector.mapSingletonOf(IControlsFactory, GestouchControlsFactory);
 			injector.mapSingletonOf(IPlaybackStrategiesFactory, PlaybackStrategiesFactory);			
 			injector.mapSingletonOf(IPlaybackSettings, PlaybackSettigns);			
 			
@@ -113,37 +102,32 @@ package controller
 			mediatorMap.mapView(PagesView, PagesMediator);
 			mediatorMap.mapView(PauseMenuView, PauseMenuMediator);
 			
-			commandMap.mapEvent(ModelEvent.PAGE_RESOURCES_LOADED, SetPageDataCommand);
-			commandMap.mapEvent(ModelEvent.SHOW_PAGE, ShowPageCommand);
-			commandMap.mapEvent(ModelEvent.ADD_PAGE, AddPageCommand);
-			commandMap.mapEvent(ModelEvent.ADD_NEIGHBOUR_PAGES, AddNeighbourPagesCommand);
-			commandMap.mapEvent(ModelEvent.SWITCH_PAGES_COMPLETE, SwitchPagesCompleteCommand);
-			commandMap.mapEvent(ModelEvent.PAGE_PLAYBACK_COMPLETE, PagePlaybackCompleteCommand);
-			commandMap.mapEvent(ModelEvent.SWITCH_PAGES, SwitchPagesCommand);
-			commandMap.mapEvent(ModelEvent.TWEEN_PAGES_CONTAINER_POSITION, TweenPagesContainerPositionCommand);
-			commandMap.mapEvent(ModelEvent.MOVE_PAGES_CONTAINER, MovePagesContainerCommand);
-			commandMap.mapEvent(ModelEvent.RESET_PAGES_CONTAINER_POSITION, ResetPagesContainerPositionCommand);
-			commandMap.mapEvent(ModelEvent.PAGES_CONTAINER_POSITION_RESET_COMPLETE, PagesContainerPositionResetCompleteCommand);
-			commandMap.mapEvent(ModelEvent.SET_PAGE_ENABLED, SetPageEnabledCommand);
-			commandMap.mapEvent(ModelEvent.START_PLAYBACK, StartPlaybackCommand);
-			commandMap.mapEvent(ModelEvent.RESUME_PLAYBACK, ResumePlaybackCommand);
-			commandMap.mapEvent(ModelEvent.STOP_PLAYBACK, StopPlaybackCommand);			
-			commandMap.mapEvent(ModelEvent.PAUSE_PLAYBACK, PausePlaybackCommand);			
-			commandMap.mapEvent(ModelEvent.ZOOM_PLAYBACK, ZoomPlaybackCommand);			
-			commandMap.mapEvent(ModelEvent.ENABLE_PAGES_MANAGER, EnablePagesManagerCommand);
-			commandMap.mapEvent(ModelEvent.DISABLE_PAGES_MANAGER, DisablePagesManagerCommand);
-			commandMap.mapEvent(ModelEvent.ENABLE_CONTROLS, EnableControlsCommand);
-			commandMap.mapEvent(ModelEvent.DISABLE_CONTROLS, DisableControlsCommand);
-			commandMap.mapEvent(ModelEvent.MOVE_PAGE, MovePageCommand);
-			commandMap.mapEvent(ModelEvent.MOVE_PAGE_COMPLETE, MovePageCompleteCommand);
-			commandMap.mapEvent(ModelEvent.SCROLL_PAGE, ScrollPageCommand);
-			commandMap.mapEvent(ModelEvent.SCROLL_PAGE_COMPLETE, ScrollPageCompleteCommand);
-			commandMap.mapEvent(ModelEvent.HANDLE_MOVE, HandleMoveCommand);				
-			commandMap.mapEvent(ModelEvent.HANDLE_MOVE_COMPLETE, HandleMoveCompleteCommand);				
-			commandMap.mapEvent(ModelEvent.HANDLE_TAP, HandleTapCommand);				
-			commandMap.mapEvent(ModelEvent.HANDLE_DOUBLE_TAP, HandleDoubleTapCommand);				
-			commandMap.mapEvent(ModelEvent.SAVE_LOCAL_DATA, SaveLocalDataCommand);				
-			commandMap.mapEvent(ModelEvent.GET_LOCAL_DATA, GetLocalDataCommand);				
+			commandMap.mapEvent(PagesEvent.ADD_PAGE, AddPageCommand);
+			commandMap.mapEvent(PagesEvent.ADD_NEIGHBOUR_PAGES, AddNeighbourPagesCommand);
+			commandMap.mapEvent(PagesEvent.RESET_PAGES_CONTAINER_POSITION, ResetPagesContainerPositionCommand);
+						
+			commandMap.mapEvent(CommandEvent.RESET_PAGES_POSITION, ResetPagesPositionCommand);
+			commandMap.mapEvent(CommandEvent.PAGE_RESOURCES_LOADED, SetPageDataCommand);
+			commandMap.mapEvent(CommandEvent.SHOW_PAGE, ShowPageCommand);
+			commandMap.mapEvent(CommandEvent.SWITCH_PAGES_COMPLETE, SwitchPagesCompleteCommand);			
+			commandMap.mapEvent(CommandEvent.SWITCH_PAGES, SwitchPagesCommand);
+			commandMap.mapEvent(CommandEvent.MOVE_PAGES_CONTAINER, MovePagesContainerCommand);			
+			commandMap.mapEvent(CommandEvent.PLAY_COMPLETE, PlayCompleteCommand);			
+			
+			commandMap.mapEvent(CommandEvent.SET_PAGE_ENABLED, SetPageEnabledCommand);
+			commandMap.mapEvent(CommandEvent.REPLAY, ReplayCommand);
+			commandMap.mapEvent(CommandEvent.PLAY, PlayCommand);		
+			commandMap.mapEvent(CommandEvent.PAUSE, PauseCommand);			
+			commandMap.mapEvent(CommandEvent.ZOOM_PLAYBACK, ZoomPlaybackCommand);
+			commandMap.mapEvent(CommandEvent.ENABLE_CONTROLS, EnableControlsCommand);
+			commandMap.mapEvent(CommandEvent.DISABLE_CONTROLS, DisableControlsCommand);
+			commandMap.mapEvent(CommandEvent.MOVE_PAGE, MovePageCommand);
+			commandMap.mapEvent(CommandEvent.MOVE_PAGE_COMPLETE, MovePageCompleteCommand);
+			commandMap.mapEvent(CommandEvent.SCROLL_PAGE, ScrollPageCommand);
+			commandMap.mapEvent(CommandEvent.SCROLL_PAGE_COMPLETE, ScrollPageCompleteCommand);			
+			commandMap.mapEvent(CommandEvent.HANDLE_TAP, HandleTapCommand);						
+			commandMap.mapEvent(CommandEvent.SAVE_LOCAL_DATA, SaveLocalDataCommand);				
+			commandMap.mapEvent(CommandEvent.GET_LOCAL_DATA, GetLocalDataCommand);				
 		}
 	}
 }

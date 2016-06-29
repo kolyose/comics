@@ -12,19 +12,25 @@ package pages.states
 		
 		override public function pause():void
 		{
-			_page.pausePlayback();
-			_page.applyState(pageStatesFactory.getStatePlaybackPaused(_page));
-		}
-		
-		override public function stop():void
-		{
 			_page.stopPlayback();
-			_page.applyState(pageStatesFactory.getStatePlaybackComplete(_page));
+			_page.applyState(pageStatesFactory.getStatePlaybackPaused(_page));
 		}
 		
 		override public function zoom(tweenVO:TweenPropertiesVO):void
 		{
 			_page.zoomPlayback(tweenVO);
+		}
+		
+		override public function replay():void
+		{
+			_page.restartPlayback();
+			_page.applyState(pageStatesFactory.getStatePlaybackStarted(_page));
+		}
+		
+		override public function playComplete():void
+		{
+			_page.applyState(pageStatesFactory.getStatePlaybackComplete(_page));
+			_page.dispatchPlaybackComplete();
 		}
 	}
 }

@@ -1,6 +1,8 @@
 package pages.management.strategies
 {
-	import events.ModelEvent;
+	import events.ApplicationEvent;
+	import events.CommandEvent;
+	import events.ViewEvent;
 	
 	import org.robotlegs.starling.mvcs.Actor;
 	
@@ -31,7 +33,8 @@ package pages.management.strategies
 			_tweenVO.speed = Settings.getInstance().switchPagesSpeed;
 			_tweenVO.onCompleteHandler = switchPagesCompleteHandler;
 			
-			dispatchWith(ModelEvent.TWEEN_PAGES_CONTAINER_POSITION, false, _tweenVO);
+			dispatchWith(ViewEvent.CLEAR_PAGES_CONTAINER_POSITION_TWEEN);		
+			dispatchWith(ViewEvent.TWEEN_PAGES_CONTAINER_POSITION, false, _tweenVO);
 		}
 		
 		protected function switchPagesCompleteHandler():void
@@ -39,7 +42,7 @@ package pages.management.strategies
 			pagesManager.containerPosition.x = _tweenVO.targetX;	
 			pagesManager.currentPageNumber = _pageNumber;			
 			
-			dispatchWith(ModelEvent.SWITCH_PAGES_COMPLETE);			
+			dispatchWith(ApplicationEvent.SWITCH_PAGES_COMPLETE);			
 		}
 	}
 }

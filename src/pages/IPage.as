@@ -24,14 +24,14 @@ package pages
 		function init(data:PageDO):void
 		
 		function play():void;
-		function resume():void;
+		function playComplete():void;
+		function replay():void;
 		function pause():void;
-		function stop():void;
 		function zoom(tweenVO:TweenPropertiesVO):void;
+		function dispatchPlaybackComplete():void;
 		function startPlayback():void;
-		function pausePlayback():void;
 		function stopPlayback():void;
-		function resumePlayback():void;
+		function restartPlayback():void;
 		function zoomPlayback(tweenVO:TweenPropertiesVO):void;
 		function enable():void;
 		function disable():void;

@@ -2,7 +2,7 @@ package pages.management
 {
 	import data.PageDO;
 	
-	import events.ModelEvent;
+	import events.CommandEvent;
 	import events.ViewEvent;
 	
 	import flash.geom.Point;
@@ -28,54 +28,34 @@ package pages.management
 			super();
 		}
 		
-		public function showPageByNumber(pageNumber:uint):void
-		{
-			dispatchWith(ModelEvent.SHOW_PAGE, false, pageNumber);
-		}
-		
-		public function switchPages(pageNumber:uint):void
-		{
-			dispatchWith(ModelEvent.SWITCH_PAGES, false, pageNumber);
-		}
-		
 		public function movePage(xOffset:Number):void
 		{
-			dispatchWith(ModelEvent.MOVE_PAGES_CONTAINER, false, xOffset);
+			dispatchWith(CommandEvent.MOVE_PAGES_CONTAINER, false, xOffset);
 		}
 		
-		public function resetPagePosition():void
+		/*public function enable():void
 		{
-			dispatchWith(ModelEvent.RESET_PAGES_CONTAINER_POSITION);
-		}
-		
-		public function enable():void
-		{
-			dispatchWith(ModelEvent.SET_PAGE_ENABLED, false, true);
+			dispatchWith(CommandEvent.SET_PAGE_ENABLED, false, true);
 		}
 		
 		public function disable():void
 		{
-			dispatchWith(ModelEvent.SET_PAGE_ENABLED, false, false);
-		}
+			dispatchWith(CommandEvent.SET_PAGE_ENABLED, false, false);
+		}*/
 		
 		public function play():void
 		{
 			getCurrentPage().play();
 		}
 		
-		public function resume():void
+		public function replay():void
 		{
-			getCurrentPage().resume();
+			getCurrentPage().replay();
 		}
 		
 		public function pause():void
 		{
 			getCurrentPage().pause();
-		}
-		
-		public function stop():void
-		{
-			getCurrentPage().stop();
 		}
 		
 		public function zoom(tweenVO:TweenPropertiesVO):void
@@ -91,7 +71,7 @@ package pages.management
 		public function set currentPageNumber(number:uint):void
 		{
 			this.model.currentPageNumber = number;
-			dispatchWith(ModelEvent.PAGE_NUMBER_CHANGED, false, currentPageNumber);
+			dispatchWith(CommandEvent.PAGE_NUMBER_CHANGED, false, currentPageNumber);
 		}
 		
 		public function set loadingPageNumber(number:uint):void

@@ -21,6 +21,8 @@ package pages.management.commands
 		
 		override public function execute():void
 		{
+			if (!pagesManager.getCurrentPage()) return;
+			
 			var bEnabled:Boolean = event.data;
 			
 			if (bEnabled)

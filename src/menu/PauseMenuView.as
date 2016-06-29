@@ -28,6 +28,9 @@ package menu
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.Touch;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	
 	public class PauseMenuView extends Sprite
 	{		
@@ -52,6 +55,7 @@ package menu
 			_btnReplay.name = InstanceNames.BTN_REPLAY;
 			addChild(_btnReplay);
 			_btnReplay.addEventListener(Event.TRIGGERED, btnTriggeredHandler);
+			//_btnReplay.addEventListener(TouchEvent.TOUCH, stopTouchPropagationHandler);
 			
 			_btnContinue = new starling.display.Button(texturesData.btnContinue);
 			_btnContinue.x = _btnReplay.x + _btnReplay.width + 10;
@@ -59,6 +63,7 @@ package menu
 			_btnContinue.name = InstanceNames.BTN_CONTINUE;
 			addChild(_btnContinue);
 			_btnContinue.addEventListener(Event.TRIGGERED, btnTriggeredHandler);	
+			//_btnContinue.addEventListener(TouchEvent.TOUCH, stopTouchPropagationHandler);
 		}
 		
 		public function initPageNavigator(texturesData:Object, pagesNumber:uint):void
@@ -72,6 +77,15 @@ package menu
 			_pageNavigator.thumbProperties.defaultSkin = new Image(texturesData.sliderThumbSkin);
 			_pageNavigator.minimumTrackProperties.defaultSkin = new Image(texturesData.minTrackDefaultSkin);			
 			_pageNavigator.addEventListener(Event.CHANGE, pagesIndicatorSliderChangeHandler);
+			/*_pageNavigator.addEventListener(TouchEvent.TOUCH, function(event:TouchEvent):void
+				{
+				//TODO:
+				//when TouchControls be refactored (for instance changed to Gestouch library)
+				//and a GAP when a TAP event fires after some delay be removed (see the TouchControls class line 116)
+				//then probably we can remove this actual GAP and remove this TOUCH handler
+					event.stopImmediatePropagation();
+					event.stopPropagation();
+				});*/
 			_pageNavigator.addEventListener(FeathersEventType.END_INTERACTION, pagesIndicatorSliderEndInteractionHandler);
 			_pageNavigator.move(100, 200);
 			addChild(_pageNavigator);			
@@ -128,6 +142,27 @@ package menu
 		
 		private function btnTriggeredHandler(event:Event):void
 		{
+			dispatchEventWith(ViewEvent.BTN_TRIGGERED, false, (event.currentTarget as DisplayObject).name);
+		}
+		
+		private function stopTouchPropagationHandler(event:TouchEvent):void
+		{
+			var touchEnded:Touch = event.getTouch(event.currentTarget as DisplayObject, TouchPhase.ENDED);
+			if (!touchEnded || touchEnded.tapCount < 1) return;
+			
+			//NOTE:
+			//the following GAP purposed to prevent firing of standard TOUCH event from this menu
+			//in order to keep input control by this class only - but not by InputController
+			//NOTE: 
+			//maybe such approach is not perfect and we need to think about moving controlling role of the menu to the InputController
+			//TODO:
+			//when TouchControls be refactored (for instance changed to Gestouch library)
+			//and a GAP when a TAP event fires after some delay be removed (see the TouchControls class line 116)
+			//then probably we can remove this actual GAP and come back to button's TRIGGERED event usage
+			
+			event.stopImmediatePropagation();
+			event.stopPropagation();
+			
 			dispatchEventWith(ViewEvent.BTN_TRIGGERED, false, (event.currentTarget as DisplayObject).name);
 		}
 	}

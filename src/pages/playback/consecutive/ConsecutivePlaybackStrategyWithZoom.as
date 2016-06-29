@@ -66,20 +66,7 @@ package pages.playback.consecutive
 				default:
 					break;
 			}			
-		}
-		
-	/*	public function startZooming(tweenVO:TweenPropertiesVO):void
-		{
-			var zoom:Number = getTargetZoom(_vItems[_uintCurrentItemIndex]);
-			var targetPoint:Point = getTargetPoint(_vItems[_uintCurrentItemIndex], zoom);
-			tweenToTargets(targetPoint, zoom, tweenVO);
-		}*/
-		
-		override public function start():void
-		{
-			_pageInitialCoordinates = new Point(_page.container.x, _page.container.y);
-			super.start();			
-		}
+		}	
 		
 		override public function stop():void
 		{
@@ -89,9 +76,9 @@ package pages.playback.consecutive
 				Starling.juggler.remove(_tween);	
 		}
 		
-		override public function resume():void
+		override public function start():void
 		{
-			super.resume();
+			super.start();
 			
 			if (_tween)
 				Starling.juggler.add(_tween);	
@@ -116,17 +103,7 @@ package pages.playback.consecutive
 			var zoom:Number = getTargetZoom(_vItems[_uintCurrentItemIndex]);
 			tweenToTargets(getTargetPoint(_vItems[_uintCurrentItemIndex], zoom), zoom, _tweenVO);					
 		}
-		
-		override protected function itemPlaybackCompleteHandler():void
-		{
-			super.itemPlaybackCompleteHandler();
-			
-			/*if (_bPlaybackComplete && _state != STATE_NO_ZOOM)
-			{
-				tweenToInitial();
-			}*/
-		}
-		
+				
 		protected function tweenToTargetsCompleteHandler():void
 		{
 			activateTimer(Settings.getInstance().grayscaleFilterStepInterval, grayscaleTimerHandler);
@@ -194,6 +171,7 @@ package pages.playback.consecutive
 		protected function resetZoom():void
 		{
 			removeTween();
+			_pageInitialCoordinates = new Point(_page.container.x, _page.container.y);
 			_page.container.x = _pageInitialCoordinates.x;
 			_page.container.y = _pageInitialCoordinates.y;
 			_page.container.scaleX = _page.container.scaleY = 1;

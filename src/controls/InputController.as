@@ -2,7 +2,7 @@ package controls
 {
 	import events.ApplicationEvent;
 	import events.ControlsEvent;
-	import events.ModelEvent;
+	import events.CommandEvent;
 	
 	import flash.events.IEventDispatcher;
 	import flash.geom.Point;
@@ -64,24 +64,24 @@ package controls
 			(_controls as EventDispatcher).removeEventListener(ControlsEvent.MOVE_COMPLETE, moveCompleteHandler);
 		}
 		
-		private function moveCompleteHandler(event:Event, offset:Point):void
-		{			
-			dispatchWith(ModelEvent.HANDLE_MOVE_COMPLETE, false, offset);
-		}
-		
 		private function moveHandler(event:Event, offset:Point):void
 		{			
-			dispatchWith(ModelEvent.HANDLE_MOVE, false, offset);			
+			dispatchWith(ApplicationEvent.MOVE, false, offset);		
 		}
 		
+		private function moveCompleteHandler(event:Event, offset:Point):void
+		{			
+			dispatchWith(ApplicationEvent.MOVE_COMPLETE, false, event.data);
+		}
+			
 		private function tapHandler(event:Event):void
-		{
-			dispatchWith(ModelEvent.HANDLE_TAP, false, event.data);	
+		{			
+			dispatchWith(ApplicationEvent.TAP, false, event.data);	
 		}
 		
 		private function doubleTapHandler(event:Event):void
 		{
-			dispatchWith(ModelEvent.HANDLE_DOUBLE_TAP, false, event.data);	
+			dispatchWith(ApplicationEvent.DOUBLE_TAP, false, event.data);	
 		}
 	}
 }

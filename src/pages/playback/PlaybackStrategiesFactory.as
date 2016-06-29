@@ -3,6 +3,7 @@ package pages.playback
 	import org.robotlegs.starling.mvcs.Actor;
 	
 	import pages.IPage;
+	import pages.playback.consecutive.ConsecutivePlaybackStrategy;
 	import pages.playback.consecutive.ConsecutivePlaybackStrategyWithZoom;
 	import pages.playback.consecutive.states.ConsecutivePlaybackStrategyWithZoomStatesFactory;
 	

@@ -14,9 +14,8 @@ package controls
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 
-	public class TouchControls extends EventDispatcher implements IControls
+	public class TouchControls extends BaseTouchControls
 	{
-		protected var _stage:DisplayObject;
 		protected var _lastTouchedDisplayObject:DisplayObject;
 		protected var _bTouchMoved:Boolean;
 		protected var _initialTouchLocation:Point;
@@ -24,23 +23,17 @@ package controls
 		
 		public function TouchControls(stage:DisplayObject)
 		{
-			_stage = stage;			
-			
-			super();
+			super(stage);
 		}
 		
-		public function enable():void
+		override public function enable():void
 		{
 			_stage.addEventListener(TouchEvent.TOUCH, touchHandler);
 		}
 		
-		public function disable():void
+		override public function disable():void
 		{
 			_stage.removeEventListener(TouchEvent.TOUCH, touchHandler);
-		}
-		
-		public function init():void
-		{			
 		}
 		
 		protected function touchHandler(event:TouchEvent):void

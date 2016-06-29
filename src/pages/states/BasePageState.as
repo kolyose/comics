@@ -22,7 +22,8 @@ package pages.states
 		
 		public function setData(data:PageDO):void{}
 		public function play():void{}		
-		public function resume():void{}		
+		public function playComplete():void{}		
+		public function replay():void{}		
 		public function pause():void{}
 		public function stop():void{}
 		public function zoom(tweenVO:TweenPropertiesVO):void{}

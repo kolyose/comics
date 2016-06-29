@@ -1,6 +1,6 @@
 package pages.management
 {
-	import events.ModelEvent;
+	import events.CommandEvent;
 	import events.ViewEvent;
 	
 	import flash.geom.Point;

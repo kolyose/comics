@@ -1,7 +1,7 @@
 package pages.management.commands
 {
 	import events.ApplicationEvent;
-	import events.ModelEvent;
+	import events.CommandEvent;
 	import events.ViewEvent;
 	
 	import org.robotlegs.starling.mvcs.Command;
@@ -10,8 +10,6 @@ package pages.management.commands
 	
 	import starling.events.Event;
 	
-	import states.IApplicationStatesFactory;
-	
 	public class ShowPageCommand extends Command
 	{
 		[Inject]
@@ -19,10 +17,7 @@ package pages.management.commands
 		
 		[Inject]
 		public var pagesManager:IPagesManager;
-		
-		[Inject]
-		public var applicationStatesFactory:IApplicationStatesFactory;
-		
+			
 		public function ShowPageCommand()
 		{
 			super();
@@ -32,9 +27,6 @@ package pages.management.commands
 		{
 			var pageNumber:uint = uint(event.data);			
 			if (pageNumber < 0 || pageNumber >= pagesManager.intPagesCount) return;
-					
-			//dispatchWith(ApplicationEvent.APPLY_STATE, false, applicationStatesFactory.getStateLock());
-			dispatchWith(ApplicationEvent.LOCK);
 			
 			pagesManager.currentPageNumber = pageNumber;
 			
@@ -44,9 +36,7 @@ package pages.management.commands
 			dispatchWith(ViewEvent.SET_PAGES_POSITION, false, newPagesPositionX);
 			pagesManager.containerPosition.x = newPagesPositionX;	
 			
-			//dispatchWith(ModelEvent.ADD_PAGE, false, pagesManager.currentPageNumber);
-			dispatchWith(ModelEvent.SWITCH_PAGES_COMPLETE);			
-			//dispatchWith(ModelEvent.ADD_NEIGHBOUR_PAGES, false, pagesManager.currentPageNumber);
+			dispatchWith(ApplicationEvent.SWITCH_PAGES_COMPLETE);		
 		}
 	}
 }
