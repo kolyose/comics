@@ -17,7 +17,7 @@ package application.states
 		}
 		
 		override public function entry():void
-		{			
+		{					
 			_app.play();
 		}
 		

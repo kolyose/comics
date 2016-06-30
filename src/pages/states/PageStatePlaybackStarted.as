@@ -16,11 +16,6 @@ package pages.states
 			_page.applyState(pageStatesFactory.getStatePlaybackPaused(_page));
 		}
 		
-		override public function zoom(tweenVO:TweenPropertiesVO):void
-		{
-			_page.zoomPlayback(tweenVO);
-		}
-		
 		override public function replay():void
 		{
 			_page.restartPlayback();
@@ -31,6 +26,16 @@ package pages.states
 		{
 			_page.applyState(pageStatesFactory.getStatePlaybackComplete(_page));
 			_page.dispatchPlaybackComplete();
+		}
+		
+		override public function zoom(tweenVO:TweenPropertiesVO):void
+		{
+			_page.zoomPlayback(tweenVO);
+		}
+		
+		override public function zoomComplete():void
+		{
+			_page.dispatchZoomComplete();
 		}
 	}
 }

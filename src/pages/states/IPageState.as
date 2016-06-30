@@ -13,5 +13,6 @@ package pages.states
 		function pause():void;
 		function stop():void;
 		function zoom(tweenVO:TweenPropertiesVO):void;
+		function zoomComplete():void;
 	}
 }

@@ -27,5 +27,6 @@ package pages.states
 		public function pause():void{}
 		public function stop():void{}
 		public function zoom(tweenVO:TweenPropertiesVO):void{}
+		public function zoomComplete():void{}
 	}
 }

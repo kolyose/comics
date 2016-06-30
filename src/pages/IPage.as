@@ -27,12 +27,16 @@ package pages
 		function playComplete():void;
 		function replay():void;
 		function pause():void;
+		
 		function zoom(tweenVO:TweenPropertiesVO):void;
+		function zoomComplete():void;
+		function zoomPlayback(tweenVO:TweenPropertiesVO):void;
+		function dispatchZoomComplete():void;
+		
 		function dispatchPlaybackComplete():void;
 		function startPlayback():void;
 		function stopPlayback():void;
 		function restartPlayback():void;
-		function zoomPlayback(tweenVO:TweenPropertiesVO):void;
 		function enable():void;
 		function disable():void;
 	}

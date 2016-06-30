@@ -26,5 +26,10 @@ package pages.states
 		{
 			_page.zoomPlayback(tweenVO);
 		}
+		
+		override public function zoomComplete():void
+		{
+			_page.dispatchZoomComplete();
+		}
 	}
 }

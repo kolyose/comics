@@ -60,12 +60,18 @@ package pages.management.commands
 			pagesManager.loadingPageNumber = pageNumber;
 			
 			(page as EventDispatcher).addEventListener(PlaybackEvent.PLAYBACK_COMPLETE, pagePlaybackCompleteHandler);
+			(page as EventDispatcher).addEventListener(PlaybackEvent.ZOOM_COMPLETE, pageZoomCompleteHandler);
 			assetsModel.loadPageResources(pageNumber);			
 		}
 		
 		protected function pagePlaybackCompleteHandler(event:Event):void
 		{
 			dispatchWith(ApplicationEvent.PLAY_COMPLETE);
+		}
+		
+		protected function pageZoomCompleteHandler(event:Event):void
+		{
+			dispatchWith(ApplicationEvent.ZOOM_COMPLETE);
 		}
 	}
 }

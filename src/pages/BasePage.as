@@ -56,6 +56,7 @@ package pages
 		public function activatePlayback():void
 		{
 			(_playbackStrategy as EventDispatcher).addEventListener(PlaybackEvent.PLAYBACK_COMPLETE, playbackCompleteHandler);
+			(_playbackStrategy as EventDispatcher).addEventListener(PlaybackEvent.ZOOM_COMPLETE, zoomCompleteHandler);
 		}
 		
 		public function init(data:PageDO):void
@@ -94,6 +95,11 @@ package pages
 		public function playComplete():void
 		{
 			_state.playComplete();
+		}
+		
+		public function zoomComplete():void
+		{
+			_state.zoomComplete();
 		}
 		
 		public function replay():void
@@ -136,11 +142,21 @@ package pages
 			dispatchEventWith(PlaybackEvent.PLAYBACK_COMPLETE);	
 		}
 		
+		public function dispatchZoomComplete():void
+		{
+			dispatchEventWith(PlaybackEvent.ZOOM_COMPLETE);	
+		}
+		
 		protected function playbackCompleteHandler(event:Event):void
 		{
 			playComplete();			 
 		}
-
+		
+		protected function zoomCompleteHandler(event:Event):void
+		{
+			zoomComplete();		 
+		}
+		
 		public function enable():void
 		{
 			_sprContainer.touchable = true;

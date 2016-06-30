@@ -41,7 +41,7 @@ package pages.management.strategies
 		{
 			pagesManager.containerPosition.x = _tweenVO.targetX;	
 			pagesManager.currentPageNumber = _pageNumber;			
-			
+						
 			dispatchWith(ApplicationEvent.SWITCH_PAGES_COMPLETE);			
 		}
 	}

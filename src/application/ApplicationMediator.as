@@ -126,7 +126,7 @@ package application
 		}	
 		
 		private function zoomCompleteHandler(event:starling.events.Event):void
-		{
+		{			
 			_state.zoomComplete();
 		}	
 		

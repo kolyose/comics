@@ -12,11 +12,16 @@ package application.states
 			
 		override public function entry():void
 		{
-			_app.pause();
+			//_app.disable();
+		}
+		
+		override public function exit():void
+		{
+			//_app.enable();
 		}
 		
 		override public function zoomComplete():void
-		{
+		{			
 			_app.applyState(_statesFactory.getStateRunning());
 		}
 		
