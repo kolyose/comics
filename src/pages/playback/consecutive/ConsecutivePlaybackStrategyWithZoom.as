@@ -55,6 +55,14 @@ package pages.playback.consecutive
 			}
 		}
 		
+		override public function start():void
+		{
+			if (!_pageInitialCoordinates)
+				_pageInitialCoordinates = new Point(_page.container.x, _page.container.y);
+			
+			super.start();
+		}
+		
 		override public function stop():void
 		{
 			super.stop();
@@ -64,9 +72,9 @@ package pages.playback.consecutive
 		}
 				
 		override public function reset():void
-		{			
+		{	
 			super.reset();
-			resetZoom();
+		//	resetZoom();
 		}
 		
 		override protected function initiateItemPlayback(itemIndex:uint):void

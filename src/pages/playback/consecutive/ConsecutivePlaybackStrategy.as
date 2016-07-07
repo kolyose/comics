@@ -8,16 +8,16 @@ package pages.playback.consecutive
 	import pages.IPage;
 	import pages.items.BaseItem;
 	import pages.items.IItem;
+	import pages.playback.BasePlaybackStrategy;
 	
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.filters.ColorMatrixFilter;
-	import pages.playback.BasePlaybackStrategy;
 	
 	public class ConsecutivePlaybackStrategy extends BasePlaybackStrategy
 	{
 		protected var _timer:Timer;
-		protected var _colorMatrixFilter:ColorMatrixFilter;
+		//protected var _colorMatrixFilter:ColorMatrixFilter;
 		protected var _grayscaleFilterStepsCounter:uint;
 		protected var _bPlaybackStarted:Boolean;
 		protected var _bPlaybackComplete:Boolean;
@@ -73,12 +73,13 @@ package pages.playback.consecutive
 			super.reset();
 			deactivateTimer();
 			
-			_colorMatrixFilter = new ColorMatrixFilter();
-			_colorMatrixFilter.adjustSaturation(-1);
-			
 			for each (var item:BaseItem in _vItems)
 			{
-				item.filter = _colorMatrixFilter;
+				clearItemFilter(item);
+				
+				var filter:ColorMatrixFilter = new ColorMatrixFilter();			
+				filter.adjustSaturation(-1);
+				item.filter = filter;
 			}	
 			
 			_grayscaleFilterStepsCounter = 0;
@@ -96,14 +97,16 @@ package pages.playback.consecutive
 		{
 			var item:BaseItem = _vItems[_uintCurrentItemIndex] as BaseItem;
 			
-			_colorMatrixFilter = new ColorMatrixFilter();
-			_colorMatrixFilter.adjustSaturation(-1 + _grayscaleFilterStepsCounter * 1/Settings.getInstance().grayscaleFilterStepsNumber);
-			item.filter = _colorMatrixFilter;
+			clearItemFilter(item);
+			var filter:ColorMatrixFilter = new ColorMatrixFilter();			
+			filter.adjustSaturation(-1 + _grayscaleFilterStepsCounter * 1/Settings.getInstance().grayscaleFilterStepsNumber);
+			item.filter = filter;
 			
 			_grayscaleFilterStepsCounter++;
 			
 			if (_grayscaleFilterStepsCounter == Settings.getInstance().grayscaleFilterStepsNumber)
 			{
+				clearItemFilter(item);
 				_grayscaleFilterStepsCounter = 0;
 				deactivateTimer();
 				
@@ -163,6 +166,15 @@ package pages.playback.consecutive
 			{
 				_timer.stop();
 				_timer = null;
+			}
+		}
+		
+		protected function clearItemFilter(item:BaseItem):void
+		{
+			if (item.filter)
+			{
+				item.filter.dispose();
+				item.filter = null;
 			}
 		}
 	}
