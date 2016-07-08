@@ -1,5 +1,6 @@
 package application.commands
 {
+	import events.CommandEvent;
 	import events.ViewEvent;
 	
 	import flash.geom.Point;
@@ -29,26 +30,41 @@ package application.commands
 			var initialPagePosition:Point = 
 				new Point(pagesManager.currentPageNumber * (Settings.getInstance().WIDTH + Settings.getInstance().distanceBetweenPages), pagesManager.containerPosition.y);
 			
-			if (offset.x > initialPagePosition.x - pagesManager.getCurrentPage().container.x)
-			{	
-				offset.x = initialPagePosition.x - pagesManager.getCurrentPage().container.x;
-			}		
-			
-			if (offset.x < initialPagePosition.x - (pagesManager.getCurrentPage().container.width - Settings.getInstance().WIDTH) - pagesManager.getCurrentPage().container.x)
-			{	
-				offset.x = initialPagePosition.x - (pagesManager.getCurrentPage().container.width - Settings.getInstance().WIDTH) - pagesManager.getCurrentPage().container.x;
-			}	
-			
 			if (offset.y > initialPagePosition.y - pagesManager.getCurrentPage().container.y)
 			{	
 				offset.y = initialPagePosition.y - pagesManager.getCurrentPage().container.y;
 			}		
 			
-			if (offset.y < initialPagePosition.y - (pagesManager.getCurrentPage().container.height - Settings.getInstance().HEIGHT) - pagesManager.getCurrentPage().container.y)
+			if (offset.y < initialPagePosition.y - (pagesManager.getCurrentPage().container.scaleY * Settings.getInstance().HEIGHT - Settings.getInstance().HEIGHT) - pagesManager.getCurrentPage().container.y)
 			{	
-				offset.y = initialPagePosition.y - (pagesManager.getCurrentPage().container.height - Settings.getInstance().HEIGHT) - pagesManager.getCurrentPage().container.y;
+				offset.y = initialPagePosition.y - (pagesManager.getCurrentPage().container.scaleY * Settings.getInstance().HEIGHT - Settings.getInstance().HEIGHT) - pagesManager.getCurrentPage().container.y;
+			}				
+			
+			var remainingOffset:Point;
+			
+			if (offset.x > initialPagePosition.x - pagesManager.getCurrentPage().container.x)
+			{	
+				remainingOffset = new Point(offset.x - (initialPagePosition.x - pagesManager.getCurrentPage().container.x), 0);
+				offset.x = initialPagePosition.x - pagesManager.getCurrentPage().container.x;
+				applyOffset(offset);
+				dispatchWith(CommandEvent.MOVE_PAGE, false, remainingOffset);	
+				return;
+			}		
+			
+			if (offset.x < initialPagePosition.x - (pagesManager.getCurrentPage().container.scaleX * Settings.getInstance().WIDTH - Settings.getInstance().WIDTH) - pagesManager.getCurrentPage().container.x)
+			{	
+				remainingOffset = new Point(offset.x - (initialPagePosition.x - (pagesManager.getCurrentPage().container.scaleX * Settings.getInstance().WIDTH - Settings.getInstance().WIDTH) - pagesManager.getCurrentPage().container.x), 0);
+				offset.x = initialPagePosition.x - (pagesManager.getCurrentPage().container.scaleX * Settings.getInstance().WIDTH - Settings.getInstance().WIDTH) - pagesManager.getCurrentPage().container.x;
+				applyOffset(offset);
+				dispatchWith(CommandEvent.MOVE_PAGE, false, remainingOffset);	
+				return;
 			}	
 			
+			applyOffset(offset);
+		}
+		
+		private function applyOffset(offset:Point):void
+		{
 			pagesManager.getCurrentPage().container.x += offset.x;
 			pagesManager.getCurrentPage().container.y += offset.y;
 		}

@@ -29,14 +29,18 @@ package application.commands
 			var intDirection:int = (xOffset < 0) ? 1 : -1;
 			var pageNumber:uint = pagesManager.currentPageNumber + intDirection;
 			
-			if (Math.abs(xOffset) > Settings.getInstance().initiateSwitchPagesOffset && pageNumber > -1 && pageNumber < Settings.getInstance().intPagesCount)
+			var positionsDifference:Number = 
+				(pagesManager.temporaryContainerPositionX > pagesManager.containerPosition.x) ? 
+				(pagesManager.temporaryContainerPositionX - pagesManager.containerPosition.x) :
+				(pagesManager.containerPosition.x - pagesManager.temporaryContainerPositionX);
+			
+			//if (Math.abs(xOffset) > Settings.getInstance().initiateSwitchPagesOffset && pageNumber > -1 && pageNumber < Settings.getInstance().intPagesCount)
+			if (positionsDifference >= Settings.getInstance().initiateSwitchPagesOffset && pageNumber > -1 && pageNumber < Settings.getInstance().intPagesCount)
 			{								
-				//pagesManager.switchPages(pageNumber); 
 				dispatchWith(ApplicationEvent.SWITCH_PAGES, false, pageNumber);
 			}
 			else
 			{
-				//pagesManager.resetPagePosition();
 				dispatchWith(ApplicationEvent.RESET_POSITION);
 			}
 		}

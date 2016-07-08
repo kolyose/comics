@@ -23,7 +23,24 @@ package application.states
 		
 		override public function moveComplete(offset:Point):void
 		{
-			_app.scrollComplete(offset);	
+		//	_app.scrollComplete(offset);	
+			_app.moveComplete(offset);	
 		}		
+		
+		override public function switchPages(pageNumber:uint):void
+		{		
+			_app.applyState(_statesFactory.getStateSwitchingPagesZoomed());
+			_app.switchPages(pageNumber);
+		}
+		
+		override public function resetPosition():void
+		{
+			_app.resetPosition();
+		}
+		
+		override public function resetPositionComplete():void
+		{
+			_app.applyState(_statesFactory.getStateRunningZoomed());
+		}
 	}
 }

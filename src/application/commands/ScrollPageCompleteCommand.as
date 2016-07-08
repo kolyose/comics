@@ -1,6 +1,12 @@
 package application.commands
 {
+	import events.ApplicationEvent;
+	
+	import flash.geom.Point;
+	
 	import org.robotlegs.starling.mvcs.Command;
+	
+	import pages.management.IPagesManager;
 	
 	import starling.events.Event;
 	
@@ -8,6 +14,9 @@ package application.commands
 	{
 		[Inject]
 		public var event:Event;
+		
+		[Inject]
+		public var pagesManager:IPagesManager;
 		
 		public function ScrollPageCompleteCommand()
 		{

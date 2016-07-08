@@ -37,6 +37,12 @@ package pages.management
 			_pagesContainer.x = newPositionX;
 		}
 		
+		public function movePagesContainer(offset:Point):void
+		{
+			_pagesContainer.x += offset.x;
+			_pagesContainer.y += offset.y;
+		}		
+		
 		public function addPage(pageContainer:Sprite):void
 		{
 			_pagesContainer.addChild(pageContainer);
@@ -56,11 +62,5 @@ package pages.management
 			Starling.juggler.remove(_movePageTween);
 			_movePageTween = null;
 		}
-		
-		public function movePagesContainer(offset:Point):void
-		{
-			_pagesContainer.x += offset.x;
-			_pagesContainer.y += offset.y;
-		}		
 	}
 }

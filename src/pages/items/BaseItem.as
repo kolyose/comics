@@ -126,5 +126,10 @@ package pages.items
 		{
 			_sprContainer.filter = filter; 
 		}
+		
+		public function get filter():FragmentFilter
+		{
+			return _sprContainer.filter; 
+		}
 	}
 }

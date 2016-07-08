@@ -8,7 +8,7 @@ package
 		
 		public function get autoplayMode():Boolean
 		{
-			return false;
+			return true;
 		}
 	}
 }

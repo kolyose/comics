@@ -33,7 +33,8 @@ package pages.management.commands
 		}
 		
 		private function resetPagePositionTweenCompleteHandler():void
-		{			
+		{		
+			pagesManager.temporaryContainerPositionX = pagesManager.containerPosition.x;
 			dispatchWith(ApplicationEvent.RESET_POSITION_COMPLETE);
 		}
 	}

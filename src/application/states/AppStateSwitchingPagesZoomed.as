@@ -9,6 +9,16 @@ package application.states
 			super(app, statesFactory);
 		}
 		
+		override public function entry():void
+		{
+			_app.disable();
+		}
+		
+		override public function exit():void
+		{
+			_app.enable();
+		}		
+		
 		override public function switchPagesComplete():void
 		{
 			_app.switchPagesComplete();			

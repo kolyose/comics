@@ -23,8 +23,8 @@ package application.states
 		
 		override public function move(offset:Point):void
 		{
-			//_app.applyState(_statesFactory.getStateMovingZoomed());
-			//_app.scroll(offset);
+			_app.applyState(_statesFactory.getStateMovingZoomed());
+			_app.scroll(offset);
 		}
 		
 		override public function playComplete():void

@@ -40,6 +40,7 @@ package pages.management.strategies
 		protected function switchPagesCompleteHandler():void
 		{
 			pagesManager.containerPosition.x = _tweenVO.targetX;	
+			pagesManager.temporaryContainerPositionX = pagesManager.containerPosition.x;	
 			pagesManager.currentPageNumber = _pageNumber;			
 						
 			dispatchWith(ApplicationEvent.SWITCH_PAGES_COMPLETE);			

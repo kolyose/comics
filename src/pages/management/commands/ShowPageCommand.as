@@ -35,6 +35,7 @@ package pages.management.commands
 			var newPagesPositionX:Number = - pageNumber * (Settings.getInstance().WIDTH + Settings.getInstance().distanceBetweenPages);
 			dispatchWith(ViewEvent.SET_PAGES_POSITION, false, newPagesPositionX);
 			pagesManager.containerPosition.x = newPagesPositionX;	
+			pagesManager.temporaryContainerPositionX = newPagesPositionX;
 			
 			dispatchWith(ApplicationEvent.SWITCH_PAGES_COMPLETE);		
 		}
