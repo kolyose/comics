@@ -1,8 +1,10 @@
-package application.states
+package application.states.manual
 {
 	import application.ApplicationMediator;
 	
 	import flash.geom.Point;
+	import application.states.BaseAppState;
+	import application.states.IAppStatesFactory;
 
 	public class AppStateZoomingIN extends BaseAppState
 	{

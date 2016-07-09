@@ -1,6 +1,8 @@
-package application.states
+package application.states.manual
 {
 	import application.ApplicationMediator;
+	import application.states.BaseAppState;
+	import application.states.IAppStatesFactory;
 
 	public class AppStateStart extends BaseAppState
 	{
@@ -11,8 +13,7 @@ package application.states
 		
 		override public function entry():void
 		{			
-			_app.initControls();
-			_app.start();						
+						
 		}
 		
 		override public function showPage(pageNumber:uint):void

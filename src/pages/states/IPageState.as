@@ -14,5 +14,6 @@ package pages.states
 		function stop():void;
 		function zoom(tweenVO:TweenPropertiesVO):void;
 		function zoomComplete():void;
+		function reset():void;
 	}
 }

@@ -28,5 +28,7 @@ package events
 		public static const GET_LOCAL_DATA:String = "CommandEvent.GET_LOCAL_DATA";		
 		public static const LOCAL_DATA_READY:String = "CommandEvent.LOCAL_DATA_READY";
 		public static const RESET_PAGES_POSITION:String = "CommandEvent.RESET_PAGES_POSITION";		
+		public static const RESET_PAGE:String = "CommandEvent.RESET_PAGE";		
+		public static const RESET_SUBSEQUENT_PAGES:String = "CommandEvent.RESET_SUBSEQUENT_PAGES";		
 	}
 }

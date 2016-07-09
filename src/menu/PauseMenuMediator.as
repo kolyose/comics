@@ -18,8 +18,8 @@ package menu
 		[Inject]
 		public var assetsModel:AssetsModel;
 		
-		//[Inject]
-		//public var 
+		[Inject]
+		public var playbackSettings:IPlaybackSettings;
 		
 		public function PauseMenuMediator()
 		{
@@ -30,6 +30,7 @@ package menu
 		{
 			addViewListener(ViewEvent.BTN_TRIGGERED, btnTriggeredHandler);
 			addViewListener(ViewEvent.SHOW_PAGE, viewShowPageHandler);
+			addViewListener(ViewEvent.AUTOPLAY_CHANGE, autoplayChangeHandler);
 			
 			addContextListener(CommandEvent.PAGE_NUMBER_CHANGED, pageNumberChangedHandler);
 			
@@ -43,6 +44,11 @@ package menu
 			pageNavigatorTextures.sliderThumbSkin = assetsModel.getTexture("pagesSliderThumbSkin");
 			pageNavigatorTextures.minTrackDefaultSkin = assetsModel.getTexture("pagesSliderTrackSkin");
 			view.initPageNavigator(pageNavigatorTextures, Settings.getInstance().intPagesCount);
+			
+			var autoplayCheckboxTextures:Object = {};
+			autoplayCheckboxTextures.defaultIcon = assetsModel.getTexture("autoplayOff");
+			autoplayCheckboxTextures.defaultSelectedIcon = assetsModel.getTexture("autoplayOn");
+			view.initAutoplayCheckbox(autoplayCheckboxTextures, playbackSettings.autoplayModeEnabled);
 		}
 		
 		private function btnTriggeredHandler(event:Event, name:String):void
@@ -79,6 +85,12 @@ package menu
 		private function updatePageNavigator(currentPageNumber:uint):void
 		{
 			view.updatePageNavigator(currentPageNumber);
+		}
+		
+		private function autoplayChangeHandler(event:Event):void
+		{
+			playbackSettings.autoplayModeEnabled = event.data;
+			dispatchWith(ApplicationEvent.AUTOPLAY);
 		}
 	}
 }

@@ -1,7 +1,9 @@
-package application.states
+package application.states.manual
 {
 	import flash.geom.Point;
 	import application.ApplicationMediator;
+	import application.states.BaseAppState;
+	import application.states.IAppStatesFactory;
 
 	public class AppStateSwitchingPages extends BaseAppState
 	{

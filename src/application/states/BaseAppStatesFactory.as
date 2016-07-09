@@ -1,6 +1,8 @@
 package application.states
 {
 	import application.ApplicationMediator;
+	import application.states.manual.*;
+	import application.states.autoplay.*;
 	
 	import org.robotlegs.starling.mvcs.Actor;
 	
@@ -27,6 +29,9 @@ package application.states
 		{
 			return new AppStateInit(_application, this);
 		}
+		
+		
+		//MANUAL 
 		
 		public function getStateStart():IAppState
 		{
@@ -86,6 +91,68 @@ package application.states
 		public function getStateZoomedPlayCompletion():IAppState
 		{
 			return new AppStateZoomedPlayCompletion(_application, this);
+		}
+		
+		//AUTOPLAY
+		
+		public function getStateStartAutoplay():IAppState
+		{
+			return new AppStateStartAutoplay(_application, this);
+		}		
+		
+		public function getStateMenuAutoplay():IAppState
+		{
+			return new AppStateMenuAutoplay(_application, this);
+		}
+				
+		public function getStateMovingAutoplay():IAppState
+		{			
+			return new AppStateMovingAutoplay(_application, this);
+		}
+		
+		public function getStateRunningAutoplay():IAppState
+		{
+			return new AppStateRunningAutoplay(_application, this);
+		}
+		
+		public function getStateSwitchingPagesAutoplay():IAppState
+		{
+			return new AppStateSwitchingPagesAutoplay(_application, this);
+		}
+		
+		public function getStateZoomingINAutoplay():IAppState
+		{
+			return new AppStateZoomingINAutoplay(_application, this);
+		}
+		
+		public function getStateZoomingOUTAutoplay():IAppState
+		{			
+			return new AppStateZoomingOUTAutoplay(_application, this);
+		}
+		
+		public function getStateRunningZoomedAutoplay():IAppState
+		{
+			return new AppStateRunningZoomedAutoplay(_application, this);
+		}
+		
+		public function getStateMenuZoomedAutoplay():IAppState
+		{
+			return new AppStateMenuZoomedAutoplay(_application, this);
+		}
+		
+		public function getStateMovingZoomedAutoplay():IAppState
+		{			
+			return new AppStateMovingZoomedAutoplay(_application, this);
+		}
+		
+		public function getStateSwitchingPagesZoomedAutoplay():IAppState
+		{
+			return new AppStateSwitchingPagesZoomedAutoplay(_application, this);
+		}
+		
+		public function getStateZoomedPlayCompletionAutoplay():IAppState
+		{
+			return new AppStateZoomedPlayCompletionAutoplay(_application, this);
 		}
 	}
 }

@@ -3,6 +3,7 @@ package application.states
 	import events.ApplicationEvent;
 	import application.ApplicationMediator;
 
+	//TODO: maybe this state unnecessary and can be removed?
 	public class AppStateInit extends BaseAppState
 	{		
 		public function AppStateInit(app:ApplicationMediator, statesFactory:IAppStatesFactory)
@@ -12,8 +13,9 @@ package application.states
 		
 		override public function entry():void
 		{
-			_app.initView();			
-			_app.applyState(_statesFactory.getStateStart());
+			_app.initView();	
+			_app.initControls();
+			_app.start();
 		}
 	}
 }

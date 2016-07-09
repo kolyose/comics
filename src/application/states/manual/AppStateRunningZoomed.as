@@ -1,8 +1,10 @@
-package application.states
+package application.states.manual
 {
 	import application.ApplicationMediator;
 	
 	import flash.geom.Point;
+	import application.states.BaseAppState;
+	import application.states.IAppStatesFactory;
 
 	public class AppStateRunningZoomed extends BaseAppState
 	{
@@ -30,14 +32,15 @@ package application.states
 		
 		override public function playComplete():void
 		{
-			_app.applyState(_statesFactory.getStateZoomedPlayCompletion());
+			zoom();
+		//	_app.applyState(_statesFactory.getStateZoomedPlayCompletion());
 		}		
 		
-		override public function switchPages(pageNumber:uint):void
+		/*override public function switchPages(pageNumber:uint):void
 		{
 			_app.applyState(_statesFactory.getStateSwitchingPagesZoomed());
 			_app.switchPages(pageNumber);
-		}
+		}*/
 		
 		override public function tap():void
 		{

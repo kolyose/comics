@@ -24,5 +24,11 @@ package model.assets
 		
 		[Embed(source="../resources/common/pagesSliderThumbSkin.png")]
 		public static const pagesSliderThumbSkin:Class;		
+		
+		[Embed(source="../resources/common/autoplayOn.png")]
+		public static const autoplayOn:Class;	
+		
+		[Embed(source="../resources/common/autoplayOff.png")]
+		public static const autoplayOff:Class;		
 	}
 }

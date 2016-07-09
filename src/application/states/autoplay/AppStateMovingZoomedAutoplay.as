@@ -1,12 +1,14 @@
-package application.states
+package application.states.autoplay
 {
 	import application.ApplicationMediator;
 	
 	import flash.geom.Point;
+	import application.states.BaseAppState;
+	import application.states.IAppStatesFactory;
 	
-	public class AppStateMovingZoomed extends BaseAppState
+	public class AppStateMovingZoomedAutoplay extends BaseAppState
 	{
-		public function AppStateMovingZoomed(app:ApplicationMediator, statesFactory:IAppStatesFactory)
+		public function AppStateMovingZoomedAutoplay(app:ApplicationMediator, statesFactory:IAppStatesFactory)
 		{
 			super(app, statesFactory);
 		}
@@ -29,7 +31,7 @@ package application.states
 		
 		override public function switchPages(pageNumber:uint):void
 		{		
-			_app.applyState(_statesFactory.getStateSwitchingPagesZoomed());
+			_app.applyState(_statesFactory.getStateSwitchingPagesZoomedAutoplay());
 			_app.switchPages(pageNumber);
 		}
 		
@@ -40,7 +42,7 @@ package application.states
 		
 		override public function resetPositionComplete():void
 		{
-			_app.applyState(_statesFactory.getStateRunningZoomed());
+			_app.applyState(_statesFactory.getStateRunningZoomedAutoplay());
 		}
 	}
 }

@@ -1,7 +1,10 @@
-package application.states
+package application.states.manual
 {
-	import flash.geom.Point;
 	import application.ApplicationMediator;
+	import application.states.BaseAppState;
+	import application.states.IAppStatesFactory;
+	
+	import flash.geom.Point;
 
 	public class AppStateMenu extends BaseAppState
 	{
@@ -39,5 +42,12 @@ package application.states
 			_app.applyState(_statesFactory.getStateSwitchingPages());
 			_app.showPage(pageNumber);
 		}		
+		
+		override public function autoplay():void
+		{
+			_app.applyState(_statesFactory.getStateMenuAutoplay());
+		}
+		
+		
 	}
 }

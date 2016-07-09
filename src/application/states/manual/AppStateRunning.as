@@ -1,7 +1,9 @@
-package application.states
+package application.states.manual
 {
 	import flash.geom.Point;
 	import application.ApplicationMediator;
+	import application.states.BaseAppState;
+	import application.states.IAppStatesFactory;
 
 	public class AppStateRunning extends BaseAppState
 	{
@@ -29,14 +31,14 @@ package application.states
 		
 		override public function playComplete():void
 		{
-			_app.playComplete();
+		//	_app.playComplete();
 		}
 		
-		override public function switchPages(pageNumber:uint):void
+		/*override public function switchPages(pageNumber:uint):void
 		{
 			_app.applyState(_statesFactory.getStateSwitchingPages());
 			_app.switchPages(pageNumber);
-		}
+		}*/
 				
 		override public function tap():void
 		{

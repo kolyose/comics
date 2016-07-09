@@ -24,6 +24,9 @@ package events
 		public static const ZOOM_COMPLETE:String 			= "ApplicationEvent.ZOOM_COMPLETE";		
 		
 		public static const SHOW_PAGE:String 				= "ApplicationEvent.SHOW_PAGE";
+		
+		public static const AUTOPLAY:String 				= "ApplicationEvent.AUTOPLAY";
+		public static const THE_END:String 					= "ApplicationEvent.THE_END";
 			
 	}
 }

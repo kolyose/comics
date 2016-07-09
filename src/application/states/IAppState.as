@@ -20,6 +20,7 @@ package application.states
 		function resetPosition():void;
 		function resetPositionComplete():void;
 		function showPage(pageNumber:uint):void;
-		
+		function autoplay():void;
+		function theEnd():void;
 	}
 }

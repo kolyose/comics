@@ -8,7 +8,8 @@ package application.states
 		
 		function getStateLoading()					:IAppState;
 		function getStateInit()						:IAppState;
-		function getStateStart()					:IAppState;
+		
+		function getStateStart()					:IAppState;		
 		function getStateRunning()					:IAppState;
 		function getStateMenu()						:IAppState;
 		function getStateMoving()					:IAppState;
@@ -20,6 +21,19 @@ package application.states
 		function getStateMovingZoomed()				:IAppState;
 		function getStateSwitchingPagesZoomed()		:IAppState;
 		function getStateZoomedPlayCompletion()		:IAppState;
+		
+		function getStateStartAutoplay()					:IAppState;
+		function getStateRunningAutoplay()					:IAppState;
+		function getStateMenuAutoplay()						:IAppState;
+		function getStateMovingAutoplay()					:IAppState;
+		function getStateSwitchingPagesAutoplay()			:IAppState;
+		function getStateZoomingINAutoplay()				:IAppState;
+		function getStateZoomingOUTAutoplay()				:IAppState;
+		function getStateRunningZoomedAutoplay()			:IAppState;
+		function getStateMenuZoomedAutoplay()				:IAppState;
+		function getStateMovingZoomedAutoplay()				:IAppState;
+		function getStateSwitchingPagesZoomedAutoplay()		:IAppState;
+		function getStateZoomedPlayCompletionAutoplay()		:IAppState;
 		
 	}
 }

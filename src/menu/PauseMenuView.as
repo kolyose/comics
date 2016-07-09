@@ -3,6 +3,7 @@ package menu
 	import events.ViewEvent;
 	
 	import feathers.controls.Button;
+	import feathers.controls.Check;
 	import feathers.controls.Label;
 	import feathers.controls.PageIndicator;
 	import feathers.controls.Scroller;
@@ -38,6 +39,7 @@ package menu
 		private var _btnContinue	:starling.display.Button;
 		private var _pageNavigator	:MySlider;
 		private var _pageNavigatorLabel:Label;
+		private var _cbAutoplay:Check;
 		
 		public function PauseMenuView()
 		{
@@ -63,7 +65,25 @@ package menu
 			_btnContinue.name = InstanceNames.BTN_CONTINUE;
 			addChild(_btnContinue);
 			_btnContinue.addEventListener(Event.TRIGGERED, btnTriggeredHandler);	
-			//_btnContinue.addEventListener(TouchEvent.TOUCH, stopTouchPropagationHandler);
+			//_btnContinue.addEventListener(TouchEvent.TOUCH, stopTouchPropagationHandler);		
+		}
+		
+		public function initAutoplayCheckbox(texturesData:Object, autoplayModeEnabled:Boolean):void
+		{
+			_cbAutoplay = new Check();
+			_cbAutoplay.label = "Autoplay mode";
+			_cbAutoplay.isSelected = autoplayModeEnabled;
+			_cbAutoplay.defaultIcon = new Image(texturesData.defaultIcon);
+			_cbAutoplay.defaultSelectedIcon = new Image(texturesData.defaultSelectedIcon);
+			_cbAutoplay.y = 30;
+			_cbAutoplay.x = _btnContinue.x + _btnContinue.width + 10;
+			addChild(_cbAutoplay);
+			_cbAutoplay.addEventListener(Event.CHANGE, autoplayCheckboxChangeHandler);
+		}
+		
+		private function autoplayCheckboxChangeHandler(event:Event):void
+		{
+			dispatchEventWith(ViewEvent.AUTOPLAY_CHANGE, false, _cbAutoplay.isSelected);
 		}
 		
 		public function initPageNavigator(texturesData:Object, pagesNumber:uint):void
@@ -102,6 +122,8 @@ package menu
 			updatePagesNavigatorLabel();
 			this.addChild(_pageNavigatorLabel);
 		}
+		
+		
 		
 		public function updatePageNavigator(currentPageNumber:uint):void
 		{

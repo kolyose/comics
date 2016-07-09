@@ -1,6 +1,7 @@
-package application.states
+package application.states.manual
 {
 	import application.ApplicationMediator;
+	import application.states.IAppStatesFactory;
 	
 	public class AppStateSwitchingPagesZoomed extends AppStateSwitchingPages
 	{

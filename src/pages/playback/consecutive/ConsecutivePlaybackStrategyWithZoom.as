@@ -79,7 +79,7 @@ package pages.playback.consecutive
 		override public function reset():void
 		{
 			super.reset();
-		//	resetZoom();
+			removeTween();
 		}
 		
 		override protected function initiateItemPlayback(itemIndex:uint):void

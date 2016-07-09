@@ -10,6 +10,12 @@ package pages.states
 			super(page, statesFactory);
 		}
 		
+		override public function play():void
+		{
+			_page.startPlayback();
+			_page.applyState(pageStatesFactory.getStatePlaybackStarted(_page));			
+		}
+		
 		override public function replay():void	
 		{
 			_page.restartPlayback();
@@ -25,5 +31,12 @@ package pages.states
 		{
 			_page.dispatchZoomComplete();
 		}
+		
+		override public function reset():void
+		{
+			_page.resetPlayback();
+			_page.applyState(pageStatesFactory.getStateReadyToPlay(_page));
+		}
+		
 	}
 }

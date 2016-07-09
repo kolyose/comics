@@ -1,6 +1,7 @@
-package application.states
+package application.states.manual
 {
 	import application.ApplicationMediator;
+	import application.states.IAppStatesFactory;
 	
 	public class AppStateMenuZoomed extends AppStateMenu
 	{
@@ -25,5 +26,11 @@ package application.states
 			_app.applyState(_statesFactory.getStateSwitchingPagesZoomed());
 			_app.showPage(pageNumber);
 		}		
+		
+		override public function autoplay():void
+		{
+			_app.applyState(_statesFactory.getStateMenuZoomedAutoplay());
+		}
+		
 	}
 }

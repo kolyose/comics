@@ -1,12 +1,14 @@
-package application.states
+package application.states.autoplay
 {
 	import application.ApplicationMediator;
 	
 	import flash.geom.Point;
+	import application.states.BaseAppState;
+	import application.states.IAppStatesFactory;
 
-	public class AppStateMoving extends BaseAppState
+	public class AppStateMovingAutoplay extends BaseAppState
 	{
-		public function AppStateMoving(app:ApplicationMediator, statesFactory:IAppStatesFactory)
+		public function AppStateMovingAutoplay(app:ApplicationMediator, statesFactory:IAppStatesFactory)
 		{
 			super(app, statesFactory);
 		}
@@ -18,12 +20,12 @@ package application.states
 		
 		override public function resetPositionComplete():void
 		{
-			_app.applyState(_statesFactory.getStateRunning());
+			_app.applyState(_statesFactory.getStateRunningAutoplay());
 		}
 		
 		override public function switchPages(pageNumber:uint):void
 		{		
-			_app.applyState(_statesFactory.getStateSwitchingPages());
+			_app.applyState(_statesFactory.getStateSwitchingPagesAutoplay());
 			_app.switchPages(pageNumber);
 		}
 		

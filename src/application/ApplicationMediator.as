@@ -40,7 +40,11 @@ package application
 		[Inject]
 		public var statesFactory:IAppStatesFactory;
 		
+		[Inject]
+		public var playbackSettings:IPlaybackSettings;
+		
 		private var _state:IAppState;
+		private var _startFromPageNumber:uint;
 		
 		public function ApplicationMediator()
 		{
@@ -70,7 +74,9 @@ package application
 			addContextListener(ApplicationEvent.ZOOM, zoomHandler);
 			addContextListener(ApplicationEvent.ZOOM_COMPLETE, zoomCompleteHandler);
 			
-			addContextListener(ApplicationEvent.SHOW_PAGE, showPageHandler);
+			addContextListener(ApplicationEvent.SHOW_PAGE, showPageHandler);			
+			addContextListener(ApplicationEvent.AUTOPLAY, autoplayHandler);
+			addContextListener(ApplicationEvent.THE_END, theEndHandler);
 			
 			statesFactory.setApplication(this);
 			applyState(statesFactory.getStateLoading());		
@@ -161,6 +167,16 @@ package application
 		{
 			_state.showPage(event.data as uint);
 		}
+		
+		private function autoplayHandler(event:starling.events.Event):void
+		{
+			_state.autoplay();
+		}
+		
+		private function theEndHandler(event:starling.events.Event):void
+		{
+			_state.theEnd();
+		}
 		//////////////////////////////////////////////////////////////////////////
 		
 		//METHODS specific to the Application ////////////////////////////////////
@@ -174,8 +190,27 @@ package application
 		{
 			if (numProgress == 1)
 			{
-				applyState(statesFactory.getStateInit());
+				loadLocalData();
 			}
+		}
+		
+		public function loadLocalData():void
+		{
+			addContextListener(CommandEvent.LOCAL_DATA_READY, localDataReadyHandler);
+			dispatchWith(CommandEvent.GET_LOCAL_DATA);
+		}
+		
+		private function localDataReadyHandler(event:starling.events.Event):void
+		{
+			removeContextListener(CommandEvent.LOCAL_DATA_READY, localDataReadyHandler);
+			
+			var autoplayModeEnabled:Boolean = (event.data && event.data["autoplayModeEnabled"])	? 
+				event.data["autoplayModeEnabled"] : playbackSettings.autoplayModeEnabled;
+			
+			playbackSettings.autoplayModeEnabled = autoplayModeEnabled;			
+			_startFromPageNumber = (event.data && event.data["currentPageNumber"]) ? event.data["currentPageNumber"] : 1;
+			
+			applyState(statesFactory.getStateInit());
 		}
 		
 		public function initView():void
@@ -197,15 +232,12 @@ package application
 		
 		public function start():void
 		{
-			addContextListener(CommandEvent.LOCAL_DATA_READY, localDataReadyHandler);
-			dispatchWith(CommandEvent.GET_LOCAL_DATA);
-		}
-		
-		private function localDataReadyHandler(event:starling.events.Event):void
-		{
-			removeContextListener(CommandEvent.LOCAL_DATA_READY, localDataReadyHandler);
-			var pageNumber:uint = (event.data) ? event.data["currentPageNumber"] : 1;
-			dispatchWith(ApplicationEvent.SHOW_PAGE, false, pageNumber); //event to itself
+			if (playbackSettings.autoplayModeEnabled)
+				applyState(statesFactory.getStateStartAutoplay());
+			else 
+				applyState(statesFactory.getStateStart());
+			
+			dispatchWith(ApplicationEvent.SHOW_PAGE, false, _startFromPageNumber); //event to itself
 		}
 				
 		public function showLock():void
@@ -303,6 +335,16 @@ package application
 		public function showPage(pageNumber:uint):void
 		{
 			dispatchWith(CommandEvent.SHOW_PAGE, false, pageNumber);
+		}
+		
+		public function resetPage(pageNumber:int=-1):void
+		{
+			dispatchWith(CommandEvent.RESET_PAGE);
+		}
+		
+		public function resetSubsequentPages(pageNumber:int=-1):void
+		{
+			dispatchWith(CommandEvent.RESET_SUBSEQUENT_PAGES, false, pageNumber);
 		}
 		//////////////////////////////////////////////////////////////////////////		
 	}

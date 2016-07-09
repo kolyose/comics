@@ -40,5 +40,8 @@ package application.states
 		public function switchPagesComplete():void{}	
 		
 		public function showPage(pageNumber:uint):void{}		
+		
+		public function autoplay():void{}		
+		public function theEnd():void{}		
 	}
 }

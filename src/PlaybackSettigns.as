@@ -2,7 +2,7 @@ package
 {
 	public class PlaybackSettigns implements IPlaybackSettings
 	{
-		private var _autoplayModeEnabled:Boolean;
+		private var _autoplayModeEnabled:Boolean = true;
 		
 		public function PlaybackSettigns()
 		{
@@ -15,7 +15,7 @@ package
 
 		public function get autoplayModeEnabled():Boolean
 		{
-			return true;
+			return _autoplayModeEnabled;
 		}
 	}
 }

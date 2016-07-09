@@ -12,6 +12,7 @@ package menu
 		{
 		}
 
+
 		public function get btnContinue():Texture
 		{
 			return _btnContinue;

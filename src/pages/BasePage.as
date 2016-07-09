@@ -82,6 +82,11 @@ package pages
 			_playbackStrategy.reset();
 		}
 		
+		public function reset():void
+		{
+			_state.reset();
+		}
+		
 		public function setData(data:PageDO):void
 		{	
 			_state.setData(data);
@@ -136,7 +141,12 @@ package pages
 		{
 			_playbackStrategy.zoom(tweenVO);
 		}
-				
+			
+		public function resetPlayback():void
+		{
+			_playbackStrategy.reset();
+		}
+		
 		public function dispatchPlaybackComplete():void
 		{
 			dispatchEventWith(PlaybackEvent.PLAYBACK_COMPLETE);	
@@ -156,7 +166,7 @@ package pages
 		{
 			zoomComplete();		 
 		}
-		
+				
 		public function enable():void
 		{
 			_sprContainer.touchable = true;

@@ -109,6 +109,8 @@ package application.commands
 			commandMap.mapEvent(CommandEvent.SWITCH_PAGES, SwitchPagesCommand);
 			commandMap.mapEvent(CommandEvent.MOVE_PAGES_CONTAINER, MovePagesContainerCommand);			
 			commandMap.mapEvent(CommandEvent.PLAY_COMPLETE, PlayCompleteCommand);			
+			commandMap.mapEvent(CommandEvent.RESET_PAGE, ResetPageCommand);			
+			commandMap.mapEvent(CommandEvent.RESET_SUBSEQUENT_PAGES, ResetSubsequentPagesCommand);			
 			
 			commandMap.mapEvent(CommandEvent.SET_PAGE_ENABLED, SetPageEnabledCommand);
 			commandMap.mapEvent(CommandEvent.REPLAY, ReplayCommand);

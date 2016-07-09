@@ -27,6 +27,7 @@ package pages
 		function playComplete():void;
 		function replay():void;
 		function pause():void;
+		function reset():void;
 		
 		function zoom(tweenVO:TweenPropertiesVO):void;
 		function zoomComplete():void;
@@ -37,6 +38,7 @@ package pages
 		function startPlayback():void;
 		function stopPlayback():void;
 		function restartPlayback():void;
+		function resetPlayback():void;
 		function enable():void;
 		function disable():void;
 	}

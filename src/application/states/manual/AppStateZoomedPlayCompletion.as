@@ -1,6 +1,8 @@
-package application.states
+package application.states.manual
 {
 	import application.ApplicationMediator;
+	import application.states.BaseAppState;
+	import application.states.IAppStatesFactory;
 	
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -26,6 +28,11 @@ package application.states
 		}
 		
 		override public function zoomComplete():void
+		{
+			_app.applyState(_statesFactory.getStateRunning());
+		}		
+		
+	/*	override public function zoomComplete():void
 		{	
 			//starting timer for a case when PlayCompleteCommand won't initiate switching pages if an autoplay mode is disabled
 			//in such case we need to switch current app state into normal flow with AppStateRunning
@@ -59,6 +66,6 @@ package application.states
 			_stateResetTimer.stop();
 			_stateResetTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, stateResetTimerHandler);
 			_stateResetTimer = null;
-		}
+		}*/
 	}
 }

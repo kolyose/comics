@@ -14,5 +14,6 @@ package events
 		public static const HIDE_PAUSE:String = "ViewEvent.HIDE_PAUSE";		
 		public static const BTN_TRIGGERED:String = "ViewEvent.BTN_TRIGGERED";		
 		public static const SHOW_PAGE:String = "ViewEvent.SHOW_PAGE";		
+		public static const AUTOPLAY_CHANGE:String = "ViewEvent.AUTOPLAY_CHANGE";		
 	}
 }
