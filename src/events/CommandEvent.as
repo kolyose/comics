@@ -21,8 +21,6 @@ package events
 		public static const SCROLL_PAGE_COMPLETE:String = "CommandEvent.SCROLL_PAGE_COMPLETE";		
 		public static const HANDLE_MOVE:String = "CommandEvent.HANDLE_MOVE";
 		public static const HANDLE_MOVE_COMPLETE:String = "CommandEvent.HANDLE_MOVE_COMPLETE";
-		public static const HANDLE_TAP:String = "CommandEvent.HANDLE_TAP";
-		public static const HANDLE_DOUBLE_TAP:String = "CommandEvent.HANDLE_DOUBLE_TAP";
 		public static const SHOW_PAUSE_MENU:String = "CommandEvent.SHOW_PAUSE_MENU";
 		public static const HIDE_PAUSE_MENU:String = "CommandEvent.HIDE_PAUSE_MENU";
 		public static const PAGE_NUMBER_CHANGED:String = "CommandEvent.PAGE_NUMBER_CHANGED";

@@ -1,6 +1,6 @@
 package
 {
-	import controller.StartupCommand;
+	import application.commands.StartupCommand;
 	
 	import org.robotlegs.starling.base.ContextEventType;
 	import org.robotlegs.starling.mvcs.Context;

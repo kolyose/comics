@@ -2,6 +2,7 @@ package application.commands
 {
 	import events.ApplicationEvent;
 	import events.CommandEvent;
+	import events.PagesEvent;
 	import events.ViewEvent;
 	
 	import org.robotlegs.starling.mvcs.Command;
@@ -36,6 +37,7 @@ package application.commands
 				return;			
 			}
 		
+			dispatchWith(PagesEvent.ADD_PAGE, false, pageNumber);
 			switchPagesStrategy.switchToPageByNumber(pageNumber);
 		}
 	}

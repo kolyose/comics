@@ -12,6 +12,7 @@ package events
 		
 		public static const PLAY:String 					= "ApplicationEvent.PLAY";
 		public static const REPLAY:String 					= "ApplicationEvent.REPLAY";		
+		public static const PLAY_COMPLETE:String 			= "ApplicationEvent.PLAY_COMPLETE";		
 		
 		public static const SWITCH_PAGES:String 			= "ApplicationEvent.SWITCH_PAGES";		
 		public static const SWITCH_PAGES_COMPLETE:String 	= "ApplicationEvent.SWITCH_PAGES_COMPLETE";
@@ -19,7 +20,7 @@ package events
 		public static const RESET_POSITION:String			= "ApplicationEvent.RESET_POSITION";		
 		public static const RESET_POSITION_COMPLETE:String	= "ApplicationEvent.RESET_POSITION_COMPLETE";		
 		
-		public static const PLAY_COMPLETE:String 			= "ApplicationEvent.PLAY_COMPLETE";		
+		public static const ZOOM:String 					= "ApplicationEvent.ZOOM";		
 		public static const ZOOM_COMPLETE:String 			= "ApplicationEvent.ZOOM_COMPLETE";		
 		
 		public static const SHOW_PAGE:String 				= "ApplicationEvent.SHOW_PAGE";

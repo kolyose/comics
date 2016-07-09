@@ -1,5 +1,6 @@
 package application.commands
 {
+	import events.ApplicationEvent;
 	import events.PagesEvent;
 	
 	import org.robotlegs.starling.mvcs.Command;
@@ -20,9 +21,8 @@ package application.commands
 		}
 		
 		override public function execute():void
-		{
-			dispatchWith(PagesEvent.ADD_PAGE, false, pagesManager.currentPageNumber);
-			dispatchWith(PagesEvent.ADD_NEIGHBOUR_PAGES, false, pagesManager.currentPageNumber);			
+		{			
+			dispatchWith(PagesEvent.ADD_NEIGHBOUR_PAGES, false, pagesManager.currentPageNumber);	
 		}
 	}
 }

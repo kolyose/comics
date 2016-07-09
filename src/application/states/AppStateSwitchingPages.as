@@ -22,8 +22,8 @@ package application.states
 		
 		override public function switchPagesComplete():void
 		{
-			_app.switchPagesComplete();			
 			_app.applyState(_statesFactory.getStateRunning());	
+			_app.switchPagesComplete();			
 		}		
 	}
 }

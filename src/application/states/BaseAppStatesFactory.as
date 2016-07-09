@@ -1,7 +1,8 @@
 package application.states
 {
-	import org.robotlegs.starling.mvcs.Actor;
 	import application.ApplicationMediator;
+	
+	import org.robotlegs.starling.mvcs.Actor;
 	
 	public class BaseAppStatesFactory extends Actor implements IAppStatesFactory
 	{
@@ -39,32 +40,32 @@ package application.states
 		
 		public function getStateMoving():IAppState
 		{			
-			return new AppStateMoving(_application, this);;
+			return new AppStateMoving(_application, this);
 		}
 		
 		public function getStateRunning():IAppState
 		{
-			return new AppStateRunning(_application, this);;
+			return new AppStateRunning(_application, this);
 		}
 		
 		public function getStateSwitchingPages():IAppState
 		{
-			return new AppStateSwitchingPages(_application, this);;
+			return new AppStateSwitchingPages(_application, this);
 		}
 		
 		public function getStateZoomingIN():IAppState
 		{
-			return new AppStateZoomingIN(_application, this);;
+			return new AppStateZoomingIN(_application, this);
 		}
 		
 		public function getStateZoomingOUT():IAppState
 		{			
-			return new AppStateZoomingOUT(_application, this);;
+			return new AppStateZoomingOUT(_application, this);
 		}
 		
 		public function getStateRunningZoomed():IAppState
 		{
-			return new AppStateRunningZoomed(_application, this);;
+			return new AppStateRunningZoomed(_application, this);
 		}
 		
 		public function getStateMenuZoomed():IAppState
@@ -74,12 +75,17 @@ package application.states
 		
 		public function getStateMovingZoomed():IAppState
 		{			
-			return new AppStateMovingZoomed(_application, this);;
+			return new AppStateMovingZoomed(_application, this);
 		}
 		
 		public function getStateSwitchingPagesZoomed():IAppState
 		{
-			return new AppStateSwitchingPagesZoomed(_application, this);;
+			return new AppStateSwitchingPagesZoomed(_application, this);
+		}
+		
+		public function getStateZoomedPlayCompletion():IAppState
+		{
+			return new AppStateZoomedPlayCompletion(_application, this);
 		}
 	}
 }

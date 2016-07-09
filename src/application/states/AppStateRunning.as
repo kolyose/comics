@@ -10,7 +10,7 @@ package application.states
 			super(app,statesFactory);
 		}
 		
-		override public function doubleTap():void
+		override public function zoom():void
 		{
 			_app.applyState(_statesFactory.getStateZoomingIN());
 			_app.zoom();

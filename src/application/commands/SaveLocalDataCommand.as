@@ -1,4 +1,4 @@
-package controller
+package application.commands
 {
 	import flash.net.SharedObject;
 	

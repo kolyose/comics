@@ -19,6 +19,7 @@ package application.states
 		function getStateMenuZoomed()				:IAppState;
 		function getStateMovingZoomed()				:IAppState;
 		function getStateSwitchingPagesZoomed()		:IAppState;
+		function getStateZoomedPlayCompletion()		:IAppState;
 		
 	}
 }

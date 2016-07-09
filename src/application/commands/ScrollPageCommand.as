@@ -47,7 +47,7 @@ package application.commands
 				remainingOffset = new Point(offset.x - (initialPagePosition.x - pagesManager.getCurrentPage().container.x), 0);
 				offset.x = initialPagePosition.x - pagesManager.getCurrentPage().container.x;
 				applyOffset(offset);
-				dispatchWith(CommandEvent.MOVE_PAGE, false, remainingOffset);	
+			//	dispatchWith(CommandEvent.MOVE_PAGE, false, remainingOffset);	
 				return;
 			}		
 			
@@ -56,7 +56,7 @@ package application.commands
 				remainingOffset = new Point(offset.x - (initialPagePosition.x - (pagesManager.getCurrentPage().container.scaleX * Settings.getInstance().WIDTH - Settings.getInstance().WIDTH) - pagesManager.getCurrentPage().container.x), 0);
 				offset.x = initialPagePosition.x - (pagesManager.getCurrentPage().container.scaleX * Settings.getInstance().WIDTH - Settings.getInstance().WIDTH) - pagesManager.getCurrentPage().container.x;
 				applyOffset(offset);
-				dispatchWith(CommandEvent.MOVE_PAGE, false, remainingOffset);	
+			//	dispatchWith(CommandEvent.MOVE_PAGE, false, remainingOffset);	
 				return;
 			}	
 			

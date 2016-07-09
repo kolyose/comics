@@ -30,15 +30,19 @@ package pages.playback.consecutive
 				
 		override public function zoom(tweenVO:TweenPropertiesVO):void
 		{
-			_tweenVO = tweenVO;		
-		
+			_tweenVO = tweenVO;
+			
+			if (!_pageInitialCoordinates)
+				_pageInitialCoordinates = new Point(_page.container.x, _page.container.y);
+					
 			if (_zoomed)
 			{
 				 
 				_tweenVO.onCompleteHandler = function():void
 				{
-					_zoomed = false;
-					dispatchEventWith(PlaybackEvent.ZOOM_COMPLETE);
+					_tweenVO.onCompleteHandler = null;
+					_zoomed = false;					
+					dispatchEventWith(PlaybackEvent.ZOOM_COMPLETE);					
 				}
 				tweenToTargets(_pageInitialCoordinates, 1, _tweenVO);
 			}
@@ -46,6 +50,7 @@ package pages.playback.consecutive
 			{
 				_tweenVO.onCompleteHandler = function():void
 				{
+					_tweenVO.onCompleteHandler = null;
 					_zoomed = true;
 					dispatchEventWith(PlaybackEvent.ZOOM_COMPLETE);
 				}				
@@ -70,9 +75,9 @@ package pages.playback.consecutive
 			if (_tween)
 				Starling.juggler.remove(_tween);	
 		}
-				
+		
 		override public function reset():void
-		{	
+		{
 			super.reset();
 		//	resetZoom();
 		}

@@ -2,6 +2,7 @@ package
 {
 	public interface IPlaybackSettings
 	{
-		function get autoplayMode():Boolean;
+		function set autoplayModeEnabled(value:Boolean):void;
+		function get autoplayModeEnabled():Boolean;
 	}
 }

@@ -1,12 +1,7 @@
-package controller
+package application.commands
 {
 	import application.ApplicationMediator;
 	import application.ApplicationView;
-	import application.commands.MovePageCompleteCommand;
-	import application.commands.PlayCompleteCommand;
-	import application.commands.ResetPagesPositionCommand;
-	import application.commands.SwitchPagesCommand;
-	import application.commands.SwitchPagesCompleteCommand;
 	import application.states.BaseAppStatesFactory;
 	import application.states.IAppStatesFactory;
 	
@@ -14,6 +9,8 @@ package controller
 	import controls.InputController;
 	import controls.commands.DisableControlsCommand;
 	import controls.commands.EnableControlsCommand;
+	import controls.commands.HandleDoubleTapCommand;
+	import controls.commands.HandleTapCommand;
 	import controls.factory.BaseControlsFactory;
 	import controls.factory.GestouchControlsFactory;
 	import controls.factory.IControlsFactory;
@@ -21,6 +18,7 @@ package controller
 	
 	import events.ApplicationEvent;
 	import events.CommandEvent;
+	import events.ControlsEvent;
 	import events.PagesEvent;
 	
 	import menu.PauseMenuMediator;
@@ -61,8 +59,6 @@ package controller
 	import pages.playback.PlaybackStrategiesFactory;
 	import pages.states.IPageStatesFactory;
 	import pages.states.PageStatesFactory;
-	import application.commands.ScrollPageCommand;
-	import application.commands.ScrollPageCompleteCommand;
 		
 	public class StartupCommand extends Command
 	{
@@ -125,9 +121,11 @@ package controller
 			commandMap.mapEvent(CommandEvent.MOVE_PAGE_COMPLETE, MovePageCompleteCommand);
 			commandMap.mapEvent(CommandEvent.SCROLL_PAGE, ScrollPageCommand);
 			commandMap.mapEvent(CommandEvent.SCROLL_PAGE_COMPLETE, ScrollPageCompleteCommand);			
-			commandMap.mapEvent(CommandEvent.HANDLE_TAP, HandleTapCommand);						
 			commandMap.mapEvent(CommandEvent.SAVE_LOCAL_DATA, SaveLocalDataCommand);				
-			commandMap.mapEvent(CommandEvent.GET_LOCAL_DATA, GetLocalDataCommand);				
+			commandMap.mapEvent(CommandEvent.GET_LOCAL_DATA, GetLocalDataCommand);
+			
+			commandMap.mapEvent(ControlsEvent.HANDLE_TAP, HandleTapCommand);						
+			commandMap.mapEvent(ControlsEvent.HANDLE_DOUBLE_TAP, HandleDoubleTapCommand);						
 		}
 	}
 }

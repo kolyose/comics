@@ -21,9 +21,10 @@ package application.commands
 		
 		override public function execute():void
 		{
-			if (playbackSettings.autoplayMode)
+			var nextPageNumber:uint =  pagesManager.currentPageNumber+1;
+			if (playbackSettings.autoplayModeEnabled && nextPageNumber < pagesManager.intPagesCount)
 			{					
-				dispatchWith(ApplicationEvent.SWITCH_PAGES, false, pagesManager.currentPageNumber+1);
+				dispatchWith(ApplicationEvent.SWITCH_PAGES, false, nextPageNumber);
 			}
 		}
 	}

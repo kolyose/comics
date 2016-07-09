@@ -1,7 +1,8 @@
 package application.states
 {
-	import flash.geom.Point;
 	import application.ApplicationMediator;
+	
+	import flash.geom.Point;
 
 	public class AppStateRunningZoomed extends BaseAppState
 	{
@@ -10,7 +11,7 @@ package application.states
 			super(app, statesFactory);
 		}
 	
-		override public function doubleTap():void
+		override public function zoom():void
 		{
 			_app.applyState(_statesFactory.getStateZoomingOUT());
 			_app.zoom();
@@ -29,8 +30,8 @@ package application.states
 		
 		override public function playComplete():void
 		{
-			_app.playComplete();
-		}
+			_app.applyState(_statesFactory.getStateZoomedPlayCompletion());
+		}		
 		
 		override public function switchPages(pageNumber:uint):void
 		{

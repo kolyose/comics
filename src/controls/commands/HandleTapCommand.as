@@ -1,4 +1,4 @@
-package controller
+package controls.commands
 {
 	import events.ApplicationEvent;
 	import events.CommandEvent;

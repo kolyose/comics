@@ -1,8 +1,8 @@
 package controls
 {
 	import events.ApplicationEvent;
-	import events.ControlsEvent;
 	import events.CommandEvent;
+	import events.ControlsEvent;
 	
 	import flash.events.IEventDispatcher;
 	import flash.geom.Point;
@@ -82,6 +82,7 @@ package controls
 		private function doubleTapHandler(event:Event):void
 		{
 			dispatchWith(ApplicationEvent.DOUBLE_TAP, false, event.data);	
+			//dispatchWith(ControlsEvent.HANDLE_DOUBLE_TAP, false, event.data);	
 		}
 	}
 }

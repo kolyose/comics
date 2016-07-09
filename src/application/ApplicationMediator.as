@@ -59,6 +59,7 @@ package application
 			
 			addContextListener(ApplicationEvent.PLAY, playHandler);
 			addContextListener(ApplicationEvent.REPLAY, replayHandler);
+			addContextListener(ApplicationEvent.PLAY_COMPLETE, playCompleteHandler);
 			
 			addContextListener(ApplicationEvent.SWITCH_PAGES, switchPagesHandler);
 			addContextListener(ApplicationEvent.SWITCH_PAGES_COMPLETE, switchPagesCompleteHandler);
@@ -66,7 +67,7 @@ package application
 			addContextListener(ApplicationEvent.RESET_POSITION, resetPositionHandler);
 			addContextListener(ApplicationEvent.RESET_POSITION_COMPLETE, resetPositionCompleteHandler);
 						
-			addContextListener(ApplicationEvent.PLAY_COMPLETE, playCompleteHandler);
+			addContextListener(ApplicationEvent.ZOOM, zoomHandler);
 			addContextListener(ApplicationEvent.ZOOM_COMPLETE, zoomCompleteHandler);
 			
 			addContextListener(ApplicationEvent.SHOW_PAGE, showPageHandler);
@@ -87,6 +88,7 @@ package application
 			
 			_state = state;
 			_state.entry();
+			trace(_state);
 		}
 			
 		//METHODS delegated to State /////////////////////////////////////////////	
@@ -107,8 +109,18 @@ package application
 		
 		private function doubleTapHandler(event:starling.events.Event):void
 		{			
-			_state.doubleTap();
+			_state.zoom();
 		}
+		
+		private function zoomHandler(event:starling.events.Event):void
+		{			
+			_state.zoom();
+		}
+		
+		private function zoomCompleteHandler(event:starling.events.Event):void
+		{			
+			_state.zoomComplete();
+		}	
 		
 		private function moveHandler(event:starling.events.Event):void
 		{			
@@ -123,11 +135,6 @@ package application
 		private function playCompleteHandler(event:starling.events.Event):void
 		{
 			_state.playComplete();
-		}	
-		
-		private function zoomCompleteHandler(event:starling.events.Event):void
-		{			
-			_state.zoomComplete();
 		}	
 		
 		private function switchPagesHandler(event:starling.events.Event):void

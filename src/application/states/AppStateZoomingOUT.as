@@ -12,12 +12,12 @@ package application.states
 			
 		override public function entry():void
 		{
-			//_app.disable();
+			_app.disable();
 		}
 		
 		override public function exit():void
 		{
-			//_app.enable();
+			_app.enable();
 		}
 		
 		override public function zoomComplete():void

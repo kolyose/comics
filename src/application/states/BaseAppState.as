@@ -27,7 +27,7 @@ package application.states
 		public function moveComplete(offset:Point):void{}
 		
 		public function tap():void{}
-		public function doubleTap():void{}
+		public function zoom():void{}
 		
 		
 		public function playComplete():void{}

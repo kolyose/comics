@@ -10,11 +10,11 @@ package application.states
 		function play():void;
 		function replay():void;
 		function tap():void;
-		function doubleTap():void;
+		function zoom():void;
+		function zoomComplete():void;
 		function move(offset:Point):void;
 		function moveComplete(offset:Point):void;
 		function playComplete():void;
-		function zoomComplete():void;
 		function switchPages(pageNumber:uint):void;
 		function switchPagesComplete():void;
 		function resetPosition():void;

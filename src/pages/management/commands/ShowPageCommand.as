@@ -2,6 +2,7 @@ package pages.management.commands
 {
 	import events.ApplicationEvent;
 	import events.CommandEvent;
+	import events.PagesEvent;
 	import events.ViewEvent;
 	
 	import org.robotlegs.starling.mvcs.Command;
@@ -31,6 +32,7 @@ package pages.management.commands
 			pagesManager.currentPageNumber = pageNumber;
 			
 			dispatchWith(ViewEvent.RESET_PAGES_VIEW);
+			dispatchWith(PagesEvent.ADD_PAGE, false, pageNumber);
 			
 			var newPagesPositionX:Number = - pageNumber * (Settings.getInstance().WIDTH + Settings.getInstance().distanceBetweenPages);
 			dispatchWith(ViewEvent.SET_PAGES_POSITION, false, newPagesPositionX);
