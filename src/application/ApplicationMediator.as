@@ -339,12 +339,17 @@ package application
 		
 		public function resetPage(pageNumber:int=-1):void
 		{
-			dispatchWith(CommandEvent.RESET_PAGE);
+			dispatchWith(CommandEvent.RESET_PAGE, false, pageNumber);
 		}
 		
 		public function resetSubsequentPages(pageNumber:int=-1):void
 		{
 			dispatchWith(CommandEvent.RESET_SUBSEQUENT_PAGES, false, pageNumber);
+		}
+		
+		public function resetZoom():void
+		{
+			dispatchWith(CommandEvent.RESET_ZOOM);
 		}
 		//////////////////////////////////////////////////////////////////////////		
 	}

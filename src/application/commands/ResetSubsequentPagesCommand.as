@@ -24,7 +24,7 @@ package application.commands
 		
 		override public function execute():void
 		{
-			var startingPageNumber:uint = (event.data && event.data > -1) ? uint(event.data) : pagesManager.currentPageNumber+1;   
+			var startingPageNumber:uint = (event.data != null && event.data > -1) ? uint(event.data) : pagesManager.currentPageNumber+1;   
 			var totalPagesCount:uint = pagesManager.intPagesCount;
 			for (var i:int=startingPageNumber; i < totalPagesCount; i++)
 			{

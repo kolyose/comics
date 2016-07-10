@@ -68,5 +68,7 @@ package pages.playback
 			
 			_uintCurrentItemIndex = 0;
 		}
+		
+		public function resetZoom():void{}
 	}
 }

@@ -32,16 +32,10 @@ package application.states.manual
 		
 		override public function playComplete():void
 		{
-			zoom();
+		//	zoom();
 		//	_app.applyState(_statesFactory.getStateZoomedPlayCompletion());
 		}		
-		
-		/*override public function switchPages(pageNumber:uint):void
-		{
-			_app.applyState(_statesFactory.getStateSwitchingPagesZoomed());
-			_app.switchPages(pageNumber);
-		}*/
-		
+				
 		override public function tap():void
 		{
 			_app.applyState(_statesFactory.getStateMenuZoomed());

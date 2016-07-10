@@ -147,6 +147,11 @@ package pages
 			_playbackStrategy.reset();
 		}
 		
+		public function resetZoom():void
+		{
+			_playbackStrategy.resetZoom();
+		}
+		
 		public function dispatchPlaybackComplete():void
 		{
 			dispatchEventWith(PlaybackEvent.PLAYBACK_COMPLETE);	

@@ -30,5 +30,6 @@ package events
 		public static const RESET_PAGES_POSITION:String = "CommandEvent.RESET_PAGES_POSITION";		
 		public static const RESET_PAGE:String = "CommandEvent.RESET_PAGE";		
 		public static const RESET_SUBSEQUENT_PAGES:String = "CommandEvent.RESET_SUBSEQUENT_PAGES";		
+		public static const RESET_ZOOM:String = "CommandEvent.RESET_ZOOM";		
 	}
 }

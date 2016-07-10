@@ -40,7 +40,7 @@ package application.states.autoplay
 		
 		override public function theEnd():void
 		{
-			_app.applyState(_statesFactory.getStateMenuAutoplay());
+			_app.applyState(_statesFactory.getStateMenuZoomedAutoplay());
 		}
 		
 		/*override public function zoomComplete():void

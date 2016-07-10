@@ -14,5 +14,6 @@ package pages.playback
 		function stop():void;
 		function reset():void;
 		function zoom(tweenVO:TweenPropertiesVO):void;
+		function resetZoom():void;
 	}
 }

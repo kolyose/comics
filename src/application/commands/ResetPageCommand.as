@@ -22,7 +22,7 @@ package application.commands
 		
 		override public function execute():void
 		{
-			var pageNumber:uint = (event.data && event.data > -1) ? uint(event.data) : pagesManager.currentPageNumber;  
+			var pageNumber:uint = (event.data != null && event.data > -1) ? uint(event.data) : pagesManager.currentPageNumber;  
 			
 			var page:IPage = pagesManager.getPageByNumber(pageNumber);
 			if (page)

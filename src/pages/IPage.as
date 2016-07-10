@@ -33,6 +33,7 @@ package pages
 		function zoomComplete():void;
 		function zoomPlayback(tweenVO:TweenPropertiesVO):void;
 		function dispatchZoomComplete():void;
+		function resetZoom():void;
 		
 		function dispatchPlaybackComplete():void;
 		function startPlayback():void;

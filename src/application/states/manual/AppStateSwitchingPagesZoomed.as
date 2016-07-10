@@ -22,17 +22,9 @@ package application.states.manual
 		
 		override public function switchPagesComplete():void
 		{
-			_app.switchPagesComplete();
-			//TODO: decide how handle a situation when a current page's playback has finished,
-			//so playing it won't throw PLAY_COMPLETE anymore, but a zoom is still called - so the page has stucked in the middle of zoom...
-			//... or it is OK?
-			_app.zoom(); 
-		}		
-		
-		override public function zoomComplete():void
-		{
-			_app.applyState(_statesFactory.getStateRunningZoomed());	
-		}		
-		
+			_app.switchPagesComplete();			
+			_app.resetZoom();
+			_app.applyState(_statesFactory.getStateRunning());	
+		}				
 	}
 }

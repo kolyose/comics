@@ -149,7 +149,7 @@ package pages.playback.consecutive
 			}
 		}
 		
-		protected function resetZoom():void
+		override public function resetZoom():void
 		{
 			removeTween();
 			
