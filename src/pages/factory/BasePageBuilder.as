@@ -19,7 +19,7 @@ package pages.factory
 		
 		[Inject]
 		public var itemsFactory:IItemFactory;
-		
+				
 		protected var _page:IPage;
 		
 		public function BasePageBuilder()

@@ -5,6 +5,9 @@ package application.commands
 	import events.PagesEvent;
 	import events.ViewEvent;
 	
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	
 	import org.robotlegs.starling.mvcs.Command;
 	
 	import pages.management.IPagesManager;
@@ -22,7 +25,12 @@ package application.commands
 		
 		[Inject]
 		public var switchPagesStrategy:ISwitchPagesStrategy;
-					
+		
+		[Inject]
+		public var playbackSettings:IPlaybackSettings;
+	
+		private var _delayTimer:Timer;
+		
 		public function SwitchPagesCommand()
 		{
 			super();
@@ -37,8 +45,8 @@ package application.commands
 				return;			
 			}
 		
-			dispatchWith(PagesEvent.ADD_PAGE, false, pageNumber);
+			dispatchWith(PagesEvent.ADD_PAGE, false, pageNumber);	
 			switchPagesStrategy.switchToPageByNumber(pageNumber);
-		}
+		}	
 	}
 }

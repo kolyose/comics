@@ -22,8 +22,7 @@ package events
 		public static const HANDLE_MOVE:String = "CommandEvent.HANDLE_MOVE";
 		public static const HANDLE_MOVE_COMPLETE:String = "CommandEvent.HANDLE_MOVE_COMPLETE";
 		public static const SHOW_PAUSE_MENU:String = "CommandEvent.SHOW_PAUSE_MENU";
-		public static const HIDE_PAUSE_MENU:String = "CommandEvent.HIDE_PAUSE_MENU";
-		public static const PAGE_NUMBER_CHANGED:String = "CommandEvent.PAGE_NUMBER_CHANGED";
+		public static const HIDE_PAUSE_MENU:String = "CommandEvent.HIDE_PAUSE_MENU";		
 		public static const SAVE_LOCAL_DATA:String = "CommandEvent.SAVE_LOCAL_DATA";
 		public static const GET_LOCAL_DATA:String = "CommandEvent.GET_LOCAL_DATA";		
 		public static const LOCAL_DATA_READY:String = "CommandEvent.LOCAL_DATA_READY";
@@ -31,5 +30,6 @@ package events
 		public static const RESET_PAGE:String = "CommandEvent.RESET_PAGE";		
 		public static const RESET_SUBSEQUENT_PAGES:String = "CommandEvent.RESET_SUBSEQUENT_PAGES";		
 		public static const RESET_ZOOM:String = "CommandEvent.RESET_ZOOM";		
+		public static const UPDATE_PLAYBACK_SPEED:String = "CommandEvent.UPDATE_PLAYBACK_SPEED";		
 	}
 }

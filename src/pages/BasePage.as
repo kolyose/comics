@@ -152,6 +152,11 @@ package pages
 			_playbackStrategy.resetZoom();
 		}
 		
+		public function updatePlaybackSpeed(value:uint):void
+		{
+			_playbackStrategy.updateSpeed(value);
+		}
+		
 		public function dispatchPlaybackComplete():void
 		{
 			dispatchEventWith(PlaybackEvent.PLAYBACK_COMPLETE);	
@@ -205,8 +210,6 @@ package pages
 		public function set data(value:PageDO):void
 		{
 			_data = value;
-		}
-		
-		
+		}		
 	}
 }

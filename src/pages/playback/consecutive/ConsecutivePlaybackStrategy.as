@@ -21,10 +21,11 @@ package pages.playback.consecutive
 		protected var _grayscaleFilterStepsCounter:uint;
 		protected var _bPlaybackStarted:Boolean;
 		protected var _bPlaybackComplete:Boolean;
+		protected var _nextFrameSwitchCounter:uint;
 		
-		public function ConsecutivePlaybackStrategy(page:IPage)
+		public function ConsecutivePlaybackStrategy(page:IPage, playbackSpeed:uint)
 		{
-			super(page);
+			super(page, playbackSpeed);
 		}
 			
 		override public function start():void
@@ -83,6 +84,7 @@ package pages.playback.consecutive
 			}	
 			
 			_grayscaleFilterStepsCounter = 0;
+			_nextFrameSwitchCounter = 0;
 			_bPlaybackStarted = false;
 			_bPlaybackComplete = false;
 		}
@@ -144,7 +146,15 @@ package pages.playback.consecutive
 		
 		protected function enterFrameHandler():void
 		{
-			_vItems[_uintCurrentItemIndex].nextFrame();
+			if (_nextFrameSwitchCounter >= Settings.getInstance().maxPlaybackSpeed - _playbackSpeed)
+			{			
+				_nextFrameSwitchCounter = 0;
+				_vItems[_uintCurrentItemIndex].nextFrame();
+			}
+			else
+			{
+				_nextFrameSwitchCounter++;				
+			}
 		}
 		
 		protected function playbackIntervalTimerHandler(event:TimerEvent):void

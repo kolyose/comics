@@ -18,13 +18,14 @@ package pages.playback
 		protected var _vItems:Vector.<IItem>;
 		protected var _uintCurrentItemIndex:uint;
 	//	protected var _state:IPlaybackStrategyState;
-			
+		protected var _playbackSpeed:uint;
 		
 		//TODO: remove states functionality if needless
-		public function BasePlaybackStrategy(page:IPage)
+		public function BasePlaybackStrategy(page:IPage, playbackSpeed:uint)
 		{
 			_page = page;
 			_sprContainer = page.container;
+			_playbackSpeed = playbackSpeed;
 		}
 		
 		public function applyState(newState:IPlaybackStrategyState):void
@@ -70,5 +71,11 @@ package pages.playback
 		}
 		
 		public function resetZoom():void{}
+		
+		public function updateSpeed(value:uint):void
+		{
+			_playbackSpeed = value;
+		}
+		
 	}
 }

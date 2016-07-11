@@ -40,6 +40,7 @@ package menu
 		private var _pageNavigator	:MySlider;
 		private var _pageNavigatorLabel:Label;
 		private var _cbAutoplay:Check;
+		private var _speedSelector:MySlider;
 		
 		public function PauseMenuView()
 		{
@@ -86,6 +87,26 @@ package menu
 			dispatchEventWith(ViewEvent.AUTOPLAY_CHANGE, false, _cbAutoplay.isSelected);
 		}
 		
+		public function initSpeedSelector(texturesData:Object, currentSpeed:uint, minSpeed:uint, maxSpeed:uint):void
+		{
+			_speedSelector = new MySlider();
+			_speedSelector.minimum = minSpeed;
+			_speedSelector.maximum = maxSpeed;
+			_speedSelector.step = 1;
+			_speedSelector.value = currentSpeed;
+			_speedSelector.page = 1;
+			_speedSelector.thumbProperties.defaultSkin = new Image(texturesData.sliderThumbSkin);
+			_speedSelector.minimumTrackProperties.defaultSkin = new Image(texturesData.minTrackDefaultSkin);			
+			_speedSelector.addEventListener(Event.CHANGE, speedSelectorChangeHandler);		
+			_speedSelector.move(100, 100);
+			addChild(_speedSelector);			
+		}
+		
+		private function speedSelectorChangeHandler(event:Event):void
+		{
+			dispatchEventWith(ViewEvent.PLAYBACK_SPEED_CHANGE, false, _speedSelector.value);
+		}
+		
 		public function initPageNavigator(texturesData:Object, pagesNumber:uint):void
 		{
 			_pageNavigator = new MySlider();
@@ -122,9 +143,7 @@ package menu
 			updatePagesNavigatorLabel();
 			this.addChild(_pageNavigatorLabel);
 		}
-		
-		
-		
+				
 		public function updatePageNavigator(currentPageNumber:uint):void
 		{
 			_pageNavigator.value = currentPageNumber;

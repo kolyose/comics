@@ -68,6 +68,26 @@ package
 		{
 			return Math.round(WIDTH/10);
 		}
+		
+		public function get defaultPlaybackSpeed():uint
+		{
+			return 4;
+		}
+		
+		public function get minPlaybackSpeed():uint
+		{
+			return 3;
+		}
+		
+		public function get maxPlaybackSpeed():uint
+		{
+			return 5;
+		}
+		
+		public function get autoplayEnabledByDefault():Boolean
+		{
+			return true;
+		}
 	}
 }
 

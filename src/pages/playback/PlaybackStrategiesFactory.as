@@ -11,12 +11,15 @@ package pages.playback
 	
 	public class PlaybackStrategiesFactory extends Actor implements IPlaybackStrategiesFactory
 	{				
+		[Inject]
+		public var playbackSettings:IPlaybackSettings;
+		
 		public function getConsecutivePlaybackStrategy(page:IPage):IPlaybackStrategy
 		{
 			//TODO: refactor to different method
 			//return new ConsecutivePlaybackStrategy(page);
 			
-			var strategy:IPlaybackStrategy = new ConsecutivePlaybackStrategyWithZoom(page);			
+			var strategy:IPlaybackStrategy = new ConsecutivePlaybackStrategyWithZoom(page, playbackSettings.playbackSpeed);			
 			var factory:ConsecutivePlaybackStrategyWithZoomStatesFactory = new ConsecutivePlaybackStrategyWithZoomStatesFactory(strategy as ConsecutivePlaybackStrategyWithZoom);
 			strategy.applyState(factory.getStateNoZoom());
 			return strategy;

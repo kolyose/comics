@@ -14,7 +14,7 @@ package
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	
-	[SWF(width="768", height="1024", frameRate="31", backgroundColor="#ffffff")]
+	[SWF(width="768", height="1024", frameRate="60", backgroundColor="#ffffff")]
 	
 	public class Application extends Sprite
 	{

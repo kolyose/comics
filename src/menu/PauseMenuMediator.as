@@ -2,12 +2,14 @@ package menu
 {
 	import events.ApplicationEvent;
 	import events.CommandEvent;
+	import events.ModelEvent;
 	import events.ViewEvent;
 	
 	import model.assets.AssetsModel;
 	
 	import org.robotlegs.starling.mvcs.Mediator;
 	
+	import starling.core.starling_internal;
 	import starling.events.Event;
 	
 	public class PauseMenuMediator extends Mediator
@@ -31,8 +33,9 @@ package menu
 			addViewListener(ViewEvent.BTN_TRIGGERED, btnTriggeredHandler);
 			addViewListener(ViewEvent.SHOW_PAGE, viewShowPageHandler);
 			addViewListener(ViewEvent.AUTOPLAY_CHANGE, autoplayChangeHandler);
+			addViewListener(ViewEvent.PLAYBACK_SPEED_CHANGE, playbackSpeedChangeHandler);
 			
-			addContextListener(CommandEvent.PAGE_NUMBER_CHANGED, pageNumberChangedHandler);
+			addContextListener(ModelEvent.PAGE_NUMBER_CHANGED, pageNumberChangedHandler);
 			
 			var texturesData:PauseMenuTexturesData = new PauseMenuTexturesData();
 			texturesData.bg = assetsModel.getTexture("pauseMenuBg"); 
@@ -49,6 +52,11 @@ package menu
 			autoplayCheckboxTextures.defaultIcon = assetsModel.getTexture("autoplayOff");
 			autoplayCheckboxTextures.defaultSelectedIcon = assetsModel.getTexture("autoplayOn");
 			view.initAutoplayCheckbox(autoplayCheckboxTextures, playbackSettings.autoplayModeEnabled);
+			
+			var speedSelectorTextures:Object = {};
+			speedSelectorTextures.sliderThumbSkin = assetsModel.getTexture("pagesSliderThumbSkin");
+			speedSelectorTextures.minTrackDefaultSkin = assetsModel.getTexture("pagesSliderTrackSkin");
+			view.initSpeedSelector(pageNavigatorTextures, playbackSettings.playbackSpeed, Settings.getInstance().minPlaybackSpeed, Settings.getInstance().maxPlaybackSpeed);			
 		}
 		
 		private function btnTriggeredHandler(event:Event, name:String):void
@@ -91,6 +99,12 @@ package menu
 		{
 			playbackSettings.autoplayModeEnabled = event.data;
 			dispatchWith(ApplicationEvent.AUTOPLAY);
+		}
+		
+		private function playbackSpeedChangeHandler(event:Event):void
+		{
+			playbackSettings.playbackSpeed = uint(event.data);
+			dispatchWith(CommandEvent.UPDATE_PLAYBACK_SPEED, false, playbackSettings.playbackSpeed);
 		}
 	}
 }

@@ -11,6 +11,9 @@ package application.commands
 		[Inject]
 		public var pagesManager:IPagesManager;
 		
+		[Inject]
+		public var playbackSettings:IPlaybackSettings;
+		
 		public function SaveLocalDataCommand()
 		{
 			super();
@@ -20,6 +23,8 @@ package application.commands
 		{
 			var sharedObject:SharedObject = SharedObject.getLocal("local");
 			sharedObject.data["currentPageNumber"] = pagesManager.currentPageNumber;
+			sharedObject.data["playbackSpeed"] = playbackSettings.playbackSpeed;
+			sharedObject.data["autoplayModeEnabled"] = playbackSettings.autoplayModeEnabled;
 			sharedObject.flush();
 		}
 	}

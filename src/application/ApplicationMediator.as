@@ -12,7 +12,9 @@ package application
 	
 	import flash.desktop.NativeApplication;
 	import flash.events.Event;
+	import flash.events.TimerEvent;
 	import flash.geom.Point;
+	import flash.utils.Timer;
 	
 	import model.assets.Assets;
 	import model.assets.AssetsModel;
@@ -45,6 +47,8 @@ package application
 		
 		private var _state:IAppState;
 		private var _startFromPageNumber:uint;
+		private var _delayTimer:Timer;
+		private var _pageNumberSwitchTo:uint;
 		
 		public function ApplicationMediator()
 		{
@@ -204,11 +208,13 @@ package application
 		{
 			removeContextListener(CommandEvent.LOCAL_DATA_READY, localDataReadyHandler);
 			
-			var autoplayModeEnabled:Boolean = (event.data && event.data["autoplayModeEnabled"])	? 
+			playbackSettings.autoplayModeEnabled = (event.data && event.data["autoplayModeEnabled"] != undefined) ? 
 				event.data["autoplayModeEnabled"] : playbackSettings.autoplayModeEnabled;
 			
-			playbackSettings.autoplayModeEnabled = autoplayModeEnabled;			
-			_startFromPageNumber = (event.data && event.data["currentPageNumber"]) ? event.data["currentPageNumber"] : 1;
+			playbackSettings.playbackSpeed = (event.data && event.data["playbackSpeed"] != undefined) ? 
+				event.data["playbackSpeed"] : playbackSettings.playbackSpeed;
+			
+			_startFromPageNumber = (event.data && event.data["currentPageNumber"] != undefined) ? event.data["currentPageNumber"] : 1;
 			
 			applyState(statesFactory.getStateInit());
 		}
@@ -308,6 +314,24 @@ package application
 		public function switchPages(pageNumber:uint):void
 		{
 			dispatchWith(CommandEvent.SWITCH_PAGES, false, pageNumber);
+		}
+		
+		public function switchPagesAfterDelay(pageNumber:uint):void
+		{
+			_pageNumberSwitchTo = pageNumber;
+			
+			_delayTimer = new Timer(1000 * (Settings.getInstance().maxPlaybackSpeed - playbackSettings.playbackSpeed), 1);
+			_delayTimer.addEventListener(TimerEvent.TIMER_COMPLETE, delayTimerHandler);
+			_delayTimer.start();
+		}
+		
+		private function delayTimerHandler(event:TimerEvent):void
+		{
+			_delayTimer.stop();
+			_delayTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, delayTimerHandler);
+			_delayTimer = null;	
+			
+			switchPages(_pageNumberSwitchTo);
 		}
 		
 		public function switchPagesComplete():void

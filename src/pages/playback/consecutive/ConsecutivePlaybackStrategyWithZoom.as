@@ -23,9 +23,9 @@ package pages.playback.consecutive
 		protected var _tweenVO:TweenPropertiesVO;
 		protected var _pageInitialCoordinates:Point;
 		
-		public function ConsecutivePlaybackStrategyWithZoom(page:IPage)
+		public function ConsecutivePlaybackStrategyWithZoom(page:IPage, playbackSpeed:uint)
 		{
-			super(page);	
+			super(page, playbackSpeed);	
 		}
 				
 		override public function zoom(tweenVO:TweenPropertiesVO):void

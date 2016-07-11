@@ -112,6 +112,7 @@ package application.commands
 			commandMap.mapEvent(CommandEvent.RESET_PAGE, ResetPageCommand);			
 			commandMap.mapEvent(CommandEvent.RESET_SUBSEQUENT_PAGES, ResetSubsequentPagesCommand);			
 			commandMap.mapEvent(CommandEvent.RESET_ZOOM, ResetZoomCommand);			
+			commandMap.mapEvent(CommandEvent.UPDATE_PLAYBACK_SPEED, UpdatePlaybackSpeedCommand);			
 			
 			commandMap.mapEvent(CommandEvent.SET_PAGE_ENABLED, SetPageEnabledCommand);
 			commandMap.mapEvent(CommandEvent.REPLAY, ReplayCommand);

@@ -3,6 +3,7 @@ package pages.management
 	import data.PageDO;
 	
 	import events.CommandEvent;
+	import events.ModelEvent;
 	import events.ViewEvent;
 	
 	import flash.geom.Point;
@@ -71,7 +72,7 @@ package pages.management
 		public function set currentPageNumber(number:uint):void
 		{
 			this.model.currentPageNumber = number;
-			dispatchWith(CommandEvent.PAGE_NUMBER_CHANGED, false, currentPageNumber);
+			dispatchWith(ModelEvent.PAGE_NUMBER_CHANGED, false, currentPageNumber);
 		}
 		
 		public function set loadingPageNumber(number:uint):void

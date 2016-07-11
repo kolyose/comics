@@ -15,5 +15,6 @@ package events
 		public static const BTN_TRIGGERED:String = "ViewEvent.BTN_TRIGGERED";		
 		public static const SHOW_PAGE:String = "ViewEvent.SHOW_PAGE";		
 		public static const AUTOPLAY_CHANGE:String = "ViewEvent.AUTOPLAY_CHANGE";		
+		public static const PLAYBACK_SPEED_CHANGE:String = "ViewEvent.PLAYBACK_SPEED_CHANGE";		
 	}
 }

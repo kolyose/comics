@@ -5,6 +5,7 @@ package application.states.autoplay
 	import application.states.IAppStatesFactory;
 	
 	import flash.geom.Point;
+	import flash.utils.Timer;
 
 	public class AppStateRunningAutoplay extends BaseAppState
 	{
@@ -32,7 +33,7 @@ package application.states.autoplay
 		override public function switchPages(pageNumber:uint):void
 		{
 			_app.applyState(_statesFactory.getStateSwitchingPagesAutoplay());
-			_app.switchPages(pageNumber);
+			_app.switchPagesAfterDelay(pageNumber);
 		}
 		
 		override public function theEnd():void
@@ -49,6 +50,6 @@ package application.states.autoplay
 		{
 		//	_app.applyState(_statesFactory.getStateMovingAutoplay());
 		//	_app.move(offset)
-		}
+		}		
 	}
 }

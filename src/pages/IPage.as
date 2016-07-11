@@ -40,6 +40,7 @@ package pages
 		function stopPlayback():void;
 		function restartPlayback():void;
 		function resetPlayback():void;
+		function updatePlaybackSpeed(value:uint):void;
 		function enable():void;
 		function disable():void;
 	}
