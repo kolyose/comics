@@ -19,6 +19,7 @@ package controls.commands
 			super();
 		}
 		
+		//DEPRECATED
 		override public function execute():void
 		{				
 			switch (event.data.name)

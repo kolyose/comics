@@ -9,6 +9,7 @@ package application
 	
 	import events.ApplicationEvent;
 	import events.CommandEvent;
+	import events.ModelEvent;
 	
 	import flash.desktop.NativeApplication;
 	import flash.events.Event;
@@ -186,8 +187,16 @@ package application
 		//METHODS specific to the Application ////////////////////////////////////
 		public function loadAssets():void
 		{
-			assetsModel.enqueue(Assets);
-			assetsModel.loadQueue(assetsLoadProgressHandler);	
+			//assetsModel.enqueue(Assets);
+			//assetsModel.loadQueue(assetsLoadProgressHandler);	
+			
+			addContextListener(ModelEvent.COMMON_ASSETS_LOADED, assetsLoadedHandler);
+			assetsModel.loadCommonAssets();
+		}
+		
+		protected function assetsLoadedHandler(event:starling.events.Event):void
+		{
+			loadLocalData();
 		}
 		
 		protected function assetsLoadProgressHandler(numProgress:Number):void

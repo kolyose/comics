@@ -1,6 +1,7 @@
 package model.assets
 {
 	import events.CommandEvent;
+	import events.ModelEvent;
 	
 	import flash.filesystem.File;
 	
@@ -59,6 +60,21 @@ package model.assets
 		public function getAtlasByPageNumber(pageNumber:uint):TextureAtlas
 		{
 			return _assetManager.getTextureAtlas("page_" + pageNumber);
+		}
+		
+		public function loadCommonAssets():void
+		{
+			var file:File = _appDir.resolvePath(_appDir.nativePath + "/../resources/common");
+			_assetManager.enqueue(file);
+			_assetManager.loadQueue(commonAssetsLoadedHandler);
+		}
+		
+		private function commonAssetsLoadedHandler(percentLoaded:Number):void
+		{			
+			if (percentLoaded == 1)
+			{
+				dispatchWith(ModelEvent.COMMON_ASSETS_LOADED);
+			}
 		}
 		
 		public function loadPageResources(pageNumber:uint):void
